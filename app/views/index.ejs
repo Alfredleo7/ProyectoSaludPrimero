@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Salud Primero S.A. - Pagina de inicio</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Attention here -->
+    <script type="text/javascript" src="../javascript/myjs.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> 
+
+    <style>
+        @media (max-width: 990px) { 
+            .container {
+                padding-top: 4%;
+                max-width: 100%;
+            }
+        }
+    </style>
+    
+    <!-- Attention here -->
+    <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
+
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a style="font-size: 1.5em;text-decoration: none;" href="/"><img src="../imagenes/logo.png" alt="salud primero" width="50" height="50">Salud Primero S.A.</a>
+      </div>
+    </div>
+  </nav>
+
+    <% if(locals.error) { %>
+        <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <% if(locals.success) { %>
+        <div class="alert alert-success"><%= success %></div>
+    <% } %>
+
+<div id="content-wrapper">
+        <div class="container">
+            <div id="welcomeSection" class="container-fluid" >
+                <div class="contenido-inicio col-md-12">
+                    <div class="panel1 col-md-8">
+                        <div class="login1">
+                            <h3>Bienvenido a Salud Primero S.A.</h3>
+                            <br>
+                            <p>Salud Primero S.A. ofrece un servicio de laboratorio especializado de alta calidad. Cuenta con los instrumentos y equipos computarizados más modernos, así como un staff de profesionales médicos y tecnólogos que le garantizan resultados confiables y a tiempo en todas las especialidades.</p>
+                            <br>
+                        </div>  <!-- login 1 -->
+                    </div> <!-- panel 1 -->
+
+                    <div class="panel2 col-md-4"> <!-- -->
+                        <div class="login2">
+
+                            <form class="form-signin" method="post">
+                                <h2 class="form-signin-heading">Ingresar</h2>
+
+                                <div class="form-group">
+                                    <label for="inputUser" class="sr-only"></label>
+                                    <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" placeholder="Nombre de usuario" required autofocus>
+                                </div>
+                                <!-- <br> -->
+
+                                <div class="form-group">
+                                    <label for="inputPassword" class="sr-only"></label>
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Contrase&ntilde;a" required />
+                                </div>
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="remember-me"> Recordar </input>
+                                    </label>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-lg btn-primary btn-block" id="btnLogin">Ingresar</button>
+                                    <a href="/register" class="btn btn-link text-center">Crear usuario</a>
+                                </div>
+
+                            </form>
+
+                        </div> <!-- login 2-->
+                    </div> <!--panel 2 -->
+
+                </div> <!-- contenido/inicio-->
+            </div>
+        </div>
+
+    <br>
+    <br>
+
+    <footer class="pie">
+        &copy; Todos los derechos reservados. 2016
+    </footer>
+
+</div>
+
+</body>
+</html>
