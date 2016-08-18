@@ -128,9 +128,7 @@
     $("#formLogin").submit(function(e){
         e.preventDefault();
         var url = "/login";
-        var data = $("#formLogin").serialize(); // + '&' + $.param({parametro:"pacman"});
-
-        //console.log(data);
+        var data = $("#formLogin").serialize(); // + '&' + $.param({parametro:""});
 
         $.ajax({
             type: 'POST',
@@ -139,7 +137,10 @@
             success: function(respuesta){
                 // *****
                 console.log(respuesta);
-
+                
+                if (respuesta.error=='true'){
+                    alert(respuesta.mensaje);
+                }
                 window.location = respuesta.url;
             }
         });

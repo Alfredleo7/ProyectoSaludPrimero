@@ -1,5 +1,5 @@
 var Paciente = require('mongoose').model('Paciente');
-
+/*
 function password() {
   var iteration = 0;
   var password = "";
@@ -15,10 +15,10 @@ function password() {
   }
   return password;
 }
-
+*/
 exports.crear = function(req, res, next){
   var paciente = Paciente(req.body);
-  paciente.password = password();//generar password
+  //paciente.password = password();//generar password
   paciente.save(function(err){
     if(err){
       return next(err);
@@ -55,7 +55,7 @@ exports.pacienteByCedulaContraseña = function(req, res, next){
 
   Paciente.findOne({ $and: [ { cedula: cedula }, { password: password } ] }, function(err, paciente){
     if(err){
-      res.send({mensaje: "usuario no encontrado", error: "true", url: "/"});
+      res.send({mensaje: "Error en la consuta. Intente de nuevo.", error: "true", url: "/"});
       return; // next(err);
     } 
     else {
@@ -64,7 +64,7 @@ exports.pacienteByCedulaContraseña = function(req, res, next){
           return res.send({paciente, error: "false",url: "/paciente"});
         }
         else{
-          res.send({mensaje: "usuario no encontrado", error: "true", url: "/"});
+          res.send({mensaje: "Usuario no encontrado. Intente de nuevo", error: "true", url: "/"});
         }
 
     }
