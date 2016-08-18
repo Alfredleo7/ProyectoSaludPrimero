@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Salud Primero S.A. - Paciente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="../javascript/reporteScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/reporteStyles.css">
+
+
+	<style>
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+
+		.bar {
+		  fill: orange;
+		}
+
+		.bar:hover {
+		  fill: orangered ;
+		}
+
+		.x.axis path {
+		  display: none;
+		}
+
+		.d3-tip {
+		  line-height: 1;
+		  font-weight: bold;
+		  padding: 12px;
+		  background: rgba(0, 0, 0, 0.8);
+		  color: #fff;
+		  border-radius: 2px;
+		}
+
+		/* Creates a small triangle extender for the tooltip */
+		.d3-tip:after {
+		  box-sizing: border-box;
+		  display: inline;
+		  font-size: 10px;
+		  width: 100%;
+		  line-height: 1;
+		  color: rgba(0, 0, 0, 0.8);
+		  content: "\25BC";
+		  position: absolute;
+		  text-align: center;
+		}
+
+		/* Style northward tooltips differently */
+		.d3-tip.n:after {
+		  margin: -1px 0 0 0;
+		  top: 100%;
+		  left: 0;
+		}
+	</style>
+
+
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pacienteBar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/operario" style="font-size: 1.5em;text-decoration: none;"><img src="../imagenes/logo.png" alt="Salud Primero" width="50" height="50">Salud Primero S.A.</a>
+      </div>
+      <div class="collapse navbar-collapse" id="pacienteBar">
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="registroMuestra.html"><i class="glyphicon glyphicon-duplicate"></i> Registrar muestra</a></li>
+            <li><a href="ReportesEstadisticas.html"><i class="glyphicon glyphicon-picture"></i> Reportes y Estad&iacute;sticas</a></li>
+            <li><a href="index.html"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
+          </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  
+  <div id="section1">
+  	<h2 style="text-align: center;"> Estadisticas de ingreso de muestras por mes </h2>
+  	<div class="grafico">
+		<script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+		<script>
+
+		var margin = {top: 40, right: 20, bottom: 30, left: 40},
+		    width = 960 - margin.left - margin.right,
+		    height = 500 - margin.top - margin.bottom;
+
+		var formatPercent = d3.format(".0%");
+
+		var x = d3.scale.ordinal()
+		    .rangeRoundBands([0, width], .1);
+
+		var y = d3.scale.linear()
+		    .range([height, 0]);
+
+		var xAxis = d3.svg.axis()
+		    .scale(x)
+		    .orient("bottom");
+
+		var yAxis = d3.svg.axis()
+		    .scale(y)
+		    .orient("left")
+		    .tickFormat(formatPercent);
+
+		var tip = d3.tip()
+		  .attr('class', 'd3-tip')
+		  .offset([-10, 0])
+		  .html(function(d) {
+		    return "<strong>Frequency:</strong> <span style='color:red'>" + d.frequency + "</span>";
+		  })
+
+		var svg = d3.select("#section1").append("svg")
+		    .attr("width", width + margin.left + margin.right)
+		    .attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		svg.call(tip);
+
+		d3.tsv("../datos/data.tsv", type, function(error, data) {
+		  x.domain(data.map(function(d) { return d.letter; }));
+		  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+		  svg.append("g")
+		      .attr("class", "x axis")
+		      .attr("transform", "translate(0," + height + ")")
+		      .call(xAxis);
+
+		  svg.append("g")
+		      .attr("class", "y axis")
+		      .call(yAxis)
+		    .append("text")
+		      .attr("transform", "rotate(-90)")
+		      .attr("y", 6)
+		      .attr("dy", ".71em")
+		      .style("text-anchor", "end")
+		      .text("Frequency");
+
+		  svg.selectAll(".bar")
+		      .data(data)
+		    .enter().append("rect")
+		      .attr("class", "bar")
+		      .attr("x", function(d) { return x(d.letter); })
+		      .attr("width", x.rangeBand())
+		      .attr("y", function(d) { return y(d.frequency); })
+		      .attr("height", function(d) { return height - y(d.frequency); })
+		      .on('mouseover', tip.show)
+		      .on('mouseout', tip.hide)
+
+		});
+
+		function type(d) {
+		  d.frequency = +d.frequency;
+		  return d;
+		}
+
+		</script>
+	</div>
+  </div>
+
+  <!--
+  <div id="section2">
+  	<div class="grafico2">
+
+  	</div>
+  </div> 
+  -->
+
+
+
+
+
+
+</body>
+</html>

@@ -31,6 +31,7 @@
     
     <!-- Attention here -->
     <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hideshowpassword/2.0.10/hideShowPassword.min.js"></script>
 
 </head>
 <body>
@@ -67,30 +68,36 @@
                     <div class="panel2 col-md-4"> <!-- -->
                         <div class="login2">
 
-                            <form class="form-signin" method="post">
-                                <h2 class="form-signin-heading">Ingresar</h2>
+                            <form id="formLogin" class="form-signin">
+                                <h2 class="form-signin-heading text-center">Ingreso al sistema</h2>
 
                                 <div class="form-group">
-                                    <label for="inputUser" class="sr-only"></label>
+                                    <div class="selectContainer">
+                                        <select class="form-control" name="rol">
+                                            <option value="" disabled selected>-- Escoja un rol --</option>
+                                            <option value="paciente">Paciente</option>
+                                            <option value="operario">Operario</option>
+                                            <option value="laboratorista">Laboratorista</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="username" class="sr-only"></label>
                                     <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" placeholder="Nombre de usuario" required autofocus>
                                 </div>
-                                <!-- <br> -->
 
-                                <div class="form-group">
-                                    <label for="inputPassword" class="sr-only"></label>
-                                    <input type="password" name="password" id="password" class="form-control" placeholder="Contrase&ntilde;a" required />
+                                <div class="input-group">
+                                    <input name="password" type="password" id="password" class="form-control" placeholder="Contraseña">
+                                    <span id="showPassword" class="input-group-btn">
+                                        <button class="btn btn-default reveal" type="button" onclick="showPass();"><i id="eyeIcon" class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>  
                                 </div>
-
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" value="remember-me"> Recordar </input>
-                                    </label>
-                                </div>
-
+                                <br>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-lg btn-primary btn-block" id="btnLogin">Ingresar</button>
-                                    <a href="/register" class="btn btn-link text-center">Crear usuario</a>
+                                    <!-- <a href="/register" class="btn btn-link text-center">Crear usuario*</a> -->
                                 </div>
 
                             </form>
@@ -110,6 +117,32 @@
     </footer>
 
 </div>
+
+<!-- <script>
+    $('#password').hideShowPassword({
+        innerToggle: true
+    });
+</script> -->
+
+<script>
+    $("#formLogin").submit(function(e){
+        e.preventDefault();
+        var url = "http://localhost:3000/login";
+        var data = $("#formLogin").serialize() + '&' + $.param({parametro:"pacman"});
+
+        console.log(data);
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data,
+            success: function(respuesta){
+                alert(respuesta.mensaje);
+                //window.location = "/operario";
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

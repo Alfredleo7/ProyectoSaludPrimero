@@ -4,6 +4,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var session = require('express-session');
+var path = require('path');
+var favicon = require('serve-favicon');
+
 
 module.exports = function(){
   var app = express();
@@ -20,6 +23,9 @@ module.exports = function(){
   }));
   app.set('views', './app/views');
   app.set('view engine', 'ejs');
+
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(favicon(__dirname + '/public/favicon.ico'));
 
   //definir las rutas
   require('../app/routes/ficha.server.routes.js')(app);

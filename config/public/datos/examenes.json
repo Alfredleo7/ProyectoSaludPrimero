@@ -1,0 +1,38 @@
+[
+	{
+		"paciente":"John Doe",
+		"tipo":"Tipo Examen 2",
+		"fecha":"10-10-2015",
+		"estado":"0"
+	},
+	{
+		"paciente":"John Doe",
+		"tipo":"Tipo Examen 1",
+		"fecha":"10-10-2015",
+		"estado":"3"
+	},
+	{
+		"paciente":"John Doe",
+		"tipo":"Tipo Examen 4",
+		"fecha":"06-11-2015",
+		"estado":"1"
+	},
+	{
+		"paciente":"John Doe",
+		"tipo":"Tipo Examen 3",
+		"fecha":"14-11-2015",
+		"estado":"2"
+	},
+	{
+		"paciente":"John Doe",
+		"tipo":"Tipo Examen 1",
+		"fecha":"01-01-2016",
+		"estado":"0"
+	},
+	{
+		"paciente":"John Doe",
+		"tipo":"Tipo Examen 4",
+		"fecha":"05-05-2016",
+		"estado":"3"
+	}
+]

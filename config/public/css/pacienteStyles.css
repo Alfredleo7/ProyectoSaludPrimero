@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+body {
+	position: relative;
+	background-color: black;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Philosopher', 'Verdana', sans-serif;
+}
+
+.mapCanvas {
+	height: 300px;
+	width: 100%;
+}
+
+#section1 {padding-top:70px;color: #fff; background-color:rgba(0,0,0,0.5);}
+#section2 {padding-top:50px;padding-bottom:50px;color: #fff; background-color:rgb(94, 146, 161);}
+#section3 {padding-top:50px;color: #fff; background-color: rgb(142, 185, 133);}
+
+#section1 {
+	font-size: 1.4em;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100px;
+    text-align: center;
+}
+
+#section1 h1 {
+	text-align: left;
+}
+
+#section1 img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#section2 .centrosText {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+#section1, #section2 .centrosText, #section2 h2, #section3 {
+	text-shadow: 2px 2px #000000;
+}
+
+#section1-bg {
+  text-align: left;
+  position: absolute;
+  top:0%;
+  left:0%;
+  height:100%;
+  width:100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+@media (max-width: 767px) {
+  #section1-bg {
+    background: url("../imagenes/fondos/fondo4.jpg") no-repeat center center;
+    
+  }
+
+  #section1-bg video {
+    display: none;
+  }
+}
+
+/*  Para ocultar los paneles */ 
+.hidden{
+	display: none !important;
+}
+
+/*  Controla el botón para mostrar más centros */
+#btn-showmore {
+	display: block;
+	margin: auto;
+	align-self: center;
+	clear: both;
+}
+
+#btn-centros, #btn-galeria {
+  	border: 3px solid #ffffff;
+ 	color: #ffffff;
+	padding: 10px;
+	margin: 10px;
+	font-size: 1.1em;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+}
+
+.panelCentroBody {
+	color: black;
+	font-size: 1.1em;
+	height: 200px;
+	overflow-y: scroll;
+}
+
+video {
+  height: 650px;
+  position:absolute;
+  z-index:-1;
+}
+
+video.fillWidth {
+  width: 100%;
+}
+
+.modal-lg {
+	width: 90%;
+}
+
+.content-slide{
+	max-width: 70%;
+	margin: 0px auto;
+}
+
+#slider{
+	margin: 0px;
+}
+
+.pie {
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 2%;
+	text-shadow: 1px 1px #000;
+	color: #FFF
+}

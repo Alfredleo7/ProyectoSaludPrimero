@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+body {
+	font-family: 'Philosopher', 'Verdana', sans-serif;
+	background: url("../imagenes/fondos/fondo2.jpg") no-repeat center center; 
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.navbar-default{
+	margin-bottom: 0px;
+}
+
+#welcomeSection {
+	padding-top:70px; 
+	background-color:rgba(0,0,0,0.5);
+	padding-bottom: 70px;
+}
+
+#content-wrapper {
+/*	position:absolute; */
+	/*z-index:1 !important;*/
+	min-width:100%;
+	min-height:100%;
+}
+
+.container {
+	padding-top: 2%;
+	max-width: 100%;
+}
+
+.contenido-inicio {
+	max-width: 100%;
+
+}
+
+.panel1 {
+	align-self: center;
+	border-radius: 25px;
+	max-width: 100%;
+	text-shadow: 2px 2px #000;
+  	color: #FFF;
+  	font-size: 1.15em;
+}
+
+.login1 p{
+	font-size: 1.1em;
+	text-align: justify;
+}
+
+.login2 {
+	border-radius: 15px;
+	padding-top: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+	box-shadow: 0px 0px 2px;
+	background-color: rgba(255,255,255,0.8);
+}
+
+.pie {
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 2%;
+	text-shadow: 1px 1px #000;
+	color: #FFF
+}
+/* ****************************** */
+::-ms-reveal {
+	display:none !important;
+}

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+body {
+	position: relative;
+	background-color: black;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Philosopher', 'Verdana', sans-serif;
+}
+
+.mapCanvas {
+	height: 300px;
+	width: 100%;
+}
+
+#section1 {padding-top:70px;color: #fff; background-color:rgba(0,0,0,0.5);}
+#section2 {padding-top:50px;padding-bottom:50px;color: #fff; background-color: rgb(94, 146, 161);}
+#section3 {padding-top:50px;color: #fff; background-color: rgb(142, 185, 133);}
+
+#section1 {
+	font-size: 1.4em;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+#section1 p {
+	text-align: center;
+}
+
+#section1 img {
+	display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+#section2 .centrosText {
+	text-align: center;
+	font-size: 1.5em;
+}
+
+#section1, #section2 .centrosText, #section2 h2, #section3 {
+	text-shadow: 2px 2px #000000;
+}
+
+#section1-bg {
+  background: url("../imagenes/oper/operario-fondo.jpg") no-repeat center center;
+  background-size: cover;
+  position: absolute;
+  top:0%;
+  left:0%;
+  height:100%;
+  width:100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+@media (max-width: 767px) {
+	/**/
+}
+
+/*  Para ocultar */ 
+.hidden{
+	display: none !important;
+}
+
+
+.btn-outline {
+    background-color: transparent;
+    color: inherit;
+    transition: all .5s;
+    align-self: center;
+    display: block;
+  	border: 3px solid #ffffff;
+ 	color: #ffffff;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: auto;
+	font-size: 1.1em;
+	/*width: 22%;*/
+}
+
+.modal-lg {
+	width: 90%;
+}
+
+table{
+	height: 400px; 
+}
+
+tbody{
+    overflow-y: scroll;
+    height: 400px;
+    width: 93%;
+    position: absolute;
+    background-color: #FFFFFF;
+    opacity: 0.75;
+}
+
+tr {
+	width: 100%;
+	display: inline-table;
+}
+
+td{
+	color: #673ab7;
+	background-color: #FFFFFF;
+	opacity: 1;
+}
+
+td:hover{
+	color: #FFFFFF;
+	background-color: #673ab7;
+	opacity: 0.9;
+}
+
+.tituloMuestra{
+	margin-left: 20%;
+	margin-right: 10%;
+	font-size: 1.5em;
+}
+
+.muestras-info {
+	border-radius: 10px;
+	background-color: #000000;
+	opacity: 0.9;
+	margin: auto;
+	height: 400px;
+	width: 100%;
+	overflow-y: scroll;
+}
+
+.pie {
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 2%;
+	text-shadow: 1px 1px #000;
+	color: #FFF
+}

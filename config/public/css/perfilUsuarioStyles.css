@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+body {
+	position: relative;
+	background-color: black;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Philosopher', 'Verdana', sans-serif;
+}
+
+#fotoPerfil {
+	height: 200px;
+	width: 200px;
+}
+
+#section1 {padding-top:70px;color: #fff; background-color:rgb(94, 146, 161);}
+
+#pacienteNombre {
+	text-align: center;
+}
+
+.errorPerfil {
+    color:#FF0000;
+    text-shadow: none;
+    font-size: 0.75em;
+}
+
+#section1 {
+	text-shadow: 2px 2px #000000;
+	font-size: 1.4em;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.pie {
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 2%;
+	text-shadow: 1px 1px #000;
+	color: #FFF
+}

@@ -1,0 +1,521 @@
+[
+	{
+		"Nombre":"Centro Medico Popular 1", 
+		"Direccion":"Av Mariscal Sucre y Toacazo", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Resonancia Magnetica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-0.261168",
+			"Longitud":"-78.547066"
+		}
+	},
+
+	{
+		"Nombre":"Hospital Clinica Kennedy", 
+		"Direccion":"Av. del Periodista Avenida 11 NO", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Examenes Generales",
+		 	"Tomografia",
+		 	"Resonancia Magnetica",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa",
+		 	"Perfil triode: TSH, T3, T4"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.173195",
+			"Longitud":"-79.899199"
+		}
+	},
+
+	{
+		"Nombre":"Clinica La Paz", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+			"Examenes Generales",
+		 	"Radiotempanacion osea",
+		 	"Electrocardiograma",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa",
+		 	"Perfil triode: TSH, T3, T4"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Clinica Latinoamericana", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+			"Diagnóstico preventivo de cáncer",
+		 	"Radiotempanacion osea",
+		 	"Electrocardiograma",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa",
+		 	"Perfil triode: TSH, T3, T4"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Hospital Luis Vernaza", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+			"Tomografías",
+		 	"Radiotempanación osea",
+		 	"Electrocardiograma",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa",
+		 	"Perfil triode: TSH, T3, T4"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Clinica Arizmendi", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Resonancia Magnetica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Maternidad Santa Marianita", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Planificación familiar",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Hospital del Seguro IESS", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Resonancia Magnetica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Clínica Alcívar", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Hospital Rumiñahui", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Clínica Benalcázar", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Hospital Alfredo Valenzuela", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Laboratorio de Infectología", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Hospital Alejandro Mann", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Clínica Panamericana", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Hospital Teododo Maldonado", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Laboratorio clínico # 7", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Clínica Castañeda", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Centro de Salud # 10", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	},
+
+	{
+		"Nombre":"Clínica La Asunción", 
+		"Direccion":"Ave Viracochabamba, Cuenca", 
+		"Telefono":"042-123456",
+        "Horarios":{
+	        "Lunes":"09:00 - 17:30",
+            "Martes":"09:00 - 17:30",
+            "Miercoles":"09:00 - 17:30",
+            "Jueves":"09:00 - 17:30",
+            "Viernes":"09:00 - 17:30",
+        	"Sabado":"10:00 - 16:00",
+        	"Domingo":"11:00 - 15:30"
+        },
+        "Descripcion":[
+		 	"Desintometria Osea",
+		 	"Hemograma completo",
+		 	"Tomografía abdomino-pélvica",
+		 	"Urinálisis completo",
+		 	"Perfil renal: Nitrógeno de urea, Creatinina, Ácido úrico, Proteína total, albúmina/globulina, calcio, glucosa"
+		 ],
+		"Coordenadas":{
+			"Latitud":"-2.903721",
+			"Longitud":"-78.9946676"
+		}
+	}
+]

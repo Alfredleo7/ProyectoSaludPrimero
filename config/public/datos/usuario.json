@@ -1,0 +1,12 @@
+{
+	"Usuario":"user",
+	"Nombres":"John", 
+	"Apellidos":"Doe", 
+	"Cedula":"0987654321", 
+	"Email":"user@user.com", 
+	"Direccion":"1075 Twin House Lane", 
+	"Telefonos":[
+		"0993123456",
+		"042-654321"
+	]
+}
