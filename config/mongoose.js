@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = function(){
-  var db = mongoose.connect('mongodb://localhost/mean', function(err){
+  var db = mongoose.connect('mongodb://localhost/daw', function(err){
     if (err) {
       console.log("Error de Conexión");
     } else {

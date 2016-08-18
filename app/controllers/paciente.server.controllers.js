@@ -52,11 +52,21 @@ exports.eliminar = function(req, res, next){
 exports.pacienteByCedulaContraseña = function(req, res, next){
   var cedula = req.body.cedula;
   var password = req.body.password;
-  Paciente.find({ $and: [ { cedula: cedula }, { password: password } ] }, function(err, paciente){
+
+  Paciente.findOne({ $and: [ { cedula: cedula }, { password: password } ] }, function(err, paciente){
     if(err){
-      return next(err);
-    } else {
-      return res.json(paciente);
+      res.send({mensaje: "usuario no encontrado", error: "true", url: "/"});
+      return; // next(err);
+    } 
+    else {
+        if (paciente) {
+          res.type("json");
+          return res.send({paciente, error: "false",url: "/paciente"});
+        }
+        else{
+          res.send({mensaje: "usuario no encontrado", error: "true", url: "/"});
+        }
+
     }
   });
 };

@@ -73,7 +73,7 @@
 
                                 <div class="form-group">
                                     <div class="selectContainer">
-                                        <select class="form-control" name="rol">
+                                        <select class="form-control" name="rol" required="true">
                                             <option value="" disabled selected>-- Escoja un rol --</option>
                                             <option value="paciente">Paciente</option>
                                             <option value="operario">Operario</option>
@@ -84,11 +84,11 @@
 
                                 <div class="form-group">
                                     <label for="username" class="sr-only"></label>
-                                    <input type="text" name="username" id="username" value="<%= locals.username || '' %>" class="form-control" placeholder="Nombre de usuario" required autofocus>
+                                    <input type="text" name="cedula" id="cedula" value="<%= locals.username || '' %>" class="form-control" placeholder="Cedula" required="true" autofocus>
                                 </div>
 
                                 <div class="input-group">
-                                    <input name="password" type="password" id="password" class="form-control" placeholder="Contraseña">
+                                    <input name="password" type="password" id="password" class="form-control" placeholder="Contraseña" required="true">
                                     <span id="showPassword" class="input-group-btn">
                                         <button class="btn btn-default reveal" type="button" onclick="showPass();"><i id="eyeIcon" class="glyphicon glyphicon-eye-open"></i></button>
                                     </span>  
@@ -127,18 +127,20 @@
 <script>
     $("#formLogin").submit(function(e){
         e.preventDefault();
-        var url = "http://localhost:3000/login";
-        var data = $("#formLogin").serialize() + '&' + $.param({parametro:"pacman"});
+        var url = "/login";
+        var data = $("#formLogin").serialize(); // + '&' + $.param({parametro:"pacman"});
 
-        console.log(data);
+        //console.log(data);
 
         $.ajax({
             type: 'POST',
             url: url,
             data: data,
             success: function(respuesta){
-                alert(respuesta.mensaje);
-                //window.location = "/operario";
+                // *****
+                console.log(respuesta);
+
+                window.location = respuesta.url;
             }
         });
     });
