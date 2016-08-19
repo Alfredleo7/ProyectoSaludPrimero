@@ -54,3 +54,12 @@ exports.operarioByCedulaContraseña = function(req, res, next){
     }
   });
 };
+
+
+exports.registroMuestra = function(req, res, next){
+  res.render('registroMuestra');
+}
+
+exports.registroPaciente = function(req, res, next){
+  res.render('registroPaciente');
+}

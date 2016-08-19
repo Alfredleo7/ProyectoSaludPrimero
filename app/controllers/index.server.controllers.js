@@ -34,14 +34,27 @@ exports.pagInicial = function(req, res, next){
   res.render('index');
 }
 
-exports.pagOperario = function(req, res, nombre, next){
+exports.pagOperario = function(req, res, next){
+  // ***
   res.render('operario');
 }
 
-exports.pagPaciente = function(req, res, nombre, next){
+exports.OperRegistroMuestra = function(req, res, next){
+  res.render('registroMuestra');
+}
+
+exports.OperRegistroPaciente = function(req, res, next){
+  res.render('registroPaciente');
+}
+
+exports.OperEstadisticas = function(req, res, next){
+  res.render('estadisticas');
+}
+
+exports.pagPaciente = function(req, res, next){
   res.render('paciente');
 }
 
-exports.pagLaboratorista = function(req, res, nombre, next){
+exports.pagLaboratorista = function(req, res, next){
   res.render('laboratorista');
 }
