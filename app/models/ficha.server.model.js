@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var fichaSchema = new Schema({
   tipoMuestra : String,
-  fecha: String,
+  fecha: {type: Date, default: Date.now},
   proceso: String,
   link: String,
   estado: String,

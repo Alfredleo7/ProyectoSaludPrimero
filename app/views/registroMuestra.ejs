@@ -50,37 +50,40 @@
 
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Seleccione un paciente: </label>
-                  <div class="col-lg-7">
+                  <div class="col-lg-5">
                     <select id="combo-pacientes" class="form-control" name="paciente">
                       <option value="" disabled selected>-- Escoja un paciente --</option>
-                      <option value="Juan Piguave"> Juan Piguave </option>
                     </select>
+                  </div>
+                  <div class="col-lg-2">
+                    <input type="button" name="nuevoPaciente" class="btn btn-primary" value="Nuevo paciente" onclick="location.href='/operario/registroPaciente'" >
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Centro m&eacute;dico: </label>
-                  <div class="col-lg-7">
+                  <div class="col-lg-5">
 		                <select id="combo-centros" class="form-control" name="centroMedico">
 		            	   <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
-                     <option value="centro1"> Centro 1 </option>
 		                </select>
                   </div>
+                  <div class="col-lg-2"></div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Laboratorio donde se enviar&aacute;: </label>
-                  <div class="col-lg-7">
+                  <div class="col-lg-5">
                     <select id="combo-lab" class="form-control" name="laboratorio">
                       <option value="" disabled selected>-- Escoja un laboratorio --</option>
                       <option value="lab1"> Laboratorio 1 </option>
                     </select>
                   </div>
+                  <div class="col-lg-2"></div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Muestra recogida: </label>
-                  <div class="col-lg-7">
+                  <div class="col-lg-5">
                     <select id="combo-muestras" class="form-control" name="tipoMuestra">
                       <option value="" disabled selected>-- Escoja un tipo de muestra --</option>
                       <option value="sangre"> Muestra de sangre </option>
@@ -88,16 +91,18 @@
                       <option value="orina"> Muestra de orina </option>
                     </select>
                   </div>
+                  <div class="col-lg-2"></div>
                 </div>
 
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Ex&aacute;menes a realizar: </label>
-                  <div class="col-lg-7">
+                  <div class="col-lg-5">
                     <select id="combo-examenes" class="form-control" name="examenes">
                       <option value="" disabled selected>-- Escoja uno o varios examenes --</option>
                       <option value="exam1"> Examen 1 </option>
                     </select>
                   </div>
+                  <div class="col-lg-2"></div>
                 </div>
                 <br>
                 <div class="form-group">

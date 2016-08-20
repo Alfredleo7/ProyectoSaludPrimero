@@ -1,4 +1,5 @@
 var Operario = require('mongoose').model('Operario');
+var qr = require('qr-image');
 
 exports.crear = function(req, res, next){
   var operario = Operario(req.body);
@@ -56,10 +57,44 @@ exports.operarioByCedulaContraseña = function(req, res, next){
 };
 
 
-exports.registroMuestra = function(req, res, next){
+exports.pagOperario = function(req, res, next){
+  var role = req.session["rol"];
+  
+  if ( role =='operario') {
+    
+    console.log(req.session);
+
+    res.render('operario');  
+  }
+  else {
+    console.log(req.session);
+    res.status(401).send("No autorizado.");
+  }
+}
+
+exports.OperRegistroMuestra = function(req, res, next){
+  console.log(req.session); // ****
   res.render('registroMuestra');
 }
 
-exports.registroPaciente = function(req, res, next){
+exports.generarCodigo = function(req, res, next){
+    var str = req.body.t;
+
+    if(str){
+      //var code = qr.image(new Date().toString(), { type: 'svg' });
+      var code = qr.image(str, { type: 'pdf' });
+      res.type('pdf');
+      code.pipe(res);
+    }
+    else{
+      res.send("Error. No hay informacion para generar el codigo");
+    }
+}
+
+exports.OperRegistroPaciente = function(req, res, next){
   res.render('registroPaciente');
+}
+
+exports.OperEstadisticas = function(req, res, next){
+  res.render('estadisticas');
 }

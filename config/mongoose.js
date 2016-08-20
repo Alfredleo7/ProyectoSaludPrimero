@@ -18,5 +18,6 @@ module.exports = function(){
   require('../app/models/laboratorio.server.model');
   require('../app/models/examen.server.model');
   require('../app/models/parametro.server.model');
+  require('../app/models/coordenadas.server.model');
   return db;
 };
