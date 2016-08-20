@@ -5,10 +5,19 @@ $(document).ready(function() {
 });
 
 function cargarInfoLaboratorista(){
-    $.getJSON("datos/laboratorista.json", function(data){
+	$.ajax({
+		url : '/laboratoristaByCookie',
+		type : 'post',
+		success : function(laboratorista){
+			var laborat = laboratorista.nombres+" "+laboratorista.apellidos;
+			$('#laboratNombre').text(laborat);
+		}
+	});
+
+    /*$.getJSON("datos/laboratorista.json", function(data){
         var laborat = data.Nombres+" "+data.Apellidos;
         $('#laboratNombre').text(laborat);
-    });
+    });*/
 }
 
 
@@ -20,10 +29,10 @@ function llenar_info(i) {
 	$("#info-mues p").text("");
 
 	$.getJSON("datos/datos_muestras.json", function(data) {
-		$par1.text("Paciente: "+data[i].paciente);	
-		$par2.text("Información: "+data[i].Info);	
+		$par1.text("Paciente: "+data[i].paciente);
+		$par2.text("Información: "+data[i].Info);
 	});
-	
+
 	$("#info-mues").append($par1);
 	$("#info-mues").append($par2);
 }
@@ -59,4 +68,3 @@ function anim() {
         }
     });
 }
-

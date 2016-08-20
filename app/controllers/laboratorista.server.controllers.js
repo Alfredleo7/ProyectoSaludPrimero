@@ -44,6 +44,9 @@ exports.laboratoristaByCedulaContraseña = function(req, res, next){
     }
     else {
         if (laboratorista) {
+          req.session.idUser = Laboratorista(laboratorista)._id;
+          req.session.rol = "laboratorista";
+          console.log(req.session);
           res.type("json");
           return res.send({laboratorista : laboratorista, error: "false", url: "/laboratorista"});
         }
@@ -51,6 +54,17 @@ exports.laboratoristaByCedulaContraseña = function(req, res, next){
           res.send({mensaje: "Usuario no encontrado. Intente de nuevo", error: "true", url: "/"});
         }
 
+    }
+  });
+};
+
+exports.laboratoristaByCookie = function(req, res, next){
+  var idLaboratorista = req.session.idUser;
+  Laboratorista.findById(idLaboratorista, function(err, laboratorista){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(laboratorista);
     }
   });
 };
