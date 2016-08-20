@@ -57,7 +57,11 @@ exports.pagPaciente = function(req, res, next){
 }
 
 exports.pagLaboratorista = function(req, res, next){
-  res.render('laboratorista');
+  if(req.session.rol === 'laboratorista'){
+    res.render('laboratorista');
+  } else {
+    res.render('index');
+  }
 }
 
 exports.salir = function(req, res, next){
