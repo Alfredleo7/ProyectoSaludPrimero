@@ -31,3 +31,14 @@ exports.eliminar = function(req, res, next){
     }
   });
 };
+
+exports.porTipo = function(req, res, next){
+  var tipo = req.params.tipo;
+  Examen.find({ "tipo": tipo }, function(err, examenes){
+    if(err){
+      return next(err);
+    } else {
+      return res.send(examenes);
+    }
+  });
+};

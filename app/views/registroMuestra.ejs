@@ -52,7 +52,7 @@
                   <label class="col-lg-4 control-label">Seleccione un paciente: </label>
                   <div class="col-lg-5">
                     <select id="combo-pacientes" class="form-control" name="paciente">
-                      <option value="" disabled selected>-- Escoja un paciente --</option>
+                      <option value="" disabled selected>-- Escoja un paciente de la lista o en su defecto cree uno --</option>
                     </select>
                   </div>
                   <div class="col-lg-2">
@@ -75,7 +75,6 @@
                   <div class="col-lg-5">
                     <select id="combo-lab" class="form-control" name="laboratorio">
                       <option value="" disabled selected>-- Escoja un laboratorio --</option>
-                      <option value="lab1"> Laboratorio 1 </option>
                     </select>
                   </div>
                   <div class="col-lg-2"></div>
@@ -85,7 +84,7 @@
                   <label class="col-lg-4 control-label">Muestra recogida: </label>
                   <div class="col-lg-5">
                     <select id="combo-muestras" class="form-control" name="tipoMuestra">
-                      <option value="" disabled selected>-- Escoja un tipo de muestra --</option>
+                      <option value="none" disabled selected>-- Escoja un tipo de muestra --</option>
                       <option value="sangre"> Muestra de sangre </option>
                       <option value="heces"> Muestra de heces </option>
                       <option value="orina"> Muestra de orina </option>
@@ -95,11 +94,12 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="col-lg-4 control-label">Ex&aacute;menes a realizar: </label>
+                  <label class="col-lg-4 control-label">
+                    <p>Ex&aacute;menes a realizar:</p>
+                    <p style="font-size: 0.8em;">** Mantenga presionado Ctrl (Windows)/Command(Mac) para seleccionar m&aacute;s de una opcion</p>
+                  </label>
                   <div class="col-lg-5">
-                    <select id="combo-examenes" class="form-control" name="examenes">
-                      <option value="" disabled selected>-- Escoja uno o varios examenes --</option>
-                      <option value="exam1"> Examen 1 </option>
+                    <select id="select-examenes" class="form-control" name="examenes" multiple="true" style="height: 150px;">
                     </select>
                   </div>
                   <div class="col-lg-2"></div>

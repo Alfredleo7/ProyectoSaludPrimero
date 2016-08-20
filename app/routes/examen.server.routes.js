@@ -8,4 +8,7 @@ module.exports = function(app){
 
   app.route('/examenes/:id')
     .delete(examen.eliminar);
+
+  app.route('/examenes/:tipo')
+  	.get(examen.porTipo);
 }
