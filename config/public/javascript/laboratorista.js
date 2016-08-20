@@ -9,8 +9,12 @@ function cargarInfoLaboratorista(){
 		url : '/laboratoristaByCookie',
 		type : 'post',
 		success : function(laboratorista){
+			if(!laboratorista){
+				window.location = '/';
+			}
 			var laborat = laboratorista.nombres+" "+laboratorista.apellidos;
 			$('#laboratNombre').text(laborat);
+
 		}
 	});
 
