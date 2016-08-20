@@ -1,12 +1,13 @@
 function cargarCentrosMedicos(){
-    $.getJSON("datos/centros_medicos.json", function(data){
+    //$.getJSON("../datos/centros_medicos.json", function(data){
+    $.getJSON("/centros-medicos", function(data){
         $.each(data,function(i) {
-            var nombre = data[i].Nombre;
-            var direccion = data[i].Direccion;
-            var telefono = data[i].Telefono;
-            var descripcion = data[i].Descripcion;
-            var coordenadas = data[i].Coordenadas;
-            var horarios = data[i].Horarios;
+            var nombre = data[i].nombre;
+            var direccion = data[i].direccion;
+            var telefono = data[i].telefono;
+            var descripcion = data[i].descripcion;
+            var coordenadas = data[i].coordenadas;
+            var horarios = data[i].horarios;
 
             // Creo todos los elementos del panel
             var centrosMedicos = $('#centrosMedicos');
@@ -217,21 +218,21 @@ function cargarCentrosMedicos(){
 
 // Esta funcion ya deja los 3 primeros paneles visibles
 function ocultarPaneles(){
-   for (var i = 20; i > 2 ; i--){
+   for (var i = 5; i > 2 ; i--){
         $("#Centro"+i).addClass("hidden");
     }
 }
 
 function mostrar3paneles(){
     var a = $(".hidden")  // Cuento los Paneles hidden
-    var indice = 20 - a.length; // Hallo el indice desde el ultimo visible
+    var indice = 5 - a.length; // Hallo el indice desde el ultimo visible
     console.log(a.length);
    for (var i = 0; i < 3 ; i++){
         $("#Centro"+(indice+i)).removeClass("hidden");
     }
 
     // Deshabilitar el boton cuando no hayan mas paneles que mostrar
-    if (indice>=20) {
+    if (indice>=5) {
         $('#btn-showmore').text("No hay más centros");
         $('#btn-showmore').attr("disabled", true);
     }
