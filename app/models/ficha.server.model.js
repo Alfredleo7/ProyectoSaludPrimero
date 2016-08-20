@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var fichaSchema = new Schema({
   tipoMuestra : String,
   fecha: {type: Date, default: Date.now},
+  proceso: String,
   link: String,
   estado: String,
   codigoBarras: String,

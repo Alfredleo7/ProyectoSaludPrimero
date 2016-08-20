@@ -2,7 +2,7 @@ var Ficha = require('mongoose').model('Ficha');
 
 exports.crear = function(req, res, next){
   var ficha = Ficha(req.body);
-  ficha.estado = "enviado";
+
   ficha.save(function(err){
     if(err){
       return next(err);

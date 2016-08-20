@@ -3,68 +3,50 @@ var Operario = require('./operario.server.controllers');
 var Laboratorista = require('./laboratorista.server.controllers');
 
 exports.identificar = function(req, res, next){
-
-  if(req.body.rol ==  "paciente"){
-    Paciente.pacienteByCedulaContraseña(req, res, next);
-//    console.log("Antes del if res-url");
-    if (res.url!='/') {
-      req.session["rol"] = "operario";
-//      console.log("Entro al if res-url");
-    } else {
-      res.sendStatus(401);
-//      res.status(401).send("No autorizado.");
+    if(req.body.rol == "operario"){
+        Operario.operarioByCedulaContraseña(req, res, next);
+        if (res.url!='/') {
+            req.session["rol"] = "operario";
+        } else {
+            res.sendStatus(401);
+        }
     }
-
-  }
-//================================================================
-  if(req.body.rol ==  "operario"){
-    Operario.operarioByCedulaContraseña(req, res, next);
-  }
-
-
-//================================================================
-  if(req.body.rol ==  "laboratorista"){
-    Laboratorista.laboratoristaByCedulaContraseña(req, res, next);
-  }
-
-
+  //================================================================
+    if(req.body.rol == "paciente"){
+        Paciente.pacienteByCedulaContraseña(req, res, next);
+        if (res.url!='/') {
+            req.session["rol"] = "paciente";
+        } else {
+            res.sendStatus(401);
+        }
+    }
+  //================================================================
+    if(req.body.rol ==  "laboratorista"){
+        Laboratorista.laboratoristaByCedulaContraseña(req, res, next);
+        if (res.url!='/') {
+            req.session["rol"] = "laboratorista";
+        } else {
+            res.sendStatus(401);
+        }
+    }
 }
 
 exports.crear = function(req, res, next){
-  if (req.body.rol ==  "paciente") {
-    Paciente.crear(req, res, next);
-  }
-
-  if (req.body.rol ==  "operario") {
-    Operario.crear(req, res, next);
-  }
-
-  if (req.body.rol ==  "laboratorista") {
-    Laboratorista.crear(req, res, next);
-  }
+    if (req.body.rol == "paciente") { Paciente.crear(req, res, next); }
+    if (req.body.rol == "operario") { Operario.crear(req, res, next); }
+    if (req.body.rol == "laboratorista") { Laboratorista.crear(req, res, next); }
 }
 
 exports.pagInicial = function(req, res, next){
-  if(req.session.rol === 'laboratorista'){
-    res.render('laboratorista');
-  } else {
     res.render('index');
-  }
 }
 
+
+// Esto no deberia ir aqui :v
 exports.pagPaciente = function(req, res, next){
-  res.render('paciente');
+    res.render('paciente');
 }
-
+// Esto no deberia ir aqui :v
 exports.pagLaboratorista = function(req, res, next){
-  if(req.session.rol === 'laboratorista'){
     res.render('laboratorista');
-  } else {
-    res.render('index');
-  }
-}
-
-exports.salir = function(req, res, next){
-  req.session.destroy();
-  res.render('index');
 }
