@@ -36,6 +36,7 @@ module.exports = function(){
   require('../app/routes/parametro.server.routes.js')(app);
   require('../app/routes/index.server.routes.js')(app);
   require('../app/routes/operario.server.routes.js')(app);
+  require('../app/routes/laboratorista.server.routes.js')(app);
 
   return app;
 };

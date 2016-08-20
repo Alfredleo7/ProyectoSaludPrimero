@@ -42,11 +42,11 @@ exports.operarioByCedulaContraseña = function(req, res, next){
     if(err){
       res.send({mensaje: "Error en la consuta. Intente de nuevo.", error: "true", url: "/"});
       return; // next(err);
-    } 
+    }
     else {
         if (operario) {
           res.type("json");
-          return res.send({operario, error: "false", url: "/operario"});
+          return res.send({operario : operario, error: "false", url: "/operario"});
         }
         else{
           res.send({mensaje: "Usuario no encontrado. Intente de nuevo", error: "true", url: "/"});
@@ -59,12 +59,12 @@ exports.operarioByCedulaContraseña = function(req, res, next){
 
 exports.pagOperario = function(req, res, next){
   var role = req.session["rol"];
-  
+
   if ( role =='operario') {
-    
+
     console.log(req.session);
 
-    res.render('operario');  
+    res.render('operario');
   }
   else {
     console.log(req.session);

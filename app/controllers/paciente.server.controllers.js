@@ -57,11 +57,11 @@ exports.pacienteByCedulaContraseña = function(req, res, next){
     if(err){
       res.send({mensaje: "Error en la consuta. Intente de nuevo.", error: "true", url: "/"});
       return; // next(err);
-    } 
+    }
     else {
         if (paciente) {
           res.type("json");
-          return res.send({paciente, error: "false",url: "/paciente"});
+          return res.send({paciente : paciente, error: "false",url: "/paciente"});
         }
         else{
           res.send({mensaje: "Usuario no encontrado. Intente de nuevo", error: "true", url: "/"});

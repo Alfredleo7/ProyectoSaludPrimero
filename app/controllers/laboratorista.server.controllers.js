@@ -41,11 +41,11 @@ exports.laboratoristaByCedulaContraseña = function(req, res, next){
     if(err){
       res.send({mensaje: "Error en la consuta. Intente de nuevo.", error: "true", url: "/"});
       return; // next(err);
-    } 
+    }
     else {
         if (laboratorista) {
           res.type("json");
-          return res.send({laboratorista, error: "false", url: "/laboratorista"});
+          return res.send({laboratorista : laboratorista, error: "false", url: "/laboratorista"});
         }
         else{
           res.send({mensaje: "Usuario no encontrado. Intente de nuevo", error: "true", url: "/"});
