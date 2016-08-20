@@ -27,7 +27,7 @@ exports.identificar = function(req, res, next){
     Laboratorista.laboratoristaByCedulaContraseña(req, res, next);
   }
 
-  
+
 }
 
 exports.crear = function(req, res, next){
@@ -45,7 +45,11 @@ exports.crear = function(req, res, next){
 }
 
 exports.pagInicial = function(req, res, next){
-  res.render('index');
+  if(req.session.rol === 'laboratorista'){
+    res.render('laboratorista');
+  } else {
+    res.render('index');
+  }
 }
 
 exports.pagPaciente = function(req, res, next){
@@ -54,4 +58,9 @@ exports.pagPaciente = function(req, res, next){
 
 exports.pagLaboratorista = function(req, res, next){
   res.render('laboratorista');
+}
+
+exports.salir = function(req, res, next){
+  req.session.destroy();
+  res.render('index');
 }

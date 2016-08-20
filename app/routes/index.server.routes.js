@@ -17,4 +17,7 @@ module.exports = function(app){
 
   app.route('/laboratorista')
   	.get(index.pagLaboratorista);
+
+  app.route('/salir')
+      .get(index.salir);
 }

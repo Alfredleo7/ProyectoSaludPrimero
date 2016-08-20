@@ -5,4 +5,5 @@ module.exports = function(app){
     .get(laboratorista.enlistar);
   app.route('/laboratoristaByCookie')
     .post(laboratorista.laboratoristaByCookie);
+  
 }
