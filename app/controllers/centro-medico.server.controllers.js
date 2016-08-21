@@ -31,3 +31,14 @@ exports.eliminar = function(req, res, next){
     }
   });
 };
+
+exports.centroByID = function(req, res, next){
+  var idCentro = req.params.id;
+  CentroMedico.findById(idCentro, function(err, centro){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(centro);
+    }
+  });
+};

@@ -6,4 +6,8 @@ module.exports = function(app){
     .get(ficha.enlistar);
   app.route('/fichas/:id')
     .get(ficha.fichaByID);
+  app.route('/fichasRecibidas')
+    .post(ficha.recibidas);
+  app.route('/fichaByID')
+    .post(ficha.ficha);
 }

@@ -16,6 +16,17 @@ function password() {
   return password;
 }
 */
+
+exports.paciente = function(req, res, next){
+  Paciente.findById(req.params.id, function(err, paciente){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(paciente);
+    }
+  });
+};
+
 exports.crear = function(req, res, next){
   var paciente = Paciente(req.body);
   //paciente.password = password();//generar password
