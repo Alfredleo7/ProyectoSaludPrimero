@@ -1,5 +1,5 @@
 $( document ).ready(function(){
-    
+    insertarGraficoLab();
 });
 
 function insertarGraficoMensual () {
@@ -16,7 +16,7 @@ function generarGraficoMensual () {
 	var s2 = [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4];
   	var s3 = [4, 3, 7, 6, 3, 8, 2, 5, 6, 9, 5, 7];
   	var s4 = [2, 4, 8, 5, 2, 7, 1, 7, 9, 7, 4, 6];
-  	var names = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+  	var names = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
 		
 	var data = {
 	  labels: names ,
@@ -70,4 +70,46 @@ function generarGraficoMensual () {
 	]
 
 	new Chartist.Bar('.ct-chart', data, options, responsiveOptions);
+}
+
+
+function insertarGraficoLab(){
+	$("#areaGrap").empty();
+	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
+	$("#areaGrap").append("<div class='col-lg-2'></div><div class='col-lg-8' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
+	$("#areaGrap").append("<div class='col-lg-2'></div>");
+
+	generarGraficoLab();
+}
+
+function generarGraficoLab() {
+	var data = {
+	  labels: ['Laboratorio 1', 'Laboratorio 2', 'Laboratorio 3', 'Laboratorio 4'],
+	  series: [20, 15, 40, 30]
+	};
+
+	var options = {
+	  labelInterpolationFnc: function(value) {
+	    return value[0]
+	  },
+	  width: '100%',
+	  height: '75%'
+	};
+
+	var responsiveOptions = [
+	  ['screen and (min-width: 640px)', {
+	    chartPadding: 30,
+	    labelOffset: 100,
+	    labelDirection: 'explode',
+	    labelInterpolationFnc: function(value) {
+	      return value;
+	    }
+	  }],
+	  ['screen and (min-width: 1024px)', {
+	    labelOffset: 100,
+	    chartPadding: 20
+	  }]
+	];
+
+	new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
 }

@@ -32,7 +32,7 @@
           	<li><a href="/operario/registroPaciente"><i class="glyphicon glyphicon-user"></i> Registrar paciente</a></li>
             <li><a href="/operario/registroMuestra"><i class="glyphicon glyphicon-duplicate"></i> Registrar muestra</a></li>
             <li><a href="/operario/estadisticas"><i class="glyphicon glyphicon-picture"></i> Reportes y Estad&iacute;sticas</a></li>
-            <li><a href="/"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
+            <li><a href="/operario/logout"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
           </ul>
 
       </div>
@@ -46,7 +46,7 @@
         <br><br>
         <p>Tipo de gr&aacute;fico: </p>
         <div class="list-group">
-          <button class="list-group-item" onclick="">Muestras medicas por laboratorio</button>
+          <button class="list-group-item" onclick="insertarGraficoLab();">Muestras medicas por laboratorio</button>
           <button class="list-group-item" onclick="insertarGraficoMensual();">Muestras mensuales por laboratorio</button>
         </div>
     </div>
@@ -60,7 +60,7 @@
       &copy; Todos los derechos reservados. Salud Primero S.A. 2016
   </footer>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.min.css">
+  <script type="text/javascript" src="../javascript/chartist.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/chartist.min.css">
 </body>
 </html>
