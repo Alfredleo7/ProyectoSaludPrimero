@@ -8,7 +8,7 @@ module.exports = function(app){
     .get(operario.OperRegistroMuestra);
 
   app.route('/operario/registroMuestra/codigo')
-    .post(operario.generarCodigo);
+    .get(operario.generarCodigo);
     
   app.route('/operario/registroPaciente')
     .get(operario.OperRegistroPaciente);

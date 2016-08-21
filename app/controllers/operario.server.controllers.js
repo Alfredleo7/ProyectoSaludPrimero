@@ -48,6 +48,7 @@ exports.operarioByCedulaContraseña = function(req, res, next){
     }
     else {
         if (operario) {
+          req.session["NombresApellidos"] = operario.nombres + ' ' + operario.apellidos;
           res.type("json");
           return res.send({operario : operario, error: "false", url: "/operario"});
         }
@@ -62,11 +63,12 @@ exports.operarioByCedulaContraseña = function(req, res, next){
 // IMPORTANTE !!!!
 exports.pagOperario = function(req, res, next){
   var role = req.session["rol"];
+  var name = req.session["NombresApellidos"];
   res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
 
   if ( role =='operario') {
-      res.render('operario');
+      res.render('operario', {nombres: name});
   }
   else {
       res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
@@ -87,9 +89,8 @@ exports.OperRegistroMuestra = function(req, res, next){
 }
 
 exports.generarCodigo = function(req, res, next){
-    var str = req.body.t;
+    var str = req.query['for'];
     if(str){
-      //var code = qr.image(new Date().toString(), { type: 'svg' });
       var code = qr.image(str, { type: 'pdf' });
       res.type('pdf');
       code.pipe(res);

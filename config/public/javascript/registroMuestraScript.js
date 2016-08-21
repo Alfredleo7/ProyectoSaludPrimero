@@ -27,7 +27,7 @@ function cargarComboPacientes(){
         success: function(respuesta){
 			var $list = $("#combo-pacientes");
 			$.each(respuesta, function(i){
-				$list.append('<option value="'+respuesta[i].nombres+'">'+respuesta[i].nombres+' '+respuesta[i].apellidos+'</option>');
+				$list.append('<option value="'+respuesta[i].cedula+'">'+respuesta[i].nombres+' '+respuesta[i].apellidos+'</option>');
 			});
         }
     });
@@ -61,7 +61,6 @@ function cargarExamenes(){
 	        url: url,
 	        data: {},
 	        success: function(respuesta){
-	        	console.log(respuesta);
 				var $list = $("#select-examenes");
 				$("#select-examenes option").remove();
 				$.each(respuesta, function(i){

@@ -126,21 +126,28 @@
   <script>
         $("#addMuestra").submit(function(e){
             e.preventDefault();
-            var url = "http://localhost:3000/operario/registroMuestra/muestras";
-            var data = $("#addMuestra select").serialize();
+
+            // para guardar la muestra
+            var url1 = "";
+            // Para generar el codigo
+            var ced = $("#combo-pacientes option:selected").val();
+            var url2 = "/operario/registroMuestra/codigo?for="+ced;
+
+            var data = $("#addMuestra").serialize();
 
             console.log(data);
 
             $.ajax({
-                type: 'POST',
-                url: url,
-                data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+                type: 'GET',
+                url: url2,
                 success: function(respuesta){
-                    alert(respuesta.mensaje);
-                    //window.location = "/operario";
+                    alert("Ingresado con exito");
+                    window.location ="/operario";
+                    window.open("data:application/pdf," + escape(respuesta));
                 }
             });
         });
+
   </script>
 
 </body>
