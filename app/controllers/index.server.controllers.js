@@ -46,7 +46,3 @@ exports.pagInicial = function(req, res, next){
 exports.pagPaciente = function(req, res, next){
     res.render('paciente');
 }
-// Esto no deberia ir aqui :v
-exports.pagLaboratorista = function(req, res, next){
-    res.render('laboratorista');
-}

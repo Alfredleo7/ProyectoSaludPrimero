@@ -16,8 +16,5 @@ module.exports = function(app){
   app.route('/paciente')
   	.get(index.pagPaciente);
 
-// Esto debe ser manejado desde la ruta de laboratorista
-  app.route('/laboratorista')
-  	.get(index.pagLaboratorista);
 
 }
