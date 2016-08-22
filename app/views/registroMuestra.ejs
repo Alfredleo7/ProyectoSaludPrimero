@@ -51,7 +51,7 @@
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Seleccione un paciente: </label>
                   <div class="col-lg-5">
-                    <select id="combo-pacientes" class="form-control" name="paciente">
+                    <select id="combo-pacientes" class="form-control" name="paciente" required>
                       <option value="" disabled selected>-- Escoja un paciente de la lista o en su defecto cree uno --</option>
                     </select>
                   </div>
@@ -63,7 +63,7 @@
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Centro m&eacute;dico: </label>
                   <div class="col-lg-5">
-		                <select id="combo-centros" class="form-control" name="centroMedico">
+		                <select id="combo-centros" class="form-control" name="centroMedico" required>
 		            	   <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
 		                </select>
                   </div>
@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Laboratorio donde se enviar&aacute;: </label>
                   <div class="col-lg-5">
-                    <select id="combo-lab" class="form-control" name="laboratorio">
+                    <select id="combo-lab" class="form-control" name="laboratorio" required>
                       <option value="" disabled selected>-- Escoja un laboratorio --</option>
                     </select>
                   </div>
@@ -83,7 +83,7 @@
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Muestra recogida: </label>
                   <div class="col-lg-5">
-                    <select id="combo-muestras" class="form-control" name="tipoMuestra">
+                    <select id="combo-muestras" class="form-control" name="tipoMuestra" required>
                       <option value="none" disabled selected>-- Escoja un tipo de muestra --</option>
                       <option value="sangre"> Muestra de sangre </option>
                       <option value="heces"> Muestra de heces </option>
@@ -99,12 +99,20 @@
                     <p style="font-size: 0.8em;">** Mantenga presionado Ctrl (Windows)/Command(Mac) para seleccionar m&aacute;s de una opcion</p>
                   </label>
                   <div class="col-lg-5">
-                    <select id="select-examenes" class="form-control" name="examenes" multiple="true" style="height: 150px;">
+                    <select id="select-examenes" class="form-control" name="examenes" multiple="true" style="height: 110px;" required>
                     </select>
                   </div>
                   <div class="col-lg-2"></div>
                 </div>
                 <br>
+
+                <!-- Input hidden -->
+                <div class="form-group">
+                  <label class="col-lg-4"></label>
+                  <div class="col-lg-5"><input type="hidden" name="estado" value="Ingresado"></div>
+                  <div class="col-lg-2"></div>
+                </div>
+
                 <div class="form-group">
                   <!-- <label class="col-lg-4 control-label"></label> -->
                   <div class="col-lg-11 text-center">
@@ -134,14 +142,12 @@
             var url2 = "/operario/registroMuestra/codigo?for="+ced;
 
             var data = $("#addMuestra").serialize();
-
             console.log(data);
 
             $.ajax({
-                type: 'GET',
-                url: url2,
+                type: 'GET', url: url2,
                 success: function(respuesta){
-                    alert("Ingresado con exito");
+                    alert("Ingresado con exito**");
                     window.location ="/operario";
                     window.open("data:application/pdf," + escape(respuesta));
                 }

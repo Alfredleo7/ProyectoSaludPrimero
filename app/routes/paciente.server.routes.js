@@ -5,6 +5,5 @@ module.exports = function(app){
     .post(paciente.crear)
     .get(paciente.enlistar);
   app.route('/pacientes/:id')
-    .delete(paciente.eliminar)
-    .get(paciente.paciente);
+    .delete(paciente.eliminar);
 };

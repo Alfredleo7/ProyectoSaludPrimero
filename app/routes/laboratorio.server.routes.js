@@ -7,5 +7,6 @@ module.exports = function(app){
     .get(laboratorio.enlistar);
 
   app.route('/laboratorios/:id')
-    .delete(laboratorio.eliminar);
+    .delete(laboratorio.eliminar)
+    .get(laboratorio.getById);
 };

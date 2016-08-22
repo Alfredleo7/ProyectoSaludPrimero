@@ -1,14 +1,78 @@
 $( document ).ready(function(){
-    insertarGraficoLab();
+    requerimientosByLab();
 });
+
+function insertarGraficoLab(labels, series){
+	$("#areaGrap").empty();
+	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
+	$("#areaGrap").append("<div class='col-lg-1'></div><div class='col-lg-10' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
+	$("#areaGrap").append("<div class='col-lg-1'></div>");
+	generarGraficoLab( labels, series );
+}
+
+function generarGraficoLab(labelsIn, seriesIn) {
+	var data = {
+	  labels: labelsIn,
+	  series: seriesIn
+	};
+
+	var options = {
+	  labelInterpolationFnc: function(value) {
+	    return value[0]
+	  },
+	  width: '80%',
+	  height: '80%'
+	};
+
+	var responsiveOptions = [
+	  ['screen and (min-width: 400px)', {
+	    chartPadding: 5,
+	    labelOffset: 25,
+	    labelPosition: 'inside',
+	    labelInterpolationFnc: function(value) {
+	      return value;
+	    }
+	  }],
+	  ['screen and (min-width: 1100px)', {
+	    labelOffset: 5,
+	    chartPadding: 25,
+	    labelPosition: 'outside'
+	  }]
+	];
+
+	new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
+}
+
+
+function requerimientosByLab(){
+    $.ajax({
+        type: 'GET',
+        url: '/fichasByLab',
+        data: {}, //+'&'+$.param({tipoaccion:"insertar"}),
+        success: function(respuesta){
+        	var cantidades = [];
+        	var labels = [];
+            $.each(respuesta, function (i) {
+            	var name = respuesta[i]._id;
+            	var cant = respuesta[i].count;
+            	labels.push(name+' ('+cant+')');
+            	cantidades.push(cant);
+            });
+            //console.log(labels);
+            //console.log(cantidades);
+            insertarGraficoLab(labels,cantidades);
+        } // fin success
+    });
+}
 
 function insertarGraficoMensual () {
 	$("#areaGrap").empty();
 	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
 	$("#areaGrap").append("<div class='col-lg-9' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
-	$("#areaGrap").append("<div class='col-lg-3'><label>Mostrar desde: </label><select id='desde'><option value='Enero' selected>Enero</option><option value='Febrero'>Febrero</option><option value='Marzo'>Marzo</option><option value='Abril'>Abril</option><option value='Mayo'>Mayo</option><option value='Junio'>Junio</option><option value='Julio'>Julio</option><option value='Agosto'>Agosto</option><option value='Septiembre'>Septiembre</option><option value='Octubre'>Octubre</option><option value='Noviembre'>Noviembre</option><option value='Diciembre'>Diciembre</option></select><br><label>Mostrar hasta: </label><select id='hasta'><option value='Enero'>Enero</option><option value='Febrero'>Febrero</option><option value='Marzo'>Marzo</option><option value='Abril'>Abril</option><option value='Mayo' selected>Mayo</option><option value='Junio'>Junio</option><option value='Julio'>Julio</option><option value='Agosto'>Agosto</option><option value='Septiembre'>Septiembre</option><option value='Octubre'>Octubre</option><option value='Noviembre'>Noviembre</option><option value='Diciembre'>Diciembre</option></select></div>");
+	$("#areaGrap").append("<div class='col-lg-3'><label>Mostrar desde: </label><select id='desde'><option value='0' selected>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11'>Diciembre</option></select><br><label>Mostrar hasta: </label><select id='hasta'><option value='0'>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11' selected>Diciembre</option></select></div>");
 
 	generarGraficoMensual();
+	validarRangoFechas();
 }
 
 function generarGraficoMensual () {
@@ -72,44 +136,15 @@ function generarGraficoMensual () {
 	new Chartist.Bar('.ct-chart', data, options, responsiveOptions);
 }
 
-
-function insertarGraficoLab(){
-	$("#areaGrap").empty();
-	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
-	$("#areaGrap").append("<div class='col-lg-2'></div><div class='col-lg-8' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
-	$("#areaGrap").append("<div class='col-lg-2'></div>");
-
-	generarGraficoLab();
+function validarRangoFechas(){
+	var desde = $("#desde option:selected").val();
+	var hasta = $("#hasta option:selected").val();
+	var inicio = parseInt(desde);
+	var fin = parseInt(hasta);
+	if (inicio<fin) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
-function generarGraficoLab() {
-	var data = {
-	  labels: ['Laboratorio 1', 'Laboratorio 2', 'Laboratorio 3', 'Laboratorio 4'],
-	  series: [20, 15, 40, 30]
-	};
-
-	var options = {
-	  labelInterpolationFnc: function(value) {
-	    return value[0]
-	  },
-	  width: '100%',
-	  height: '75%'
-	};
-
-	var responsiveOptions = [
-	  ['screen and (min-width: 640px)', {
-	    chartPadding: 30,
-	    labelOffset: 100,
-	    labelDirection: 'explode',
-	    labelInterpolationFnc: function(value) {
-	      return value;
-	    }
-	  }],
-	  ['screen and (min-width: 1024px)', {
-	    labelOffset: 100,
-	    chartPadding: 20
-	  }]
-	];
-
-	new Chartist.Pie('.ct-chart', data, options, responsiveOptions);
-}

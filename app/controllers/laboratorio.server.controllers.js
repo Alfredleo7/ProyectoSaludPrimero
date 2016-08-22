@@ -32,3 +32,15 @@ exports.eliminar = function(req, res, next){
     }
   });
 };
+
+exports.getById = function(req, res, next){
+  var id = req.params["id"];
+  console.log(id);
+  Laboratorio.find({_id: id}, function(err, laboratorio){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(laboratorio[0]);
+    }
+  });
+};

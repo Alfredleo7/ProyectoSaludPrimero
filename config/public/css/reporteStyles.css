@@ -27,7 +27,7 @@ body {
 }
 
 #areaGrap {
-	height: 550px;
+	height: auto; /* 550px; */
 }
 
 /*  Para ocultar */ 
