@@ -140,16 +140,24 @@
             // Para generar el codigo
             var ced = $("#combo-pacientes option:selected").val();
             var url2 = "/operario/registroMuestra/codigo?for="+ced;
-
+            console.log(foo);
             var data = $("#addMuestra").serialize();
-            console.log(data);
+
+            var foo = []; 
+            $('#select-examenes :selected').each(function(i, selected){ 
+                foo[i] = $(selected).text(); 
+            });
+            console.log(foo);
 
             $.ajax({
-                type: 'GET', url: url2,
+                type: 'GET', 
+                url: url2, 
+                data: {},
                 success: function(respuesta){
-                    alert("Ingresado con exito**");
-                    window.location ="/operario";
+                    //alert("Ingresado con exito**");
+                    alert(respuesta);
                     window.open("data:application/pdf," + escape(respuesta));
+                    window.location ="/operario";
                 }
             });
         });

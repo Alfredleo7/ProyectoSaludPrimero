@@ -1,5 +1,5 @@
 var Paciente = require('mongoose').model('Paciente');
-/*
+
 function password() {
   var iteration = 0;
   var password = "";
@@ -15,10 +15,10 @@ function password() {
   }
   return password;
 }
-*/
+
 exports.crear = function(req, res, next){
+  req.body.password = password();//generar password
   var paciente = Paciente(req.body);
-  //paciente.password = password();//generar password
   paciente.save(function(err){
     if(err){
       return next(err);

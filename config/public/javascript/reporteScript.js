@@ -5,8 +5,8 @@ $( document ).ready(function(){
 function insertarGraficoLab(labels, series){
 	$("#areaGrap").empty();
 	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
-	$("#areaGrap").append("<div class='col-lg-1'></div><div class='col-lg-10' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
-	$("#areaGrap").append("<div class='col-lg-1'></div>");
+	$("#areaGrap").append("<div class='col-lg-2'></div><div class='col-lg-10' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
+//	$("#areaGrap").append("<div class='col-lg-1'></div>");
 	generarGraficoLab( labels, series );
 }
 
@@ -20,8 +20,8 @@ function generarGraficoLab(labelsIn, seriesIn) {
 	  labelInterpolationFnc: function(value) {
 	    return value[0]
 	  },
-	  width: '80%',
-	  height: '80%'
+	  width: '85%',
+	  height: '85%'
 	};
 
 	var responsiveOptions = [
@@ -67,7 +67,7 @@ function insertarGraficoMensual (names, s1, s2, s3, s4) {
 	$("#areaGrap").empty();
 	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
 	$("#areaGrap").append("<div class='col-lg-9' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
-	$("#areaGrap").append("<div class='col-lg-3 text-center'><label>Mostrar desde: </label><select id='desde'><option value='0' selected>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11'>Diciembre</option></select><br><label>Mostrar hasta: </label><select id='hasta'><option value='0'>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11' selected>Diciembre</option></select><br><br><button class='btn btn-primary btn-lg' onclick='funcionBotonGenerar();'> Generar </button></div>");
+	$("#areaGrap").append("<div class='col-lg-3 text-center'><img src='../imagenes/graph/legend.jpg'><br><br><label>Mostrar desde: </label><select id='desde'><option value='0' selected>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11'>Diciembre</option></select><br><label>Mostrar hasta: </label><select id='hasta'><option value='0'>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11' selected>Diciembre</option></select><br><br><button class='btn btn-primary btn-lg' onclick='funcionBotonGenerar();'> Generar gr&aacute;fico </button></div>");
 	generarGraficoMensual(names, s1, s2, s3, s4);
 }
 
@@ -81,7 +81,7 @@ function generarGraficoMensual (names, s1, s2, s3, s4) {
 	  // Default mobile configuration
 	  seriesBarDistance: 11,
 	  width: '100%',
-	  height: '75%',
+	  height: '80%',
 	  stackBars: true,
 	  axisX: {
 	    labelInterpolationFnc: function(value) {
@@ -91,17 +91,19 @@ function generarGraficoMensual (names, s1, s2, s3, s4) {
 	    }
 	  },
 	  axisY: {
-	    offset: 20
+	    offset: 20,
+	    onlyInteger: true
 	  }
 	}
 
 	var responsiveOptions = [
 		  // Options override for media > 400px
 		  ['screen and (min-width: 400px)', {
-		    reverseData: true,
+		    reverseData: false,
 		    horizontalBars: true,
 		    axisX: {
-		      labelInterpolationFnc: Chartist.noop
+		      labelInterpolationFnc: Chartist.noop,
+		      onlyInteger: true
 		    },
 		    axisY: {
 		      offset: 60
@@ -111,7 +113,11 @@ function generarGraficoMensual (names, s1, s2, s3, s4) {
 		  // Options override for media > 800px
 		  ['screen and (min-width: 800px)', {
 		    stackBars: false,
-		    seriesBarDistance: 10
+		    reverseData: false,
+		    seriesBarDistance: 10,
+		    axisX :{
+		    	onlyInteger: true
+		    }
 		  }],
 
 		  // Options override for media > 1000px
@@ -170,16 +176,16 @@ function funcionBotonGenerar(){
             	var cantidadMuestras = parseInt(respuesta[i].count);
 //				console.log('\nLaboratorio: '+nombre+'\nMes: '+mes+'\nCantidad de muestras: '+cantidadMuestras);
 				switch(nombre){
-					case "Laboratorio San Jose":
+					case "Lab. San Jose":
 						s2[mes] = cantidadMuestras;
 						break;
-					case "Laboratorio de Infectologia":
+					case "Lab. de Infectologia":
 						s1[mes] = cantidadMuestras;
 						break;
-					case "Laboratorio clinico # 7":
+					case "Lab. clinico # 7":
 						s3[mes] = cantidadMuestras;
 						break;
-					case "Laboratorio Clinico Su Salud S.A.":
+					case "Lab. Clinico Su Salud S.A.":
 						s4[mes] = cantidadMuestras;
 						break;
 				}

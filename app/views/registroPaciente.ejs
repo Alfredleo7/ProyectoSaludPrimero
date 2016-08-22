@@ -51,25 +51,25 @@
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Nombres: </label>
                   <div class="col-lg-7">
-                    <input id="inputNombres" name="inputNombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
+                    <input id="inputNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Apellidos: </label>
                   <div class="col-lg-7">
-                    <input id="inputApellidos" name="inputApellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
+                    <input id="inputApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-4 control-label">C&eacute;dula:</label>
                   <div class="col-lg-7">
-                    <input id="inputCedula" name="inputCedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
+                    <input id="inputCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Correo electr&oacute;nico:</label>
                   <div class="col-lg-7">
-                    <input id="inputCorreo" name="inputCorreo" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
+                    <input id="inputCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
                   </div>
                 </div>
                 <br>
@@ -79,6 +79,7 @@
                     <input type="button" class="btn btn-default" value="Cancelar" onclick="cancelarRegistroPaciente();">
                   </div>
                 </div>
+                <br><br>
 
               </form>
             </div>
@@ -93,14 +94,14 @@
   <script>
         $("#addPaciente").submit(function(e){
             e.preventDefault();
-            var url = "http://localhost:3000/operario/registroPaciente";
-            var data = $("#addPaciente input").serialize();
+            var url = "/pacientes";
+            var data = $("#addPaciente").serialize();
             $.ajax({
                 type: 'POST',
                 url: url,
                 data: data, //+'&'+$.param({tipoaccion:"insertar"}),
                 success: function(respuesta){
-                    alert(respuesta.mensaje);
+                    alert("Ingresado con exito");
                     window.location = "/operario";
                 }
             });
