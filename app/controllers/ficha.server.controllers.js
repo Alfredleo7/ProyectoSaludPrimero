@@ -43,3 +43,14 @@ exports.fichasPorLaboratorio = function(req, res, next){
     }
   })
 }
+
+// Julian =====
+exports.fichasByLabAndMonth = function(req, res, next){
+    Ficha.aggregate({"$group": {_id: { "mes":{$substr:['$fecha', 5, 2]} , 'nombre':'$nombreLaboratorio' } , "count": {"$sum":1} }} , function(err, fichas){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(fichas);
+    }
+  })
+}

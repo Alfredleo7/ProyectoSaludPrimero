@@ -58,30 +58,20 @@ function requerimientosByLab(){
             	labels.push(name+' ('+cant+')');
             	cantidades.push(cant);
             });
-            //console.log(labels);
-            //console.log(cantidades);
             insertarGraficoLab(labels,cantidades);
         } // fin success
     });
 }
 
-function insertarGraficoMensual () {
+function insertarGraficoMensual (names, s1, s2, s3, s4) {
 	$("#areaGrap").empty();
 	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
 	$("#areaGrap").append("<div class='col-lg-9' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
-	$("#areaGrap").append("<div class='col-lg-3'><label>Mostrar desde: </label><select id='desde'><option value='0' selected>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11'>Diciembre</option></select><br><label>Mostrar hasta: </label><select id='hasta'><option value='0'>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11' selected>Diciembre</option></select></div>");
-
-	generarGraficoMensual();
-	validarRangoFechas();
+	$("#areaGrap").append("<div class='col-lg-3 text-center'><label>Mostrar desde: </label><select id='desde'><option value='0' selected>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11'>Diciembre</option></select><br><label>Mostrar hasta: </label><select id='hasta'><option value='0'>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11' selected>Diciembre</option></select><br><br><button class='btn btn-primary btn-lg' onclick='funcionBotonGenerar();'> Generar </button></div>");
+	generarGraficoMensual(names, s1, s2, s3, s4);
 }
 
-function generarGraficoMensual () {
-	var s1 = [5, 4, 3, 7, 5, 9, 3, 4, 8, 9, 6, 8];
-	var s2 = [3, 2, 9, 5, 4, 6, 4, 6, 7, 8, 7, 4];
-  	var s3 = [4, 3, 7, 6, 3, 8, 2, 5, 6, 9, 5, 7];
-  	var s4 = [2, 4, 8, 5, 2, 7, 1, 7, 9, 7, 4, 6];
-  	var names = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
-		
+function generarGraficoMensual (names, s1, s2, s3, s4) {	
 	var data = {
 	  labels: names ,
 	  series: [ s1 , s2 , s3 , s4 ]
@@ -89,7 +79,7 @@ function generarGraficoMensual () {
 
 	var options = {
 	  // Default mobile configuration
-	  seriesBarDistance: 9,
+	  seriesBarDistance: 11,
 	  width: '100%',
 	  height: '75%',
 	  stackBars: true,
@@ -141,10 +131,70 @@ function validarRangoFechas(){
 	var hasta = $("#hasta option:selected").val();
 	var inicio = parseInt(desde);
 	var fin = parseInt(hasta);
-	if (inicio<fin) {
-		return true;
+	if (inicio>fin) {
+		alert("Rango de fechas inválido.");
+		$("#desde").val("0");
+		$("#hasta").val("11");
+		return [];
 	} else {
-		return false;
+		return [inicio, fin];
 	}
 }
 
+
+function generarLabels(a,b) {
+	var meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+	var labels = [];
+	for (var i = a ; i <= b ; i++ ) {
+		labels.push(meses[i]);
+	}
+	return labels;
+}
+
+
+function funcionBotonGenerar(){
+    $.ajax({
+        type: 'GET',
+        url: '/fichasByLabAndMonth',
+        data: {},
+        success: function(respuesta){
+        	// Inicializar arrays con 0
+        	var s1 = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0); // Infectologia
+        	var s2 = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0); // San Jose
+        	var s3 = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0); // Clinico # 7
+        	var s4 = Array.apply(null, new Array(12)).map(Number.prototype.valueOf,0); // Su Salud S.A.
+            
+            $.each(respuesta, function (i) {
+            	var mes = parseInt(respuesta[i]._id.mes)-1;
+            	var nombre = respuesta[i]._id.nombre;
+            	var cantidadMuestras = parseInt(respuesta[i].count);
+//				console.log('\nLaboratorio: '+nombre+'\nMes: '+mes+'\nCantidad de muestras: '+cantidadMuestras);
+				switch(nombre){
+					case "Laboratorio San Jose":
+						s2[mes] = cantidadMuestras;
+						break;
+					case "Laboratorio de Infectologia":
+						s1[mes] = cantidadMuestras;
+						break;
+					case "Laboratorio clinico # 7":
+						s3[mes] = cantidadMuestras;
+						break;
+					case "Laboratorio Clinico Su Salud S.A.":
+						s4[mes] = cantidadMuestras;
+						break;
+				}
+            });
+            
+			var par = validarRangoFechas();
+			if ( par.length>0 ) {
+				var labels = generarLabels( par[0] , par[1] );
+				var series1 = s1.slice( par[0] , par[1]+1 );
+				var series2 = s2.slice( par[0] , par[1]+1 );
+				var series3 = s3.slice( par[0] , par[1]+1 );
+				var series4 = s4.slice( par[0] , par[1]+1 );
+				insertarGraficoMensual( labels, series1, series2, series3, series4 );
+			}
+
+        } // fin success
+    });
+}
