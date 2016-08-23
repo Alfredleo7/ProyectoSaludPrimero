@@ -75,6 +75,8 @@ exports.pagOperario = function(req, res, next){
   }
 }
 
+// ==============================================================
+
 exports.OperRegistroMuestra = function(req, res, next){
     var role = req.session["rol"];
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -82,6 +84,63 @@ exports.OperRegistroMuestra = function(req, res, next){
 
     if ( role =='operario') {
         res.render('registroMuestra');
+    }
+    else {
+        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    }
+}
+
+exports.OperEditarMuestra = function(req, res, next){
+    var role = req.session["rol"];
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+
+    if ( role =='operario') {
+        res.render('editarMuestra');
+    }
+    else {
+        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    }
+}
+
+exports.OperEliminarMuestra = function(req, res, next){
+    var role = req.session["rol"];
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+
+    if ( role =='operario') {
+        res.render('eliminarMuestra');
+    }
+    else {
+        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    }
+}
+
+// ==============================================================
+
+exports.OperRegistroPaciente = function(req, res, next){
+    var role = req.session["rol"];
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+
+    if ( role =='operario') {
+        res.render('registroPaciente');
+    }
+    else {
+        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    }
+
+}
+
+// ==============================================================
+
+exports.OperEstadisticas = function(req, res, next){
+    var role = req.session["rol"];
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+
+    if ( role =='operario') {
+        res.render('estadisticas');
     }
     else {
         res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
@@ -100,33 +159,7 @@ exports.generarCodigo = function(req, res, next){
     }
 }
 
-exports.OperRegistroPaciente = function(req, res, next){
-    var role = req.session["rol"];
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-    res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
-
-    if ( role =='operario') {
-        res.render('registroPaciente');
-    }
-    else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
-    }
-
-}
-
-exports.OperEstadisticas = function(req, res, next){
-    var role = req.session["rol"];
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-    res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
-
-    if ( role =='operario') {
-        res.render('estadisticas');
-    }
-    else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
-    }
-}
-
+// ==============================================================
 // IMPORTANTE !!!!
 exports.salir = function(req, res, next){
   if (req.session) {

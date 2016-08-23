@@ -29,6 +29,14 @@ body {
 	height: auto; /* 550px; */
 }
 
+/* width >= 800px */
+@media (min-width: 800px) {
+	.dropdown:hover .dropdown-menu {
+	    display: block;
+	    margin-top: 0;
+	}
+}
+
 /*  Para ocultar */ 
 .hidden{
 	display: none !important;
