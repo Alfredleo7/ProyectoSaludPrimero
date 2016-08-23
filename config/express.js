@@ -37,6 +37,7 @@ module.exports = function(){
   require('../app/routes/index.server.routes.js')(app);
   require('../app/routes/operario.server.routes.js')(app);
   require('../app/routes/laboratorista.server.routes.js')(app);
+  require('../app/routes/muestra.server.routes.js')(app);
 
   return app;
 };

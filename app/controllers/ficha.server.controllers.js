@@ -41,8 +41,8 @@ exports.fichasPorLaboratorio = function(req, res, next){
     } else {
       return res.json(fichas);
     }
-  })
-}
+  });
+};
 
 // Julian =====
 exports.fichasByLabAndMonth = function(req, res, next){
@@ -52,5 +52,15 @@ exports.fichasByLabAndMonth = function(req, res, next){
     } else {
       return res.json(fichas);
     }
-  })
-}
+  });
+};
+
+exports.eliminar = function(req, res, next){
+  Ficha.remove({_id : req.params.id}, function(err){
+    if(err){
+      return next(err);
+    } else {
+      return res.send('se eliminó la ficha');
+    }
+  });
+};

@@ -1,10 +1,10 @@
 var parametro = require('../controllers/parametro.server.controllers');
 
 module.exports = function(app){
-  app.route('/parametro')
+  app.route('/parametros')
     .post(parametro.crear)
     .get(parametro.enlistar);
 
-  app.route('/parametro/:id')
+  app.route('/parametros/:id')
     .delete(parametro.eliminar);
 }

@@ -6,7 +6,9 @@ module.exports = function(app){
     .get(ficha.enlistar);
 
   app.route('/fichas/:id')
-    .get(ficha.fichaByID);
+    .get(ficha.fichaByID)
+    .delete(ficha.eliminar);
+
 
   app.route('/fichasByLab')
     .get(ficha.fichasPorLaboratorio);

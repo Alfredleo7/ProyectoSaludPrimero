@@ -2,9 +2,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var parametroSchema = new Schema({
-  descripción : String,
-  unidades : String,
-  resultado : String,
+  id_examen : String,
+  parametro : String,
+  unidades : Number,
+  resultado : Number,
   valoresRef : String
 });
 
