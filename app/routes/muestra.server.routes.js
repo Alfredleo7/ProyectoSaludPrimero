@@ -5,6 +5,15 @@ module.exports = function(app){
   app.route('/muestras')
     .get(muestra.enlistar)
     .post(muestra.crear);
+
   app.route('/muestras/:id')
-    .delete(muestra.eliminar);
+    .delete(muestra.eliminar)
+    .get(muestra.muestraByID);
+
+  app.route('/muestrasByLab')
+    .get(muestra.muestrasPorLaboratorio);
+
+  app.route('/muestrasByLabAndMonth')
+    .get(muestra.muestrasByLabAndMonth);
+
 }

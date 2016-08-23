@@ -9,7 +9,6 @@ module.exports = function(app){
     .get(ficha.fichaByID)
     .delete(ficha.eliminar);
 
-
   app.route('/fichasByLab')
     .get(ficha.fichasPorLaboratorio);
 

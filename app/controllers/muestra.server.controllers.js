@@ -30,3 +30,36 @@ exports.eliminar = function(req, res, next){
     }
   });
 };
+
+// Julian =====
+exports.muestrasPorLaboratorio = function(req, res, next){
+  Muestra.aggregate( {"$group" : {_id:"$nombreLaboratorio", count:{$sum:1}}} , function(err, muestras){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestras);
+    }
+  });
+};
+
+// Julian =====
+exports.muestrasByLabAndMonth = function(req, res, next){
+    Muestra.aggregate({"$group": {_id: { "mes":{$substr:['$fecha', 5, 2]} , 'nombre':'$nombreLaboratorio' } , "count": {"$sum":1} }} , function(err, muestras){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestras);
+    }
+  });
+};
+
+exports.muestraByID = function(req, res, next){
+  var id_Muestra = req.params["id"];
+  Muestra.findById(id_Muestra, function(err,muestra){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestra);
+    }
+  })
+}

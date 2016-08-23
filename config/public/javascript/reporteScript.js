@@ -47,7 +47,7 @@ function generarGraficoLab(labelsIn, seriesIn) {
 function requerimientosByLab(){
     $.ajax({
         type: 'GET',
-        url: '/fichasByLab',
+        url: '/muestrasByLab',
         data: {}, //+'&'+$.param({tipoaccion:"insertar"}),
         success: function(respuesta){
         	var cantidades = [];
@@ -161,7 +161,7 @@ function generarLabels(a,b) {
 function funcionBotonGenerar(){
     $.ajax({
         type: 'GET',
-        url: '/fichasByLabAndMonth',
+        url: '/muestrasByLabAndMonth',
         data: {},
         success: function(respuesta){
         	// Inicializar arrays con 0
