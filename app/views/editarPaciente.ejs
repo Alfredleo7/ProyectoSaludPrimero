@@ -10,7 +10,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
-    <script type="text/javascript" src="../javascript/registroPacienteScript.js"></script>
+    <script type="text/javascript" src="../javascript/editarPacienteScript.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/registroMuestraStyle.css">
 </head>
 <body>
@@ -56,44 +56,58 @@
   </nav>
 
     <div class="container">
-    	<div id="section1" class="container-fluid" >
-        <h1 style="text-align: left;"> Registrar paciente </h1>
+      <div id="section1" class="container-fluid" >
+        <h1 style="text-align: left;"> Editar paciente </h1>
         <hr>
         <div class="row">
             <!-- edit form column -->
-            <h2 style="text-align: center;"> Complete los siguientes datos: </h2>
+            <div class="text-center">
+                <h2> Seleccione un paciente: </h2>
+
+                <div class="form-group">
+                  <label class="col-lg-4 control-label"></label>
+                  <div class="col-lg-4">
+                    <select id="combo-pacientes" class="form-control" name="centroMedico" required="true" onchange="llenarInputs();">
+                     <option value="" disabled selected>-- Escoja un paciente --</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-4"></div>
+                </div>
+
+            </div>
+            
             <br>
             <br>
             <div class="infoPerfil"  style="align-self: center;">
-              <form class="form-horizontal" role="form" id="addPaciente">
+              <form class="form-horizontal" role="form" id="editPaciente">
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Nombres: </label>
                   <div class="col-lg-7">
-                    <input id="inputNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
+                    <input id="inputNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true" disabled="true">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Apellidos: </label>
                   <div class="col-lg-7">
-                    <input id="inputApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
+                    <input id="inputApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true" disabled="true">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-4 control-label">C&eacute;dula:</label>
                   <div class="col-lg-7">
-                    <input id="inputCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
+                    <input id="inputCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true" disabled="true">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-lg-4 control-label">Correo electr&oacute;nico:</label>
                   <div class="col-lg-7">
-                    <input id="inputCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
+                    <input id="inputCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true" disabled="true">
                   </div>
                 </div>
                 <br>
                 <div class="form-group">
                   <div class="col-lg-11 text-center">
-                    <input type="submit" class="btn btn-primary" value="Guardar">
+                    <input id="btnGuardar" type="submit" class="btn btn-primary" value="Guardar" disabled="true">
                     <input type="button" class="btn btn-default" value="Cancelar" onclick="cancelarRegistroPaciente();">
                   </div>
                 </div>
@@ -105,26 +119,26 @@
     </div>
   </div>
 
-  <footer class="pie">
-    &copy; Todos los derechos reservados. 2016
-  </footer>
-  
-  <script>
-        $("#addPaciente").submit(function(e){
+   <script>
+        $("#editPaciente").submit(function(e){
             e.preventDefault();
-            var url = "/pacientes";
-            var data = $("#addPaciente").serialize();
+            var id = $("#combo-pacientes").val();
+            var url = "/pacientes/"+id;
+            var data = $("#editPaciente").serialize();
             $.ajax({
-                type: 'POST',
+                type: 'PUT',
                 url: url,
                 data: data, //+'&'+$.param({tipoaccion:"insertar"}),
                 success: function(respuesta){
-                    alert("Ingresado con exito");
+                    alert("Modificado con exito");
                     window.location = "/operario";
                 }
             });
         });
   </script>
 
+  <footer class="pie">
+    &copy; Todos los derechos reservados. 2016
+  </footer>
 </body>
 </html>

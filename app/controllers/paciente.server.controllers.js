@@ -38,8 +38,30 @@ exports.enlistar = function(req, res, next){
   });
 };
 
+exports.getById = function(req, res, next){
+  var id_paciente = req.params["id"];
+  Paciente.findById(id_paciente, function(err, paciente){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(paciente);
+    }
+  });
+};
+
+exports.actualizarPaciente = function(req, res, next){
+  var id_paciente = req.params["id"];
+  Paciente.findOneAndUpdate({_id: id_paciente}, {$set: {nombres: req.body.nombres, apellidos: req.body.apellidos, cedula: req.body.cedula, email: req.body.email}}, {new: true} ,function(err, paciente){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(paciente);
+    }
+  });
+};
+
 exports.eliminar = function(req, res, next){
-  var id_paciente = req.params.id;
+  var id_paciente = req.params["id"];
   Paciente.remove({_id: id_paciente}, function(err, paciente){
     if(err){
       return next(err);
@@ -61,7 +83,7 @@ exports.pacienteByCedulaContraseña = function(req, res, next){
     else {
         if (paciente) {
           res.type("json");
-          return res.send({paciente : paciente, error: "false",url: "/paciente"});
+          return res.send({paciente : paciente, error: "false", url: "/paciente"});
         }
         else{
           res.send({mensaje: "Usuario no encontrado. Intente de nuevo", error: "true", url: "/"});
