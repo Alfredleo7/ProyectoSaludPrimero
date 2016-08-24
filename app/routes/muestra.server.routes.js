@@ -25,4 +25,7 @@ module.exports = function(app){
   app.route('/recibirMuestra')
     .post(muestra.recibirMuestra);
 
+  app.route('/muestrasByPaciente/:id')
+    .get(muestra.muestrasByIdPaciente);
+
 }

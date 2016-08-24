@@ -96,3 +96,14 @@ exports.recibirMuestra = function(req, res, next){
     }
   });
 };
+
+exports.muestrasByIdPaciente = function(req, res, next){
+  var idPaciente = req.params.id;
+  Muestra.find({id_paciente: idPaciente}, function(err, muestras){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestras);
+    }
+  });
+};

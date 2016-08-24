@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Salud Primero S.A. - Mi Perfil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/examenesStyles.css">
+  <script type="text/javascript" src="javascript/examenes.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pacienteBar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="paciente.html" style="font-size: 1.5em;text-decoration: none;"><img src="imagenes/logo.png" alt="salud primero" width="50" height="50">Salud Primero S.A.</a>
+      </div>
+      <div class="collapse navbar-collapse" id="pacienteBar">
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="examenes.html"><i class="glyphicon glyphicon-duplicate"></i> Mis ex&aacute;menes</a></li>
+            <li><a href="perfilUsuario.html"><i class="glyphicon glyphicon-user"></i> Perfil</a></li>
+            <li><a href="index.html"><i class="glyphicon glyphicon-off" data-toggle="collapse" data-target=".navbar-collapse.in" ></i> Salir</a></li>
+          </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div id="section1" class="container-fluid" >
+      <h1 style="text-align: left;">Ex&aacute;menes</h1>
+      <hr>
+      <button type="button" id="buscarExamenBtn" data-toggle="collapse" data-target="#buscarExamen" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar Ex&aacute;menes</button>
+      <div class="row">
+        <div class="panel panel-default collapse" id="buscarExamen">
+          <form>
+            <div class="panel-body">
+              <div class="form-group col-xs-12 col-sm-2">
+                <label for="tipo">Tipo</label>
+                <select class="form-control input" id="tipo" name="tipo">
+                  <option selected="selected"></option>
+                  <option>Tipo Examen 1</option>
+                  <option>Tipo Examen 2</option>
+                  <option>Tipo Examen 3</option>
+                  <option>Tipo Examen 4</option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-sm-2">
+                <div class="form-group">
+                  <label for="estado">Estado</label>
+                  <select class="form-control input" id="estado" name="estado">
+                    <option selected="selected"></option>
+                    <option value="0">Pendiente</option>
+                    <option value="1">Ingresado</option>
+                    <option value="2">En proceso</option>
+                    <option value="3">Listo</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group col-xs-12 col-sm-4">
+                <label for="iniExamen">Fecha inicio</label>
+                <!-- Campo para ingresar fecha inicial para busqueda del partido -->
+                <input type="date" class="form-control" id="iniExamen" name="iniExamen">
+              </div>
+              <div class="form-group col-xs-12 col-sm-4">
+                <label for="finExamen">Fecha fin</label>
+                <!-- Campo para ingresar la fecha final para busqueda del partido -->
+                <input type="date" class="form-control" id="finExamen" name="finExamen">
+              </div>
+              <div class="col-xs-12" >
+                <button type="submit" class="btn btn-primary">Buscar ex&aacute;menes</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="examenes" class="row-md-12" >
+
+      </div> <!--END row-md-12 -->
+      <hr>
+    </div>
+
+    <!--END section bienvenido-->
+
+    <!--START section centros medicos-->
+
+
+      <footer class="pie">
+        &copy; Todos los derechos reservados. 2016
+      </footer>
+  </div> <!-- END contenido -->
+
+</body>
+</html>
