@@ -1,4 +1,5 @@
 var Paciente = require('mongoose').model('Paciente');
+var nodemailer = require('nodemailer');
 
 function password() {
   var iteration = 0;
@@ -19,6 +20,25 @@ function password() {
 exports.crear = function(req, res, next){
   req.body.password = password();//generar password
   var paciente = Paciente(req.body);
+  console.log(req.body.password);
+  var smtpTransport = nodemailer.createTransport("SMTP",{
+      service: "Gmail",
+      auth: {
+          user: "salud.primero.sa@gmail.com",
+          pass: "grmiqrjhidumlekh"
+      }
+  });
+  var mailOptions = {
+        from: "Salud Primero S.A. ✔ <salud.primero.sa@gmail.com>",
+        to: req.body.email, 
+        subject: "Salud Primero S.A. - Registro de Paciente",
+        text: "Estimado "+req.body.nombres+" "+req.body.apellidos+",\n\nBienvenido a Salud Primero S.A.\n\nLe informamos que su cuenta ha sido creada con éxito. Puede ingresar a nuestro sistema utilizando:\nCédula: "+req.body.cedula+"\nContraseña: "+req.body.password+"\n\nAtentamente,\nSalud Primero S.A.\n\nPara más información envíenos un correo electrónico a salud.primero.sa@gmail.com, o acérquese a nuestras oficinas más cercanas."
+    }
+    smtpTransport.sendMail(mailOptions, function(error, response){
+        if(error){
+            console.log(error);
+        }
+    });
   paciente.save(function(err){
     if(err){
       return next(err);
