@@ -96,3 +96,15 @@ exports.recibirMuestra = function(req, res, next){
     }
   });
 };
+
+exports.enviarResultadosMuestra = function(req, res, next){
+  var idMuestra = req.body.id;
+  var estado = req.body.estado;
+  Muestra.findOneAndUpdate({_id: idMuestra}, {estado: estado}, function(err, muestra){
+    if(err){
+      return next(err);
+    } else {
+      return res.send("la muestra fue enviada al paciente");
+    }
+  });
+};

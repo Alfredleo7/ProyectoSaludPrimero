@@ -2,6 +2,7 @@ $(document).ready(function() {
 	llenarTablaMuestras();
 	cargarInfoLaboratorista();
 	anim();
+	$("#alerta").hide();
 
 });
 
@@ -97,13 +98,26 @@ function ingresarMuestra(){
 
 function mostrarMuestraModal(idMuestra){
 	$.ajax({
-		url : '/muestraIngresadaByID/'+idMuestra,
+		url : '/muestras/'+idMuestra,
 		type : 'get',
 		success : function(muestra){
-			$('#nombrePaciente').val(muestra.nombresPaciente+" "+ muestra.apellidosPaciente);
-			$('#nombreCentro').val(muestra.nombreCentro);
-			$('#nombreLaboratorio').val(muestra.nombreLaboratorio);
-			$('#tipoMuestra').val(muestra.tipo);
+			if(!muestra){
+				$("#alerta").show();
+			} else {
+				$("#myModal").modal("show");
+				$('#btnRecibirMuestra').removeAttr('disabled');
+				$('#nombrePaciente').val(muestra.nombresPaciente+" "+ muestra.apellidosPaciente);
+				$('#nombreCentro').val(muestra.nombreCentro);
+				$('#nombreLaboratorio').val(muestra.nombreLaboratorio);
+				$('#tipoMuestra').val(muestra.tipo);
+				$('#estado').val(muestra.estado);
+				if(muestra.estado != 'ingresado'){
+					$('#btnRecibirMuestra').attr('disabled', 'true');
+				}
+			}
+		},
+		error : function(){
+			$("#alerta").show();
 		}
 	});
 };
@@ -194,9 +208,10 @@ function mostrarTablaExamenes(i){
 		success : function(examenes){
 				$(".tablaResultados").empty();
 				$.each(examenes, function(o){
-					console.log(examenes);
 					crearTablaParametro(examenes[o],o, i);
 				})
+				$('.tablaResultados').append('<hr/>');
+				$('.tablaResultados').append('<button type="button" class="btn btn-success" onclick="enviarResultados('+i+')">Enviar Resultados</button>');
 		}
 	});
 };
@@ -246,4 +261,21 @@ function llenarTablaParametros(i, idExamen) {
 			$tabla.append('<tr><td onclick="llenar_info('+i+');">'+data[i].titulo+'</td></tr>');
 		});
 	});*/
-}
+};
+
+function enviarResultados(i){
+		var idMuestra = $("#id"+i).text();
+		console.log(idMuestra);
+		$.ajax({
+			url : '/enviarResultados',
+			type : 'post',
+			data : {
+				estado : 'terminado',
+				id : idMuestra
+			},
+			success : function(){
+				recibirMuestra();
+				$(".tablaResultados").empty();
+			}
+		});
+};
