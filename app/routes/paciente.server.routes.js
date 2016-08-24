@@ -18,4 +18,6 @@ module.exports = function(app){
     .post(paciente.cambiarPassword);
   app.route('/paciente/perfil')
     .get(paciente.pagPerfil);
+  app.route('/paciente/examenes')
+    .get(paciente.pagExamenes);
 };
