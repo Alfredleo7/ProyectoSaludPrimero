@@ -7,4 +7,7 @@ module.exports = function(app){
 
   app.route('/parametros/:id')
     .delete(parametro.eliminar);
+
+  app.route('/parametrosByExamen/:id')
+    .get(parametro.parametrosByExamen);
 }

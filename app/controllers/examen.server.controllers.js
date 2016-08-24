@@ -42,3 +42,13 @@ exports.porTipo = function(req, res, next){
     }
   });
 };
+
+exports.examenesByMuestra = function(req, res, next){
+  Examen.find({id_muestra: req.params.id}, function(err, examenes){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(examenes);
+    }
+  });
+};

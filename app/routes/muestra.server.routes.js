@@ -19,4 +19,10 @@ module.exports = function(app){
   app.route('/muestrasRecibidas')
     .get(muestra.muestrasRecibidas);
 
+  app.route('/muestraIngresadaByID/:id')
+    .get(muestra.muestraIngresadaByID);
+
+  app.route('/recibirMuestra')
+    .post(muestra.recibirMuestra);
+
 }

@@ -73,3 +73,26 @@ exports.muestrasRecibidas = function(req, res, next){
     }
   });
 };
+
+exports.muestraIngresadaByID = function(req, res, next){
+  Muestra.findOne({ $and: [ { estado: "ingresado" }, { _id: req.params.id } ] }, function(err, muestra){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestra);
+    }
+  });
+};
+
+
+exports.recibirMuestra = function(req, res, next){
+  var idMuestra = req.body.id;
+  var observaciones = req.body.observaciones;
+  Muestra.findOneAndUpdate({_id: idMuestra}, {$set: {estado: "recibido", observaciones: observaciones}}, function(err, muestra){
+    if(err){
+      return next(err);
+    } else {
+      return res.send("la muestra fue recibida");
+    }
+  });
+};

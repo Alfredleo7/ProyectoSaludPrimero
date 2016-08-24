@@ -31,3 +31,13 @@ exports.eliminar = function(req, res, next){
     }
   });
 };
+
+exports.parametrosByExamen = function(req, res, next){
+  Parametro.find({id_examen: req.params.id}, function(err, parametros){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(parametros);
+    }
+  });
+};

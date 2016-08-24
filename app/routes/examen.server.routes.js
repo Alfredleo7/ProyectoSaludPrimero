@@ -11,4 +11,7 @@ module.exports = function(app){
 
   app.route('/examenes/:tipo')
   	.get(examen.porTipo);
+
+  app.route('/examenesByMuestra/:id')
+    .get(examen.examenesByMuestra);
 }

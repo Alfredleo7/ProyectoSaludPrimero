@@ -3,7 +3,7 @@
 body {
 	position: relative;
 	background: url("../imagenes/fondos/fondo2.jpg") no-repeat center center;
-	background-color:rgba(255,255,255,0.8);
+	background-color:rgba(255,255,255,0.6);
 	background-size: cover;
 	background-attachment: fixed;
 	font-family: 'Philosopher', 'Verdana', sans-serif;
@@ -30,6 +30,7 @@ body {
 #section2, #section1, #section3 {
 	background-color:rgba(255,255,255,0.8);
 	margin: 10px;
+	padding: 20px;
 }
 
 
