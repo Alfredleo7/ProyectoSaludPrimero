@@ -1,4 +1,3 @@
-/*
 $( document ).ready(function(){
     $("#example").DataTable({
         responsive: true
@@ -10,12 +9,12 @@ $( document ).ready(function(){
     cargarComboLabs();
     cargarExamenes();
 });
-*/
+
 
 function cancelarRegistroPaciente() {
 	window.location = "/operario";
 };
-/*
+
 function llenarInputs() {
     var elem = $("#combo-seleccionar").val();
     $("#inputNombres, #inputApellidos, #inputCorreo, #inputCedula").removeAttr("disabled");
@@ -37,7 +36,7 @@ function llenarInputs() {
     });
     // ============================
 }
-*/
+
 
 function cargarComboCentros(){
     $.ajax({
@@ -107,7 +106,7 @@ function cargarExamenes(){
     });  // Cierre de change
 
 }
-/*
+
 
 function llenarDataTable (){
         $.ajax({
@@ -167,66 +166,5 @@ function sacarIdMuestra() {
             });
     });
 }
-*/
 
 
-var editor;
- 
-$(document).ready(function() {
-    $("#example").DataTable({
-        responsive: true
-    });
-    editor = new $.fn.dataTable.Editor( {
-        ajax: "/muestras",
-        table: "#example",
-        fields: [ {
-                label: "Nombres:",
-                name: "nombresPaciente"
-            }, {
-                label: "Apellidos:",
-                name: "apellidosPaciente"
-            }, {
-                label: "Centro Med:",
-                name: "nombreCentro"
-            }, {
-                label: "Laboratorio:",
-                name: "nombreLaboratorio"
-            }, {
-                label: "Tipo:",
-                name: "tipo"
-            }
-        ]
-    } );
- 
-    // Activate an inline edit on click of a table cell
-    $('#example').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor.inline( this );
-    } );
- 
-    $('#example').DataTable( {
-        dom: "Bfrtip",
-        ajax: "/muestras",
-        columns: [
-            {
-                data: null,
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false
-            },
-            { data: "nombresPaciente" },
-            { data: "apellidosPaciente" },
-            { data: "nombreCentro" },
-            { data: "nombreLaboratorio" },
-            { data: "tipo" }
-        ],
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
-        buttons: [
-            { extend: "Crear", editor: editor },
-            { extend: "Editar",   editor: editor },
-            { extend: "Eliminar", editor: editor }
-        ]
-    } );
-} );

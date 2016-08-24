@@ -162,13 +162,12 @@
                   </div>
                   <div class="modal-body">
                   <form>
+                    <input type="hidden" id="hiddenSuccess">
                     <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>  ¿Est&aacute;s seguro que quieres eliminar este paciente?</div>
-                      <button type="submit" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si, estoy seguro </button>
+                      <button type="button" id="confirmDelete" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign" onclick="confirmarEliminar();"></span> Si, estoy seguro </button>
                       <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No borrar este paciente</button>
                    </form>
                   </div>
-                  
-
 
                   <div class="modal-footer "></div>
                 </div>
@@ -186,7 +185,7 @@
                       <div class="modal-title" style="padding: 0 20px; text-align: center!important;">  </div>
                       <div class="modal-body"> La operacion se ha llevado a cabo correctamente </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                          <button type="button" class="btn btn-success" data-dismiss="modal" onClick="window.location.reload();">OK</button>
                       </div>
                   </div> <!-- / .modal-content -->
               </div> <!-- / .modal-dialog -->
@@ -217,7 +216,6 @@
                 success: function(respuesta){
                     $("#new").modal("hide");
                     $("#modal-success").modal("show");
-                    window.reload();
                 }
             });
         });
@@ -235,7 +233,6 @@
                 success: function(respuesta){
                     $("#modal-success").modal("show");
                     $("#edit").modal("hide");
-                    location.reload();
                 }
             });
 
@@ -243,7 +240,7 @@
 // ==============================================
         $("#delete").submit(function(e){
             e.preventDefault();
-            $("#modal-success").modal("show");
+            
             /*
             var id = $("#combo-pacientes").val();
             var url = "/pacientes/"+id;
