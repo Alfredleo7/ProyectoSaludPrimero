@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Salud Primero S.A. - Paciente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
+    <script type="text/javascript" src="../javascript/registroMuestraScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/registroMuestraStyle.css">
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pacienteBar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/operario" style="font-size: 1.5em;text-decoration: none;"><img src="../imagenes/logo.png" alt="salud primero" width="50" height="50">Salud Primero S.A.</a>
+      </div>
+      <div class="collapse navbar-collapse" id="pacienteBar">
+
+          <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i> Administrar pacientes <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li style="font-size: 1.15em;"><a href="/operario/registroPaciente"><i class="glyphicon glyphicon-pencil"></i>  Registrar paciente </a></li>
+                <li style="font-size: 1.15em;"><a href="/operario/editarPaciente"><i class="glyphicon glyphicon-cog"></i>  Editar paciente </a></li>
+                <li style="font-size: 1.15em;"><a href="/operario/eliminarPaciente"><i class="glyphicon glyphicon-trash"></i>  Eliminar paciente </a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-duplicate"></i> Administrar muestras <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li style="font-size: 1.15em;"><a href="/operario/registroMuestra"><i class="glyphicon glyphicon-pencil"></i>  Ingresar muestra </a></li>
+                <li style="font-size: 1.15em;"><a href="/operario/editarMuestra"><i class="glyphicon glyphicon-cog"></i>  Modificar muestra </a></li>
+                <li style="font-size: 1.15em;"><a href="/operario/eliminarMuestra"><i class="glyphicon glyphicon-trash"></i>  Eliminar muestra </a></li>
+              </ul>
+            </li>
+            
+            <li><a href="/operario/estadisticas"><i class="glyphicon glyphicon-picture"></i> Estad&iacute;sticas</a></li>
+            
+            <li><a href="/operario/logout"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
+          </ul>
+
+      </div>
+    </div>
+  </nav>
+
+    <div class="container">
+    	<div id="section1" class="container-fluid" >
+        <h1 style="text-align: left;"> Registrar muestra </h1>
+        <hr>
+          <div class="pagination-centered">
+            <!-- edit form column -->
+            <h2 style="text-align: center;"> Datos de la muestra: </h2>
+            <br>
+            <div class="infoPerfil" >
+              <form id="addMuestra" class="form-horizontal text-center" role="form">
+
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">Seleccione un paciente: </label>
+                  <div class="col-lg-5">
+                    <select id="combo-pacientes" class="form-control" name="paciente" required>
+                      <option value="" disabled selected>-- Escoja un paciente de la lista o en su defecto cree uno --</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-2">
+                    <input type="button" name="nuevoPaciente" class="btn btn-primary" value="Nuevo paciente" onclick="location.href='/operario/registroPaciente'" >
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">Centro m&eacute;dico: </label>
+                  <div class="col-lg-5">
+		                <select id="combo-centros" class="form-control" name="centroMedico" required>
+		            	   <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
+		                </select>
+                  </div>
+                  <div class="col-lg-2"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">Laboratorio donde se enviar&aacute;: </label>
+                  <div class="col-lg-5">
+                    <select id="combo-lab" class="form-control" name="laboratorio" required>
+                      <option value="" disabled selected>-- Escoja un laboratorio --</option>
+                    </select>
+                  </div>
+                  <div class="col-lg-2"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">Muestra recogida: </label>
+                  <div class="col-lg-5">
+                    <select id="combo-muestras" class="form-control" name="tipoMuestra" required>
+                      <option value="none" disabled selected>-- Escoja un tipo de muestra --</option>
+                      <option value="sangre"> Muestra de sangre </option>
+                      <option value="heces"> Muestra de heces </option>
+                      <option value="orina"> Muestra de orina </option>
+                    </select>
+                  </div>
+                  <div class="col-lg-2"></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-lg-4 control-label">
+                    <p>Ex&aacute;menes a realizar:</p>
+                    <p style="font-size: 0.8em;">** Mantenga presionado Ctrl (Windows)/Command(Mac) para seleccionar m&aacute;s de una opcion</p>
+                  </label>
+                  <div class="col-lg-5">
+                    <select id="select-examenes" class="form-control" name="examenes" multiple="true" style="height: 110px;" required>
+                    </select>
+                  </div>
+                  <div class="col-lg-2"></div>
+                </div>
+                <br>
+
+                <!-- Input hidden -->
+                <div class="form-group">
+                  <label class="col-lg-4"></label>
+                  <div class="col-lg-5"><input type="hidden" name="estado" value="Ingresado"></div>
+                  <div class="col-lg-2"></div>
+                </div>
+
+                <div class="form-group">
+                  <!-- <label class="col-lg-4 control-label"></label> -->
+                  <div class="col-lg-11 text-center">
+                    <input type="submit" class="btn btn-primary" value="Guardar">
+                    <input type="reset" class="btn btn-default" value="Cancelar" onclick="cancelarRegistroMuestra();">
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <footer class="pie">
+      &copy; Todos los derechos reservados. 2016
+  </footer>
+
+  <script>
+  /*
+        $("#addMuestra").submit(function(e){
+            e.preventDefault();
+
+            // para guardar la muestra
+            var url1 = "";
+            // Para generar el codigo
+            var ced = $("#combo-pacientes option:selected").val();
+            var url2 = "/operario/registroMuestra/codigo?for="+ced;
+            console.log(foo);
+            var data = $("#addMuestra").serialize();
+
+            var foo = []; 
+            $('#select-examenes :selected').each(function(i, selected){ 
+                foo[i] = $(selected).text(); 
+            });
+            console.log(foo);
+
+            $.ajax({
+                type: 'GET', 
+                url: url2, 
+                data: {},
+                success: function(respuesta){
+                    //alert("Ingresado con exito**");
+                    alert(respuesta);
+                    window.open("data:application/pdf," + escape(respuesta));
+                    window.location ="/operario";
+                }
+            });
+        });
+*/
+  </script>
+
+</body>
+</html>
