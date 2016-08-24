@@ -16,4 +16,7 @@ module.exports = function(app){
   app.route('/muestrasByLabAndMonth')
     .get(muestra.muestrasByLabAndMonth);
 
+  app.route('/muestrasRecibidas')
+    .get(muestra.muestrasRecibidas);
+
 }

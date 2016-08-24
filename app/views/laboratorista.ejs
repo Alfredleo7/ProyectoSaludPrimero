@@ -11,7 +11,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/laboratorista.css">
-    <script type="text/javascript" src="../javascript/laboratorista.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".navbar" class="md-">
@@ -59,25 +58,92 @@
       <h2 style="text-align:center;">Llegada de muestras</h2>
       <hr/>
       <p class="muestrasText">En esta secci&oacute;n encuentre informaci&oacute;n sobre las muestras que han llegado al laboratorio o en su defecto, comunique cualquier anomal&iacute;a</p>
-      <h3>Selecciona una muestra de la lista: </h3>
-      <div class="col-md-5 muestras-list">
-	      <table id="tablaMuestras" class="table table-striped">
-	      	<tbody>
+			<form class="form-horizontal">
+			  <div class="form-group">
+			    <label for="id" class="col-sm-6 control-label">Ingrese el Código de la Muestra</label>
+			    <div class="col-sm-4">
+			      <input type="text" class="form-control inputMuestra" id="id" placeholder="Codigo">
+			    </div>
+					<div class="col-sm-2">
+						<input class="btn btn-default" onclick="ingresarMuestra();"type="button" name="name" value="Ingresar" data-toggle="modal" data-target="#myModal">
 
-	      	</tbody>
-	      </table>
-      </div>
 
-      <div class="col-md-7" data-spy="scroll" data-target="#myScrollspy" data-offset="20">
-	      <div class="col-md-11 muestras-info pull-right">
+						<!-- Modal Detalles de la muestra --><!-- Modal -->
+						<div class="modal fade" style="color: rgb(39, 39, 40);" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
 
-			<div id="info-mues">
-				<h2>Informacion de la muestra </h2>
-				<!-- Aqui va la info de la muestra con jquery-->
+						        <h4 class="modal-title" id="myModalLabel">Detalles de la Muestra</h4>
+						      </div>
+						      <div class="modal-body container">
+
+
+										<!-- CONTENIDO DEL MODAL-->
+
+										<form>
+									    <div class="form-group row">
+									      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+									      <div class="col-sm-10">
+									        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" readonly>
+									      </div>
+									    </div>
+									    <div class="form-group row">
+									      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+									      <div class="col-sm-10">
+									        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" readonly>
+									      </div>
+									    </div>
+									  </form>
+
+										<!-- END CONTENIDO DEL MODAL -->
+
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        <button type="button" class="btn btn-primary">Save changes</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+
+
+
+					</div>
+			  </div>
+			</form>
+			<div class="table-responsive">
+				<table class="table table-striped tablaMuestras">
+					<thead class="thead-inverse">
+						<tr>
+							<th>
+								#
+							</th>
+							<th>
+								Tipo
+							</th>
+							<th>
+								Estado
+							</th>
+							<th>
+								Fecha
+							</th>
+							<th>
+								Laboratorio
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
 			</div>
 
-	      </div>
-      </div>
+
+
+
 
   	</div>
   	<!-- END section 2 -->
@@ -119,5 +185,7 @@
   </div>
   <!-- END CONTAINER -->
 
+
+	<script type="text/javascript" src="../javascript/laboratorista.js"></script>
 </body>
 </html>

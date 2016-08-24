@@ -2,6 +2,60 @@
 
 body {
 	position: relative;
+	background: url("../imagenes/fondos/fondo2.jpg") no-repeat center center;
+	background-color:rgba(255,255,255,0.8);
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'Philosopher', 'Verdana', sans-serif;
+	padding-top:50px;
+}
+
+
+#pacienteNombre {
+	text-align: center;
+}
+
+/*#section1 {
+	width: 90%;
+	color: #000;
+	background-color:rgba(255,255,255,0.8);
+	font-family: 'Philosopher', 'Verdana', sans-serif;
+	font-size: 1.5em;
+	margin: auto;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 2%;
+}*/
+
+#section2, #section1, #section3 {
+	background-color:rgba(255,255,255,0.8);
+	margin: 10px;
+}
+
+
+/* width >= 800px */
+@media (min-width: 800px) {
+	.dropdown:hover .dropdown-menu {
+	    display: block;
+	    margin-top: 0;
+	}
+}
+
+.row{
+	align-self: center;
+}
+
+.pie {
+	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 2%;
+	text-shadow: 1px 1px #000;
+	color: #FFF
+}
+/*@import url('https://fonts.googleapis.com/css?family=Philosopher');
+
+body {
+	position: relative;
 	background-color: black;
 	background-size: cover;
 	background-attachment: fixed;
@@ -54,16 +108,17 @@ body {
 }
 
 table{
-	height: 400px; 
+	height: 400px;
 }
 
 tbody{
-    overflow-y: scroll;
+    /*overflow-y: scroll;
     height: 400px;
     width: 93%;
     position: absolute;
     background-color: #FFFFFF;
     opacity: 0.75;
+		color : rgb(0, 0, 0);
 }
 
 tr {
@@ -109,4 +164,4 @@ td:hover{
 	margin-bottom: 2%;
 	text-shadow: 1px 1px #000;
 	color: #FFF
-}
+}*/

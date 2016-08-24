@@ -61,5 +61,15 @@ exports.muestraByID = function(req, res, next){
     } else {
       return res.json(muestra);
     }
-  })
-}
+  });
+};
+
+exports.muestrasRecibidas = function(req, res, next){
+  Muestra.find({estado: "recibido"}, function(err, muestras){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestras);
+    }
+  });
+};

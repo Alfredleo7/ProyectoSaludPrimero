@@ -2,6 +2,7 @@ $(document).ready(function() {
 	llenarTablaMuestras();
 	cargarInfoLaboratorista();
 	anim();
+
 });
 
 function cargarInfoLaboratorista(){
@@ -39,12 +40,29 @@ function llenar_info(i) {
 
 
 function llenarTablaMuestras() {
-	$.getJSON("datos/datos_muestras.json", function(data) {
+	$.ajax({
+		type : 'get',
+		url : '/muestrasRecibidas',
+		success : function(muestras){
+				var $tabla = $("#tablaMuestras tbody");
+				$.each(muestras, function(i){
+				console.log(muestras[i].tipo);
+				$tabla.append('<tr onclick="llenar_info('+i+');">');
+				$tabla.append('<td>'+i+'</td>');
+				$tabla.append('<td>'+muestras[i].tipo+'</td>');
+				$tabla.append('<td>'+muestras[i].estado+'</td>');
+				$tabla.append('<td>'+muestras[i].fecha+'</td>');
+				$tabla.append('<td>'+muestras[i].nombreLaboratorio+'</td>');
+				$tabla.append('</tr>');
+			});
+		}
+	});
+	/*$.getJSON("datos/datos_muestras.json", function(data) {
 		var $tabla = $("#tablaMuestras tbody");
 		$.each(data,function(i) {
 			$tabla.append('<tr><td onclick="llenar_info('+i+');">'+data[i].titulo+'</td></tr>');
 		});
-	});
+	});*/
 }
 
 
@@ -68,3 +86,8 @@ function anim() {
         }
     });
 }
+
+function ingresarMuestra(){
+	var codigo = $('.inputMuestra').val();
+	console.log(codigo);
+};
