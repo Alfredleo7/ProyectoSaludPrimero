@@ -249,6 +249,7 @@ function cargarInfoPaciente(){
         success : function(paciente){
             var paciente_ = paciente.nombres+" "+paciente.apellidos;
             $('#pacienteNombre').text(paciente_);
+            $('#nombrePaciente').text(paciente.nombres);
         }
     });
 }
@@ -256,6 +257,19 @@ function cargarInfoPaciente(){
 $( document ).ready(function(){
     cargarInfoPaciente();
     
+    $("#cambiarPassword").submit(function(e){
+        e.preventDefault();
+        url = '/paciente/password'
+        var data = $(this).serialize();
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+            success: function(respuesta){
+                alert(respuesta);
+            }
+        });
+    });
     // CARGAR INFORMACION DE CENTROS MEDICOS (PANELES Y MODALS)
 
     // CARGAR INFORMACION DEL PACIENTE

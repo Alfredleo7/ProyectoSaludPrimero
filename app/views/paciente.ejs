@@ -37,7 +37,13 @@
           
           <ul class="nav navbar-nav navbar-right">
             <li><a href="examenes.html"><i class="glyphicon glyphicon-duplicate"></i> Mis ex&aacute;menes</a></li>
-            <li><a href="perfilUsuario.html"><i class="glyphicon glyphicon-user"></i> Perfil</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-user"></i><span id="nombrePaciente"></span><span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li style="font-size: 1.15em;"><a href="#"><i class="glyphicon glyphicon-pencil"></i>  Perfil </a></li>
+                <li style="font-size: 1.15em;"><a href="#" data-toggle="modal" data-target="#modalContrasena"><i class="glyphicon glyphicon-cog"></i>  Cambiar contrase&ntilde;a </a></li>
+              </ul>
+            </li>
             <li><a href="/paciente/logout"><i class="glyphicon glyphicon-off" data-toggle="collapse" data-target=".navbar-collapse.in" ></i> Salir</a></li>
           </ul>
 
@@ -46,6 +52,45 @@
   </nav>
 
   <div class="container">
+  <div class="modal fade" id="modalContrasena" role="dialog">
+    <div class="modal-dialog">
+       <form class="form-horizontal" role="form" id="cambiarPassword">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Cambiar contrase&ntilde;a</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Ingrese su contrase&ntilde;a: </label>
+            <div class="col-lg-7">
+              <input id="passwordold" name="passwordold" class="form-control" type="password" placeholder="Contrase&ntilde;a" required="true" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Nueva contrase&ntilde;a: </label>
+            <div class="col-lg-7">
+              <input id="password1" name="password1" class="form-control" type="password" placeholder="Contrase&ntilde;a" required="true" autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-4 control-label">Repita nueva contrase&ntilde;a: </label>
+            <div class="col-lg-7">
+              <input id="password2" name="password2" class="form-control" type="password" placeholder="Contrase&ntilde;a" required="true" autocomplete="off">
+            </div>
+          </div>
+          <br>      
+        </div>
+          <div class="modal-footer">
+            <button id="btnCambiarPassword" type="submit" class="btn btn-primary">Guardar</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+      </form>
+    </div>
+  </div>
     <!--START section bienvenido-->
     <div id="section1" class="container-fluid" >
       <div id="section1-bg">

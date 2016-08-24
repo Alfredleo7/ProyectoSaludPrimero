@@ -14,4 +14,6 @@ module.exports = function(app){
     .put(paciente.actualizarPaciente);
   app.route('/paciente/logout')
     .get(paciente.salir);
+  app.route('/paciente/password')
+    .post(paciente.cambiarPassword);
 };

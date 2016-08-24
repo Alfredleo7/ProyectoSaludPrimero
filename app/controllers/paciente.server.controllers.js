@@ -125,6 +125,36 @@ exports.pacienteByCookie = function(req, res, next){
   });
 };
 
+exports.cambiarPassword = function(req, res, next){
+  var idPaciente = req.session.idUser;
+  var pass_old = req.body.passwordold;
+  var pass1 = req.body.password1;
+  var pass2 = req.body.password2;
+
+  Paciente.findById(idPaciente, function(err,paciente){
+    if(err){
+      return next(err);
+    } else {
+      if(pass_old != paciente.password){
+        return res.send("Contraseña incorrecta. Intente de nuevo.");
+      }
+      else if(pass1 != pass2){
+        return res.send("No coincide la nueva contraseña. Intente de nuevo.");
+      }
+      else if(pass_old == paciente.password && pass1 == pass2){
+        Paciente.findOneAndUpdate({_id: idPaciente}, {$set: {password: pass1}}, {new: true} ,function(err, paciente){
+          if(err){
+            return next(err);
+          } else {
+            res.send("Contraseña modificada con éxito. Vuelva a iniciar sesión.");
+          }
+        });
+      }
+      
+    }
+  });
+};
+
 exports.pagPaciente = function(req, res, next){
   res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
   res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
