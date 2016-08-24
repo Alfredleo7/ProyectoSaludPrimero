@@ -145,7 +145,26 @@ exports.cambiarPassword = function(req, res, next){
         Paciente.findOneAndUpdate({_id: idPaciente}, {$set: {password: pass1}}, {new: true} ,function(err, paciente){
           if(err){
             return next(err);
-          } else {
+          } 
+          else {
+            var smtpTransport = nodemailer.createTransport("SMTP",{
+                service: "Gmail",
+                auth: {
+                    user: "salud.primero.sa@gmail.com",
+                    pass: "grmiqrjhidumlekh"
+                }
+            });
+            var mailOptions = {
+                  from: "Salud Primero S.A. ✔ <salud.primero.sa@gmail.com>",
+                  to: paciente.email, 
+                  subject: "Salud Primero S.A. - Cambio de contraseña",
+                  text: "Estimado "+paciente.nombres+" "+paciente.apellidos+",\n\nSalud Primero S.A. le informa que usted ha efectuado un cambio de contraseña. Podrá ingresar a nuestro sistema utilizando sus nuevas credenciales:\nCédula: "+paciente.cedula+"\nContraseña: "+paciente.password+"\n\nAtentamente,\nSalud Primero S.A.\n\nPara más información envíenos un correo electrónico a salud.primero.sa@gmail.com, o acérquese a nuestras oficinas más cercanas."
+              }
+            smtpTransport.sendMail(mailOptions, function(error, response){
+                if(error){
+                    console.log(error);
+                }
+            });
             res.send("Contraseña modificada con éxito. Vuelva a iniciar sesión.");
           }
         });
