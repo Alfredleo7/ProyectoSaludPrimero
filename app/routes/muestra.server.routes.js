@@ -28,4 +28,7 @@ module.exports = function(app){
   app.route('/enviarResultados')
     .post(muestra.enviarResultadosMuestra);
 
+  app.route('/muestrasByPaciente/:id')
+    .get(muestra.muestrasByIdPaciente);
+
 }

@@ -185,6 +185,28 @@ exports.pagPaciente = function(req, res, next){
   }
 }
 
+exports.pagPerfil = function(req, res, next){
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+  if ( req.session.rol =='paciente') {
+    res.render('perfilUsuario');
+  }
+  else {
+    res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+  }
+}
+
+exports.pagExamenes = function(req, res, next){
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+  if ( req.session.rol =='paciente') {
+    res.render('examenes');
+  }
+  else {
+    res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+  }
+}
+
 exports.salir = function(req, res, next){
   if (req.session) {
     req.session["rol"] = null;

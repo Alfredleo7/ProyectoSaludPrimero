@@ -246,7 +246,7 @@ function llenarTablaParametros(i, idExamen) {
 				var $tabla = $('.tablaParametros'+i+' tbody');
 				$tabla.empty();
 				$.each(parametros, function(i){
-				$tabla.append('<tr">');
+				$tabla.append('<tr>');
 				$tabla.append('<td>'+parametros[i].parametro+'</td>');
 				$tabla.append('<td>'+parametros[i].unidades+'</td>');
 				$tabla.append('<td>'+parametros[i].resultado+'</td>');

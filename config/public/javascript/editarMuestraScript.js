@@ -8,20 +8,6 @@ $( document ).ready(function(){
     cargarComboPacientes();
     cargarComboLabs();
     cargarExamenes();
-    // ============================
-    /*
-    $.ajax({
-        type: 'GET',
-        url: '/muestras',
-        data: {},
-        success: function(respuesta){
-          var $list = $("#combo-seleccionar");
-          $.each(respuesta, function(i){
-            $list.append('<option value="'+respuesta[i]._id+'">'+respuesta[i].tipo+' '+respuesta[i].estado+'</option>');
-          });
-        }
-    }); */
-    // ============================
 });
 
 
@@ -50,6 +36,7 @@ function llenarInputs() {
     });
     // ============================
 }
+
 
 function cargarComboCentros(){
     $.ajax({
@@ -93,8 +80,9 @@ function cargarComboLabs(){
     });
 }
 
+
 function cargarExamenes(){
-    $('#combo-muestras').change( function() {
+    $('#combo-muestras').click( function() {
         var op = '';
         var opSelected = $('#combo-muestras option:selected').each(function () {
                 op += $( this ).val();
@@ -110,7 +98,7 @@ function cargarExamenes(){
                 var $list = $("#select-examenes");
                 $("#select-examenes option").remove();
                 $.each(respuesta, function(i){
-                    $list.append('<option value="'+respuesta[i]._id+'">'+respuesta[i].nombreExamen+'</option>');
+                    $list.append('<option value="'+respuesta[i].nombreExamen+'">'+respuesta[i].nombreExamen+'</option>');
                 });
             }
         });  // Cierre ajax
@@ -126,11 +114,9 @@ function llenarDataTable (){
             url: "/muestras",
             data: {},
             success: function(respuesta){
+                
                 $.each(respuesta, function(i){
-                    $("#cod_hidden").val(respuesta[i]._id);
-
-                    var a = $("#codmuestra_hidden");
-                    console.log(a);
+                    $("#codmuestra_hidden").val(respuesta[i]._id);
                     var table = $("#example").DataTable();
                     var array = [];
                     var n = respuesta[i].nombresPaciente; array.push(n);
@@ -139,13 +125,13 @@ function llenarDataTable (){
                     var nl = respuesta[i].nombreLaboratorio; array.push(nl);
                     var examenes = respuesta[i].examenes;
                     var strExam = "";
-                    for (var i=0 ; i<examenes.length ; i++ ){
-                        strExam += examenes[i]+" ";
+                    for (var j=0 ; j<examenes.length ; j++ ){
+                        strExam += examenes[j]+" ";
                     }
                     array.push(strExam);
                     var t = respuesta[i].tipo;  array.push(t);
-                    var edit ="<td><p data-placement='top' data-toggle='tooltip' title='Edit'><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' ><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
-                    var elim ="<td><p data-placement='top' data-toggle='tooltip' title='Delete'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' ><span class='glyphicon glyphicon-trash'></span></button></p></td>";
+                    var edit ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p data-placement='top' data-toggle='tooltip' title='Edit'><button id='Edit"+i+"' class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' onclick='sacarIdPaciente("+i+");'><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
+                    var elim ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p data-placement='top' data-toggle='tooltip' title='Delete'><button id='Delete"+i+"' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' onclick='sacarIdPaciente2("+i+");'><span class='glyphicon glyphicon-trash'></span></button></p></td>";
                     array.push(edit);
                     array.push(elim);
 
@@ -154,4 +140,48 @@ function llenarDataTable (){
                 });
             }
         });  // Cierre ajax
+}
+
+function sacarIdPaciente(i) {
+    var i = $("#Edit"+i).parent().parent().children("input").val();
+    var url = '/muestras/'+i;
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                data: {},
+                success: function(respuesta){
+                    $("#combo-pacientes").val(respuesta.id_paciente);
+                    $("#combo-centros").val(respuesta.id_centro);
+                    $("#combo-lab").val(respuesta.id_laboratorio);
+                    $("#combo-muestras").val(respuesta.tipo);
+
+                    var values=respuesta.examenes;
+                    for (var i=0; i<values.length; i++){
+                        $("#select-examenes option[value='" + values[i] + "']").prop("selected", true);
+                    }
+                }
+            });
+}
+
+function sacarIdPaciente2(i) {
+    var i = $("#Delete"+i).parent().parent().children("input").val();
+    $("#hiddenSuccess").val(i);
+     var url = '/muestras/'+i;
+}
+
+
+function confirmarEliminar(){
+    var id = $("#hiddenSuccess").val();
+    var url = "/nourl/"+id
+    console.log(url)
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                data: {},
+                success: function(respuesta){
+                    $("#delete").modal("hide");
+                    $("#modal-success").modal("show");
+                }
+            });
 }

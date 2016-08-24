@@ -45,7 +45,7 @@
     <div class="container">
     	<div id="section1" class="container-fluid" >
         <h1 style="text-align: left;"> Pacientes registrados </h1>
-        <button class='btn btn-primary' data-toggle='modal' data-target='#edit' >Agregar paciente</button>
+        <button class='btn btn-primary' data-toggle='modal' data-target='#new' >Agregar paciente</button>
         <hr>
         <input class="hidden" id="codpaciente_hidden"></input>
         <div class="datatable">
@@ -54,17 +54,16 @@
                         <tr>
                             <th data-priority="1">Nombres</th>
                             <th data-priority="2">Apellidos</th>
-                            <th data-priority="6">Centro Médico</th>
-                            <th data-priority="5">Laboratorio</th>
-                            <th data-priority="7">Examenes</th>
-                            <th data-priority="8">Tipo</th>
+                            <th data-priority="3">Cedula</th>
+                            <th data-priority="4">Email</th>
                             <th data-priority="3">Editar</th>
                             <th data-priority="4">Borrar</th>
                         </tr>
                     </thead>
             </table>
 
-              <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<!-- ========================================= -->
+              <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -107,6 +106,51 @@
                   </div>
                 </div>
               </div>
+<!-- ========================================= -->
+              <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                      <h4 class="modal-title custom_align" id="Heading">Datos del paciente</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                      <form role="form" id="editPaciente">
+                        <input type="hidden" id="editHidden">
+                       <div class="form-group text-center">
+                            <label class="control-label">Nombres: </label>
+                            <input id="editNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label class="control-label">Apellidos: </label>
+                            <input id="editApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label class="control-label">C&eacute;dula:</label>
+                            <input id="editCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
+                        </div>
+
+                        <div class="form-group text-center">
+                            <label class="control-label">Correo electr&oacute;nico:</label>
+                            <input id="editCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
+                        </div>
+                        
+                        <input id="submitEdit" type="submit" class="btn btn-primary pull-right" value="Guardar">
+                        <input type="reset" class="btn btn-default pull-right" value="Cancelar" data-dismiss="modal">
+
+                      </form>
+                    </div>
+                    
+                    <div class="modal-footer ">
+                    </div>
+
+                  </div>
+                </div>
+              </div>
 
             <!-- Segundo Modal -->
             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
@@ -117,14 +161,15 @@
                     <h4 class="modal-title custom_align" id="Heading">Eliminar muestra</h4>
                   </div>
                   <div class="modal-body">
-                   
-                   <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>  ¿Est&aacute;s seguro que quieres eliminar esta muestra?</div>
-                   
+                  <form>
+                    <input type="hidden" id="hiddenSuccess">
+                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>  ¿Est&aacute;s seguro que quieres eliminar este paciente?</div>
+                      <button type="button" id="confirmDelete" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign" onclick="confirmarEliminar();"></span> Si, estoy seguro </button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>No borrar este paciente</button>
+                   </form>
                   </div>
-                  <div class="modal-footer ">
-                    <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si, estoy seguro </button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No borrar esta muestra </button>
-                  </div>
+
+                  <div class="modal-footer "></div>
                 </div>
               </div>
             </div>
@@ -140,7 +185,7 @@
                       <div class="modal-title" style="padding: 0 20px; text-align: center!important;">  </div>
                       <div class="modal-body"> La operacion se ha llevado a cabo correctamente </div>
                       <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                          <button type="button" class="btn btn-success" data-dismiss="modal" onClick="window.location.reload();">OK</button>
                       </div>
                   </div> <!-- / .modal-content -->
               </div> <!-- / .modal-dialog -->
@@ -155,6 +200,10 @@
     &copy; Todos los derechos reservados. 2016
   </footer>
   
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+  
   <script>
         $("#addPaciente").submit(function(e){
             e.preventDefault();
@@ -165,10 +214,32 @@
                 url: url,
                 data: data, //+'&'+$.param({tipoaccion:"insertar"}),
                 success: function(respuesta){
-                    $("#edit").modal("hide");
+                    $("#new").modal("hide");
                     $("#modal-success").modal("show");
                 }
             });
+        });
+// ==============================================
+        $("#editPaciente").submit(function(e){
+            e.preventDefault();
+            var url = '';
+            var i = $("#editHidden").val();
+            var url = '/pacientes/'+i;            
+            var data = $("#editPaciente").serialize();
+            $.ajax({
+                type: 'PUT',
+                url: url,
+                data: data,
+                success: function(respuesta){
+                    $("#modal-success").modal("show");
+                    $("#edit").modal("hide");
+                }
+            });
+
+        });
+// ==============================================
+        $("#delete").submit(function(e){
+            e.preventDefault();
         });
   </script>
 
