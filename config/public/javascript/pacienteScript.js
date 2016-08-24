@@ -243,12 +243,15 @@ function mostrar3paneles(){
 }
 
 function cargarInfoPaciente(){
-    $.getJSON("datos/usuario.json", function(data){
-        var paciente = data.Nombres+" "+data.Apellidos;
-        $('#pacienteNombre').text(paciente);
+    $.ajax({
+        url : '/pacienteByCookie',
+        type : 'post',
+        success : function(paciente){
+            var paciente_ = paciente.nombres+" "+paciente.apellidos;
+            $('#pacienteNombre').text(paciente_);
+        }
     });
 }
-
 
 $( document ).ready(function(){
     cargarInfoPaciente();

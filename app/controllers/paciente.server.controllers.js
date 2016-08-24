@@ -20,7 +20,6 @@ function password() {
 exports.crear = function(req, res, next){
   req.body.password = password();//generar password
   var paciente = Paciente(req.body);
-  console.log(req.body.password);
   var smtpTransport = nodemailer.createTransport("SMTP",{
       service: "Gmail",
       auth: {
@@ -102,13 +101,47 @@ exports.pacienteByCedulaContraseña = function(req, res, next){
     }
     else {
         if (paciente) {
+          req.session.idUser = Paciente(paciente)._id;
+          req.session.rol = "paciente";
+          console.log(req.session);
           res.type("json");
           return res.send({paciente : paciente, error: "false", url: "/paciente"});
         }
         else{
           res.send({mensaje: "Usuario no encontrado. Intente de nuevo", error: "true", url: "/"});
         }
-
     }
   });
 };
+
+exports.pacienteByCookie = function(req, res, next){
+  var idPaciente = req.session.idUser;
+  Paciente.findById(idPaciente, function(err, paciente){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(paciente);
+    }
+  });
+};
+
+exports.pagPaciente = function(req, res, next){
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+  if ( req.session.rol =='paciente') {
+    res.render('paciente');
+  }
+  else {
+    res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+  }
+}
+
+exports.salir = function(req, res, next){
+  if (req.session) {
+    req.session["rol"] = null;
+    res.clearCookie('rol');
+    console.log(req.session);
+    req.session.destroy(function() {});
+  }
+  res.redirect('/');
+}
