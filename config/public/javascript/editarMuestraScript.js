@@ -82,7 +82,7 @@ function cargarComboLabs(){
 
 
 function cargarExamenes(){
-    $('#combo-muestras').change( function() {
+    $('#combo-muestras').click( function() {
         var op = '';
         var opSelected = $('#combo-muestras option:selected').each(function () {
                 op += $( this ).val();
@@ -114,6 +114,7 @@ function llenarDataTable (){
             url: "/muestras",
             data: {},
             success: function(respuesta){
+                
                 $.each(respuesta, function(i){
                     $("#codmuestra_hidden").val(respuesta[i]._id);
                     var table = $("#example").DataTable();
@@ -124,13 +125,13 @@ function llenarDataTable (){
                     var nl = respuesta[i].nombreLaboratorio; array.push(nl);
                     var examenes = respuesta[i].examenes;
                     var strExam = "";
-                    for (var i=0 ; i<examenes.length ; i++ ){
-                        strExam += examenes[i]+" ";
+                    for (var j=0 ; j<examenes.length ; j++ ){
+                        strExam += examenes[j]+" ";
                     }
                     array.push(strExam);
                     var t = respuesta[i].tipo;  array.push(t);
-                    var edit ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p data-placement='top' data-toggle='tooltip' title='Edit'><button class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' onclick='sacarIdMuestra();'><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
-                    var elim ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p data-placement='top' data-toggle='tooltip' title='Delete'><button class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' onclick='sacarIdMuestra();'><span class='glyphicon glyphicon-trash'></span></button></p></td>";
+                    var edit ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p data-placement='top' data-toggle='tooltip' title='Edit'><button id='Edit"+i+"' class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' onclick='sacarIdPaciente("+i+");'><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
+                    var elim ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p data-placement='top' data-toggle='tooltip' title='Delete'><button id='Delete"+i+"' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' onclick='sacarIdPaciente2("+i+");'><span class='glyphicon glyphicon-trash'></span></button></p></td>";
                     array.push(edit);
                     array.push(elim);
 
@@ -141,17 +142,15 @@ function llenarDataTable (){
         });  // Cierre ajax
 }
 
-function sacarIdMuestra() {
-    $(".btn-xs").click(function() {
-        var i = $(this).parent().parent().children("input").val();
-            var url = '/muestras/'+i;
-            //console.log(url);
+function sacarIdPaciente(i) {
+    var i = $("#Edit"+i).parent().parent().children("input").val();
+    var url = '/muestras/'+i;
+
             $.ajax({
                 type: 'GET',
                 url: url,
                 data: {},
                 success: function(respuesta){
-                    $("#editHidden").val(i);
                     $("#combo-pacientes").val(respuesta.id_paciente);
                     $("#combo-centros").val(respuesta.id_centro);
                     $("#combo-lab").val(respuesta.id_laboratorio);
@@ -161,10 +160,28 @@ function sacarIdMuestra() {
                     for (var i=0; i<values.length; i++){
                         $("#select-examenes option[value='" + values[i] + "']").prop("selected", true);
                     }
-                    $("#select-examenes").multiselect("refresh");
                 }
             });
-    });
+}
+
+function sacarIdPaciente2(i) {
+    var i = $("#Delete"+i).parent().parent().children("input").val();
+    $("#hiddenSuccess").val(i);
+     var url = '/muestras/'+i;
 }
 
 
+function confirmarEliminar(){
+    var id = $("#hiddenSuccess").val();
+    var url = "/nourl/"+id
+    console.log(url)
+            $.ajax({
+                type: 'DELETE',
+                url: url,
+                data: {},
+                success: function(respuesta){
+                    $("#delete").modal("hide");
+                    $("#modal-success").modal("show");
+                }
+            });
+}

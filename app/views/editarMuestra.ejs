@@ -59,7 +59,10 @@
                             <th data-priority="2">Apellidos</th>
                             <th data-priority="6">Centro Med.</th>
                             <th data-priority="5">Laboratorio</th>
+                            <th data-priority="8">Examenes</th>
                             <th data-priority="8">Tipo</th>
+                            <th data-priority="8">Editar</th>
+                            <th data-priority="8">Eliminar</th>
                         </tr>
                     </thead>
             </table>
@@ -72,7 +75,8 @@
                       <h4 class="modal-title custom_align" id="Heading">Datos de la Muestra</h4>
                     </div>
                     <div class="modal-body">
-
+                    <form>
+                       <input type="hidden" id="editHidden">
                        <div class="form-group text-center">
                             <label class="control-label">Seleccione un paciente: </label>
                             <select id="combo-pacientes" class="form-control" name="paciente" required>
@@ -119,12 +123,11 @@
                         <div class="form-group">
                           <input type="hidden" name="estado" value="Ingresado">
                         </div>
+                        <input id="submitEdit" type="submit" class="btn btn-primary" value="Guardar">
+                        <input type="reset" class="btn btn-default" value="Cancelar" data-dismiss="modal">
+                      </form>
+                    </div>
 
-                    </div>
-                    <div class="modal-footer ">
-                      <input type="submit" class="btn btn-primary" value="Guardar">
-                      <input type="reset" class="btn btn-default" value="Cancelar" data-dismiss="modal">
-                    </div>
                   </div>
                 </div>
               </div>
@@ -138,18 +141,36 @@
                     <h4 class="modal-title custom_align" id="Heading">Eliminar muestra</h4>
                   </div>
                   <div class="modal-body">
-                   
+                  <form>
+                   <input type="hidden" id="hiddenSuccess">
                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>  ¿Est&aacute;s seguro que quieres eliminar esta muestra?</div>
-                   
-                  </div>
-                  <div class="modal-footer ">
-                    <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si, estoy seguro </button>
+                    <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign" onclick="confirmarEliminar();"></span> Si, estoy seguro </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No borrar esta muestra </button>
+                  </form>
                   </div>
                 </div>
               </div>
             </div>
         
+        
+         <!--Success Modal Templates-->
+            <div id="modal-success" class="modal modal-message modal-success fade" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center" style="color: #53a93f; border-bottom: 3px solid #a0d468;">
+                            <i class="glyphicon glyphicon-check"></i>
+                            <p> ¡Realizado con exito! </p>
+                        </div>
+                        <div class="modal-title" style="padding: 0 20px; text-align: center!important;">  </div>
+                        <div class="modal-body"> La operacion se ha llevado a cabo correctamente </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal" onClick="window.location.reload();">OK</button>
+                        </div>
+                    </div> <!-- / .modal-content -->
+                </div> <!-- / .modal-dialog -->
+            </div>
+
+
         </div> <!-- Fin DataTables -->
 
     </div> <!-- FIN Seccion 1-->
@@ -173,37 +194,11 @@
 
 
   <script>
-  /*
-        $("#addMuestra").submit(function(e){
+        $("#delete").submit(function(e){
             e.preventDefault();
-
-            // para guardar la muestra
-            var url1 = "";
-            // Para generar el codigo
-            var ced = $("#combo-pacientes option:selected").val();
-            var url2 = "/operario/registroMuestra/codigo?for="+ced;
-            console.log(foo);
-            var data = $("#addMuestra").serialize();
-
-            var foo = []; 
-            $('#select-examenes :selected').each(function(i, selected){ 
-                foo[i] = $(selected).text(); 
-            });
-            console.log(foo);
-
-            $.ajax({
-                type: 'GET', 
-                url: url2, 
-                data: {},
-                success: function(respuesta){
-                    //alert("Ingresado con exito**");
-                    alert(respuesta);
-                    window.open("data:application/pdf," + escape(respuesta));
-                    window.location ="/operario";
-                }
-            });
         });
-*/
+// ===============================================
+
   </script>
 
 </body>
