@@ -8,8 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
     <script type="text/javascript" src="../javascript/editarMuestraScript.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/registroMuestraStyle.css">
 </head>
@@ -51,7 +49,7 @@
         <button class='btn btn-primary' data-toggle='modal' data-target='#edit' >Agregar muestra</button>
         <hr>
         <input class="hidden" id="codmuestra_hidden"></input>
-        <div class="datatable">
+        <div class="datatable table-responsive">
             <table id="example" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -61,8 +59,8 @@
                             <th data-priority="5">Laboratorio</th>
                             <th data-priority="8">Examenes</th>
                             <th data-priority="8">Tipo</th>
-                            <th data-priority="8">Editar</th>
-                            <th data-priority="8">Eliminar</th>
+                            <th data-priority="8" class='text-center'>Editar</th>
+                            <th data-priority="8" class='text-center'>Eliminar</th>
                         </tr>
                     </thead>
             </table>
@@ -256,9 +254,6 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
-  <link rel="stylesheet" type="text/css" href="../css/editor.dataTables.min.css">
-
-
 
 
   <script>

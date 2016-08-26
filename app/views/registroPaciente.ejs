@@ -8,7 +8,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/additional-methods.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js"></script>
     <script type="text/javascript" src="../javascript/registroPacienteScript.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/registroMuestraStyle.css">
@@ -48,7 +47,7 @@
         <button class='btn btn-primary' data-toggle='modal' data-target='#new' >Agregar paciente</button>
         <hr>
         <input class="hidden" id="codpaciente_hidden"></input>
-        <div class="datatable">
+        <div class="datatable table-responsive">
             <table id="example" class="display" cellspacing="0" width="100%">
                     <thead>
                         <tr>
@@ -56,8 +55,8 @@
                             <th data-priority="2">Apellidos</th>
                             <th data-priority="3">Cedula</th>
                             <th data-priority="4">Email</th>
-                            <th data-priority="3">Editar</th>
-                            <th data-priority="4">Borrar</th>
+                            <th data-priority="3" class='text-center'>Editar</th>
+                            <th data-priority="4" class='text-center'>Borrar</th>
                         </tr>
                     </thead>
             </table>
@@ -73,22 +72,22 @@
 
                     <div class="modal-body">
                       <form role="form" id="addPaciente">
-                       <div class="form-group text-center">
+                       <div class="form-group">
                             <label class="control-label">Nombres: </label>
                             <input id="inputNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
                         </div>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
                             <label class="control-label">Apellidos: </label>
                             <input id="inputApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
                         </div>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
                             <label class="control-label">C&eacute;dula:</label>
                             <input id="inputCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
                         </div>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
                             <label class="control-label">Correo electr&oacute;nico:</label>
                             <input id="inputCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
                         </div>
@@ -118,34 +117,50 @@
                     <div class="modal-body">
 
                       <form role="form" id="editPaciente">
-                        <input type="hidden" id="editHidden">
-                       <div class="form-group text-center">
-                            <label class="control-label">Nombres: </label>
-                            <input id="editNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
+                       <input type="hidden" id="editHidden">
+                       <div class="form-group">
+                            <div class="col-md-4">
+                              <label class="control-label">Nombres: </label>
+                            </div>
+                            <div class="col-md-8">
+                              <input id="editNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
+                            </div>
                         </div>
-
-                        <div class="form-group text-center">
-                            <label class="control-label">Apellidos: </label>
-                            <input id="editApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label class="control-label">Apellidos: </label>
+                            </div>
+                            <div class="col-md-8">
+                                <input id="editApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
+                            </div>
                         </div>
-
-                        <div class="form-group text-center">
-                            <label class="control-label">C&eacute;dula:</label>
-                            <input id="editCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                              <label class="control-label">C&eacute;dula:</label>
+                            </div>
+                            <div class="col-md-8">
+                              <input id="editCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
+                            </div>
                         </div>
-
-                        <div class="form-group text-center">
-                            <label class="control-label">Correo electr&oacute;nico:</label>
-                            <input id="editCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
+                        <br>
+                        <div class="form-group">
+                            <div class="col-md-4">
+                              <label class="control-label">Correo electr&oacute;nico:</label>
+                            </div>
+                            <div class="col-md-8">
+                              <input id="editCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
+                            </div>
                         </div>
-                        
+                        <br>
                         <input id="submitEdit" type="submit" class="btn btn-primary pull-right" value="Guardar">
                         <input type="reset" class="btn btn-default pull-right" value="Cancelar" data-dismiss="modal">
 
                       </form>
                     </div>
                     
-                    <div class="modal-footer ">
+                    <div class="modal-footer">
                     </div>
 
                   </div>
@@ -203,6 +218,10 @@
   <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
   
   <script>
         $("#addPaciente").submit(function(e){
