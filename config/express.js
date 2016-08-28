@@ -38,6 +38,7 @@ module.exports = function(){
   require('../app/routes/operario.server.routes.js')(app);
   require('../app/routes/laboratorista.server.routes.js')(app);
   require('../app/routes/muestra.server.routes.js')(app);
+  require('../app/routes/examenesDisponibles.server.routes.js')(app);
 
   return app;
 };

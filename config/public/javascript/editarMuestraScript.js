@@ -88,25 +88,29 @@ function cargarExamenes(){
                 op += $( this ).val();
         });
 
-        var url = '/examenes/'+ op;
+        var url = '/examenesdisponibles/'+ op;  // op = tipo de muestra **
 
         $.ajax({
             type: 'GET',
             url: url,
             data: {},
             success: function(respuesta){
-                var $list = $("#select-examenes");
-                $("#select-examenes option").remove();
+                var list = $("#examenes");
+                $("#examenes").empty();  // Quitar seleccion anterior
                 $.each(respuesta, function(i){
-                    $list.append('<option value="'+respuesta[i].nombreExamen+'">'+respuesta[i].nombreExamen+'</option>');
+                    list.append('<input type="checkbox" id="'+respuesta[i].nombreExamen+'" value="'+respuesta[i].nombreExamen+'">   '+respuesta[i].nombreExamen+'<br/>');
                 });
             }
         });  // Cierre ajax
-
     });  // Cierre de change
 
 }
 
+function resetModal() {
+    $("#new").find('textarea, select, input:checkbox:not("#submitEdit, #reset")').val('').end();
+    $("#combo-muestras").val("none");
+    $("#examenes").empty();
+}
 
 function llenarDataTable (){
         $.ajax({
@@ -131,7 +135,7 @@ function llenarDataTable (){
                     }
                     array.push(strExam);
                     var t = respuesta[i].tipo;  array.push(t);
-                    var edit ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p class='text-center' data-placement='top' data-toggle='tooltip' title='Edit'><button id='Edit"+i+"' class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' onclick='sacarIdPaciente("+i+");'><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
+                    var edit ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p class='text-center' data-placement='top' data-toggle='tooltip' title='Edit'><button id='Edit"+i+"' class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#new' onclick='sacarIdPaciente("+i+");'><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
                     var elim ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p class='text-center' data-placement='top' data-toggle='tooltip' title='Delete'><button id='Delete"+i+"' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' onclick='sacarIdPaciente2("+i+");'><span class='glyphicon glyphicon-trash'></span></button></p></td>";
                     array.push(edit);
                     array.push(elim);
@@ -145,24 +149,37 @@ function llenarDataTable (){
 
 function sacarIdPaciente(i) {
     var i = $("#Edit"+i).parent().parent().children("input").val();
+
     var url = '/muestras/'+i;
 
-            $.ajax({
-                type: 'GET',
-                url: url,
-                data: {},
-                success: function(respuesta){
-                    $("#combo-pacientes").val(respuesta.id_paciente);
-                    $("#combo-centros").val(respuesta.id_centro);
-                    $("#combo-lab").val(respuesta.id_laboratorio);
-                    $("#combo-muestras").val(respuesta.tipo);
+    $.ajax({
+        type: 'GET',
+        url: url,
+        data: {},
+        success: function(respuesta){
+            $("#editHidden").val(i);
+            $("#combo-pacientes").val(respuesta.id_paciente);
+            $("#combo-centros").val(respuesta.id_centro);
+            $("#combo-lab").val(respuesta.id_laboratorio);
+            $("#combo-muestras").val(respuesta.tipo);  // Se setea el valor
+            $("#combo-muestras").trigger("click"); // Se simula el click para mostrar los examenes
+            $("#submitNew").val("Guardar");
 
-                    var values=respuesta.examenes;
-                    for (var i=0; i<values.length; i++){
-                        $("#select-examenes option[value='" + values[i] + "']").prop("selected", true);
-                    }
-                }
-            });
+            var values=respuesta.examenes;
+            console.log(values);
+            var x = $('#Hemograma');
+            //var x = document.getElementById('#Hemograma');
+            console.log(x);
+//            $('#examenes input[type="checkbox"][value="Hemograma"]').attr('checked','checked'); //.prop('checked', true);
+            for (var i=0; i<values.length; i++){
+                $("#"+values[i]).prop('checked', true);
+//                $('#examenes input[type=checkbox][value=Hemograma]').prop('checked', true);
+                //console.log(a);
+                
+//                $("#examenes input[value='" + values[i] + "']").prop("checked", true);
+            }
+        }
+    });
 }
 
 function sacarIdPaciente2(i) {

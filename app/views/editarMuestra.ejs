@@ -46,7 +46,7 @@
         
         <h1 style="text-align: left;"> Muestras registradas </h1>
         
-        <button class='btn btn-primary' data-toggle='modal' data-target='#edit' >Agregar muestra</button>
+        <button class='btn btn-primary' data-toggle='modal' data-target='#new' data-backdrop='static' data-keyboard='false'>Agregar muestra</button>
         <hr>
         <input class="hidden" id="codmuestra_hidden"></input>
         <div class="datatable table-responsive">
@@ -66,64 +66,88 @@
             </table>
 
 			
-              <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+              <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                       <h4 class="modal-title custom_align" id="Heading">Datos de la Muestra</h4>
                     </div>
                     <div class="modal-body">
                     <form id="addMuestra">
-                       <input type="hidden" id="editHidden">
-                       <div class="form-group text-center">
+                       <input type="hidden" id="addHidden">
+
+                       <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Seleccione un paciente: </label>
-                            <select id="combo-pacientes" class="form-control" name="paciente" required>
-                              <option value="" disabled selected>-- Escoja un paciente de la lista o en su defecto cree uno --</option>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-pacientes" class="form-control" name="id_paciente" required>
+                              <option value="" disabled selected>- Escoja un paciente de la lista o cree uno -</option>
                             </select>
-                            <br>
-                            <input type="button" name="nuevoPaciente" class="btn btn-primary" value="Nuevo paciente" onclick="location.href='/operario/registroPaciente'" >
-                        </div>
+                          </div>
+                          <div class="text-center">
+                            <a href="/operario/registroPaciente" >Agregar nuevo paciente...</a>
+                          </div>
+                          <input type="hidden" id="nombresPaciente" name="nombresPaciente" value="">
+                          <input type="hidden" id="apellidosPaciente" name="apellidosPaciente" value="">
+                        </div><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Centro m&eacute;dico: </label>
-                            <select id="combo-centros" class="form-control" name="centroMedico" required>
-                             <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-centros" class="form-control" name="id_centro" required>
+                              <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
                             </select>
-                        </div>
+                            <input type="hidden" id="nombreCentro" name="nombreCentro">
+                          </div>
+                        </div><br><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Laboratorio donde se enviar&aacute;: </label>
-                            <select id="combo-lab" class="form-control" name="laboratorio" required>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-lab" class="form-control" name="id_laboratorio" required>
                               <option value="" disabled selected>-- Escoja un laboratorio --</option>
                             </select>
-                        </div>
+                            <input type="hidden" id="nombreLaboratorio" name="nombreLaboratorio">
+                          </div>
+                        </div><br><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Muestra recogida: </label>
-                            <select id="combo-muestras" class="form-control" name="tipoMuestra" required>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-muestras" class="form-control" name="tipo" required>
                               <option value="none" disabled selected>-- Escoja un tipo de muestra --</option>
                               <option value="sangre"> Muestra de sangre </option>
                               <option value="heces"> Muestra de heces </option>
                               <option value="orina"> Muestra de orina </option>
                             </select>
-                        </div>
+                          </div>
+                        </div><br><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-12">
                             <label class="control-label">
                               <p>Ex&aacute;menes a realizar:</p>
-                              <p style="font-size: 0.8em;">** Mantenga presionado Ctrl (Windows)/Command(Mac) para seleccionar m&aacute;s de una opcion</p>
                             </label>
-                            <select id="select-examenes" class="form-control" name="examenes" multiple="true" style="height: 110px;" required>
-                            </select>
+                            <div id="examenes" style="border:2px solid #ccc; width:auto; height: 100px; overflow-y: scroll; margin-bottom: 3%;" required>
+                            </div>
+                          </div>
                         </div>
 
                         <!-- Input hidden -->
                         <div class="form-group">
                           <input type="hidden" name="estado" value="Ingresado">
                         </div>
-                        <input id="submitEdit" type="submit" class="btn btn-primary" value="Guardar">
-                        <input type="reset" class="btn btn-default" value="Cancelar" data-dismiss="modal">
+
+                        <input id="submitNew" type="submit" class="btn btn-primary" value="Crear">
+                        <input type="reset" id="resetNew" class="btn btn-default" value="Cancelar" data-dismiss="modal" onclick="resetModal('new');">
+
                       </form>
                     </div>
 
@@ -132,7 +156,7 @@
               </div>
 			
 			
-			
+<!--			
               <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -142,50 +166,69 @@
                     </div>
                     <div class="modal-body">
                     <form id="editMuestra">
-                       <input type="hidden" id="editHidden">
-                       <div class="form-group text-center">
+                       <input type="hidden" id="addHidden">
+
+                       <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Seleccione un paciente: </label>
-                            <select id="combo-pacientes" class="form-control" name="paciente" required>
-                              <option value="" disabled selected>-- Escoja un paciente de la lista o en su defecto cree uno --</option>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-pacientesE" class="form-control" name="paciente" required>
+                              <option value="" disabled selected>- Escoja un paciente de la lista o cree uno -</option>
                             </select>
-                            <br>
-                            <input type="button" name="nuevoPaciente" class="btn btn-primary" value="Nuevo paciente" onclick="location.href='/operario/registroPaciente'" >
-                        </div>
+                          </div>
+                          <div class="text-center">
+                            <a href="/operario/registroPaciente" >Agregar nuevo paciente...</a>
+                          </div>
+                        </div><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Centro m&eacute;dico: </label>
-                            <select id="combo-centros" class="form-control" name="centroMedico" required>
-                             <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-centrosE" class="form-control" name="centroMedico" required>
+                              <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
                             </select>
-                        </div>
+                          </div>
+                        </div><br><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Laboratorio donde se enviar&aacute;: </label>
-                            <select id="combo-lab" class="form-control" name="laboratorio" required>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-labE" class="form-control" name="laboratorio" required>
                               <option value="" disabled selected>-- Escoja un laboratorio --</option>
                             </select>
-                        </div>
+                          </div>
+                        </div><br><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-5">
                             <label class="control-label">Muestra recogida: </label>
-                            <select id="combo-muestras" class="form-control" name="tipoMuestra" required>
+                          </div>
+                          <div class="col-md-7">
+                            <select id="combo-muestrasE" class="form-control" name="tipoMuestra" required>
                               <option value="none" disabled selected>-- Escoja un tipo de muestra --</option>
                               <option value="sangre"> Muestra de sangre </option>
                               <option value="heces"> Muestra de heces </option>
                               <option value="orina"> Muestra de orina </option>
                             </select>
-                        </div>
+                          </div>
+                        </div><br><br>
 
-                        <div class="form-group text-center">
+                        <div class="form-group">
+                          <div class="col-md-12">
                             <label class="control-label">
                               <p>Ex&aacute;menes a realizar:</p>
-                              <p style="font-size: 0.8em;">** Mantenga presionado Ctrl (Windows)/Command(Mac) para seleccionar m&aacute;s de una opcion</p>
                             </label>
-                            <select id="select-examenes" class="form-control" name="examenes" multiple="true" style="height: 110px;" required>
-                            </select>
+                            <div id="examenesE" style="border:2px solid #ccc; width:auto; height: 100px; overflow-y: scroll; margin-bottom: 5%;" required>
+                            </div>
+                          </div>
                         </div>
 
-                        <!-- Input hidden -->
+                        
                         <div class="form-group">
                           <input type="hidden" name="estado" value="Ingresado">
                         </div>
@@ -197,9 +240,10 @@
                   </div>
                 </div>
               </div>
+-->
 
             <!-- Segundo Modal -->
-            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+            <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -257,38 +301,47 @@
 
 
   <script>
-        $("#addMuestra").submit(function(e){
-            e.preventDefault();
-            var url = "/muestras";
-            var data = $("#addMuestra").serialize();
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: data, //+'&'+$.param({tipoaccion:"insertar"}),
-                success: function(respuesta){
-                    $("#new").modal("hide");
-                    $("#modal-success").modal("show");
-                }
-            });
-        });
-// ==============================================
-        $("#editMuestra").submit(function(e){
-            e.preventDefault();
-            var url = '';
-            var i = $("#editHidden").val();
-            var url = '/muestras/'+i;            
-            var data = $("#editMuestra").serialize();
-            $.ajax({
-                type: 'PUT',
-                url: url,
-                data: data,
-                success: function(respuesta){
-                    $("#modal-success").modal("show");
-                    $("#edit").modal("hide");
-                }
-            });
+  var mode = $("#submitNew").val();
+  if ( mode == 'Crear' ){
+      $("#addMuestra").submit(function(e){
+          e.preventDefault();
+          var url = "/muestras";
+          var data = $("#addMuestra").serialize();
+          var adicionalData = $.param({pacman:"insertar"});
+          console.log(data);
+          /*
+          $.ajax({
+              type: 'POST',
+              url: url,
+              data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+              success: function(respuesta){
+                  $("#new").modal("hide");
+                  $("#modal-success").modal("show");
+              }
+          });
+          */
+      });
+  }
 
-        });
+  if ( mode == 'Guardar' ){
+    /*
+      $("#addMuestra").submit(function(e){
+          e.preventDefault();
+          var url = "/muestras";
+          var data = $("#addMuestra").serialize();
+          $.ajax({
+              type: 'PUT',
+              url: url,
+              data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+              success: function(respuesta){
+                  $("#new").modal("hide");
+                  $("#modal-success").modal("show");
+              }
+          });
+      });
+      */
+  }
+
 // ===============================================		
         $("#delete").submit(function(e){
             e.preventDefault();
