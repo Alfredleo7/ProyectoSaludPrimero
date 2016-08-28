@@ -3,11 +3,18 @@ $( document ).ready(function(){
         responsive: true
     });
     llenarDataTable();
-
+    secretInputs();
     cargarComboCentros();
     cargarComboPacientes();
     cargarComboLabs();
     cargarExamenes();
+
+    $(function(){
+        $('#confirmDelete').click(function() {
+            confirmarEliminar();
+        });
+    });
+    
 });
 
 
@@ -106,8 +113,9 @@ function cargarExamenes(){
 
 }
 
-function resetModal() {
-    $("#new").find('textarea, select, input:checkbox:not("#submitEdit, #reset")').val('').end();
+function resetModal(id) {
+    $('#'+id).find('textarea, select, input:checkbox:not("#submitNew, #reset")').val('').end();
+    $("#submitNew").val("Crear");
     $("#combo-muestras").val("none");
     $("#examenes").empty();
 }
@@ -185,21 +193,79 @@ function sacarIdPaciente(i) {
 function sacarIdPaciente2(i) {
     var i = $("#Delete"+i).parent().parent().children("input").val();
     $("#hiddenSuccess").val(i);
-     var url = '/muestras/'+i;
 }
 
 
 function confirmarEliminar(){
     var id = $("#hiddenSuccess").val();
-    var url = "/nourl/"+id
-    console.log(url)
-            $.ajax({
-                type: 'DELETE',
-                url: url,
-                data: {},
-                success: function(respuesta){
-                    $("#delete").modal("hide");
-                    $("#modal-success").modal("show");
-                }
-            });
+    var url = "/muestras/"+id
+    console.log(url);
+    $.ajax({
+        type: 'DELETE',
+        url: url,
+        data: {},
+        success: function(respuesta){
+            $("#delete").modal("hide");
+            $("#modal-success").modal("show");
+        }
+    });
+}
+
+
+function secretInputs(){
+    /* 
+       Esta funcion mantiene actualizados los 
+       secret inputs al momento de seleccionar
+       un item de los combobox 
+    */
+
+    $("#combo-pacientes").change( function () {
+        var id = '';
+        var opSelected = $('#combo-pacientes option:selected').each(function () {
+                id += $( this ).val();
+        });
+        var url = '/pacientes/'+ id;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {},
+            success: function(respuesta){
+                $("#nombresPaciente").val(respuesta.nombres);
+                $("#apellidosPaciente").val(respuesta.apellidos);
+            }
+        });
+    });
+    // ===========================================
+    $("#combo-centros").change( function () {
+        var id = '';
+        var opSelected = $('#combo-centros option:selected').each(function () {
+                id += $( this ).val();
+        });
+        var url = '/centros-medicos/'+ id;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {},
+            success: function(respuesta){
+                $("#nombreCentro").val(respuesta.nombre);
+            }
+        });
+    });
+    // ===========================================
+    $("#combo-lab").change( function () {
+        var id = '';
+        var opSelected = $('#combo-lab option:selected').each(function () {
+                id += $( this ).val();
+        });
+        var url = '/laboratorios/'+ id;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            data: {},
+            success: function(respuesta){
+                $("#nombreLaboratorio").val(respuesta.nombre);
+            }
+        });
+    });
+    // ===========================================
 }

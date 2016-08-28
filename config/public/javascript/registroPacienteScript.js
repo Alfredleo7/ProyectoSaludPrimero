@@ -13,6 +13,7 @@ $( document ).ready(function(){
     });
 });
 
+
 function sacarIdPaciente(i) {
     var i = $("#Edit"+i).parent().parent().children("input").val();
     var url = '/pacientes/'+i;
@@ -31,11 +32,13 @@ function sacarIdPaciente(i) {
             });
 }
 
+
 function sacarIdPaciente2(i) {
     var i = $("#Delete"+i).parent().parent().children("input").val();
     $("#hiddenSuccess").val(i);
      var url = '/pacientes/'+i;
 }
+
 
 function confirmarEliminar(){
     var id = $("#hiddenSuccess").val();
@@ -52,9 +55,18 @@ function confirmarEliminar(){
             });
 }
 
+
 function cancelarRegistroPaciente() {
 	window.location = "/operario";
 };
+
+
+function resetModal(id) {
+    $("#"+id).find('textarea, select, input:not("#submitNew, #reset")').val('').end();
+    $("#combo-muestras").val("none");
+    $("#examenes").empty();
+}
+
 
 function llenarDataTable (){
         $.ajax({
@@ -70,8 +82,8 @@ function llenarDataTable (){
                 	var a = respuesta[i].apellidos;   array.push(a);
                 	var c = respuesta[i].cedula;   array.push(c);
                 	var e = respuesta[i].email;   array.push(e);
-                	var edit ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p class='text-center' data-placement='top' data-toggle='tooltip' title='Edit'><button id='Edit"+i+"' class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' onclick='sacarIdPaciente("+i+");'><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
-                    var elim ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p class='text-center' data-placement='top' data-toggle='tooltip' title='Delete'><button id='Delete"+i+"' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' onclick='sacarIdPaciente2("+i+");'><span class='glyphicon glyphicon-trash'></span></button></p></td>";
+                	var edit ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p class='text-center' data-placement='top' data-toggle='tooltip' title='Edit'><button id='Edit"+i+"' class='btn btn-primary btn-xs' data-title='Edit' data-toggle='modal' data-target='#edit' data-backdrop='static' data-keyboard='false' onclick='sacarIdPaciente("+i+");'><span class='glyphicon glyphicon-pencil'></span></button></p></td>";
+                    var elim ="<td><input type='hidden' value='"+String(respuesta[i]._id)+"'><p class='text-center' data-placement='top' data-toggle='tooltip' title='Delete'><button id='Delete"+i+"' class='btn btn-danger btn-xs' data-title='Delete' data-toggle='modal' data-target='#delete' data-backdrop='static' data-keyboard='false' onclick='sacarIdPaciente2("+i+");'><span class='glyphicon glyphicon-trash'></span></button></p></td>";
 					array.push(edit);
                     array.push(elim);
 					table.row.add(array).draw();

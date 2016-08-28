@@ -44,7 +44,7 @@
     <div class="container">
     	<div id="section1" class="container-fluid" >
         <h1 style="text-align: left;"> Pacientes registrados </h1>
-        <button class='btn btn-primary' data-toggle='modal' data-target='#new' >Agregar paciente</button>
+        <button class='btn btn-primary' data-toggle='modal' data-target='#new' data-backdrop='static' data-keyboard='false'>Agregar paciente</button>
         <hr>
         <input class="hidden" id="codpaciente_hidden"></input>
         <div class="datatable table-responsive">
@@ -66,38 +66,51 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                       <h4 class="modal-title custom_align" id="Heading">Datos del paciente</h4>
                     </div>
 
                     <div class="modal-body">
                       <form role="form" id="addPaciente">
                        <div class="form-group">
+                          <div class="col-md-4">
                             <label class="control-label">Nombres: </label>
+                          </div>
+                          <div class="col-md-8">
                             <input id="inputNombres" name="nombres" class="form-control" type="text" placeholder="Ingrese su nombre" required="true">
+                          </div>
                         </div>
-
+                        <br>
                         <div class="form-group">
+                          <div class="col-md-4">
                             <label class="control-label">Apellidos: </label>
+                          </div>
+                          <div class="col-md-8">
                             <input id="inputApellidos" name="apellidos" class="form-control" type="text" placeholder="Ingrese su apellido" required="true">
+                          </div>
                         </div>
-
+                        <br>
                         <div class="form-group">
+                          <div class="col-md-4">
                             <label class="control-label">C&eacute;dula:</label>
+                          </div>
+                          <div class="col-md-8">
                             <input id="inputCedula" name="cedula" class="form-control" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" placeholder="Ingrese su n&uacute;mero de c&eacute;dula" required="true">
+                          </div>
                         </div>
-
+                        <br>
                         <div class="form-group">
+                          <div class="col-md-4">
                             <label class="control-label">Correo electr&oacute;nico:</label>
+                          </div>
+                          <div class="col-md-8">
                             <input id="inputCorreo" name="email" class="form-control" type="email" placeholder="Ingrese su correo electr&oacute;nico" required="true">
+                          </div>
                         </div>
-                        
-                        <input type="submit" class="btn btn-primary pull-right" value="Guardar">
-                        <input type="reset" class="btn btn-default pull-right" value="Cancelar" data-dismiss="modal">
-
+                        <br>
+                        <input type="submit" id="submitNew" class="btn btn-primary pull-right" value="Crear">
+                        <input type="reset" id="reset" class="btn btn-default pull-right" value="Cancelar" data-dismiss="modal" onclick="resetModal('new');">
                       </form>
                     </div>
-                    
                         
                     <div class="modal-footer ">
                     </div>
@@ -110,7 +123,6 @@
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                       <h4 class="modal-title custom_align" id="Heading">Datos del paciente</h4>
                     </div>
 
@@ -172,7 +184,6 @@
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     <h4 class="modal-title custom_align" id="Heading">Eliminar muestra</h4>
                   </div>
                   <div class="modal-body">
@@ -254,7 +265,6 @@
                     $("#edit").modal("hide");
                 }
             });
-
         });
 // ==============================================
         $("#delete").submit(function(e){

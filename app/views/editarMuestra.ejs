@@ -10,6 +10,9 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../javascript/editarMuestraScript.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/registroMuestraStyle.css">
+
+    <script type="text/javascript" src="../javascript/multiple-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/multiple-select.css">
 </head>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -66,7 +69,7 @@
             </table>
 
 			
-              <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
+            <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -130,13 +133,20 @@
                           </div>
                         </div><br><br>
 
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 10%;">
                           <div class="col-md-12">
                             <label class="control-label">
-                              <p>Ex&aacute;menes a realizar:</p>
+                              <p>Seleccione uno o m&aacute;s ex&aacute;menes a realizar:</p>
                             </label>
+                            <select id="examenesM" multiple="multiple" style="width: 100%; overflow-y: scroll; margin-bottom: 10%;">
+                              <option value="examen1"> Examen 1 </option>
+                              <option value="examen2"> Examen 2 </option>
+                              <option value="examen3"> Examen 3 </option>
+                            </select>
+                            <!--
                             <div id="examenes" style="border:2px solid #ccc; width:auto; height: 100px; overflow-y: scroll; margin-bottom: 3%;" required>
                             </div>
+                            -->
                           </div>
                         </div>
 
@@ -144,7 +154,7 @@
                         <div class="form-group">
                           <input type="hidden" name="estado" value="Ingresado">
                         </div>
-
+                        <br><br>
                         <input id="submitNew" type="submit" class="btn btn-primary" value="Crear">
                         <input type="reset" id="resetNew" class="btn btn-default" value="Cancelar" data-dismiss="modal" onclick="resetModal('new');">
 
@@ -155,94 +165,8 @@
                 </div>
               </div>
 			
-			
-<!--			
-              <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                      <h4 class="modal-title custom_align" id="Heading">Datos de la Muestra</h4>
-                    </div>
-                    <div class="modal-body">
-                    <form id="editMuestra">
-                       <input type="hidden" id="addHidden">
 
-                       <div class="form-group">
-                          <div class="col-md-5">
-                            <label class="control-label">Seleccione un paciente: </label>
-                          </div>
-                          <div class="col-md-7">
-                            <select id="combo-pacientesE" class="form-control" name="paciente" required>
-                              <option value="" disabled selected>- Escoja un paciente de la lista o cree uno -</option>
-                            </select>
-                          </div>
-                          <div class="text-center">
-                            <a href="/operario/registroPaciente" >Agregar nuevo paciente...</a>
-                          </div>
-                        </div><br>
-
-                        <div class="form-group">
-                          <div class="col-md-5">
-                            <label class="control-label">Centro m&eacute;dico: </label>
-                          </div>
-                          <div class="col-md-7">
-                            <select id="combo-centrosE" class="form-control" name="centroMedico" required>
-                              <option value="" disabled selected>-- Escoja un centro m&eacute;dico --</option>
-                            </select>
-                          </div>
-                        </div><br><br>
-
-                        <div class="form-group">
-                          <div class="col-md-5">
-                            <label class="control-label">Laboratorio donde se enviar&aacute;: </label>
-                          </div>
-                          <div class="col-md-7">
-                            <select id="combo-labE" class="form-control" name="laboratorio" required>
-                              <option value="" disabled selected>-- Escoja un laboratorio --</option>
-                            </select>
-                          </div>
-                        </div><br><br>
-
-                        <div class="form-group">
-                          <div class="col-md-5">
-                            <label class="control-label">Muestra recogida: </label>
-                          </div>
-                          <div class="col-md-7">
-                            <select id="combo-muestrasE" class="form-control" name="tipoMuestra" required>
-                              <option value="none" disabled selected>-- Escoja un tipo de muestra --</option>
-                              <option value="sangre"> Muestra de sangre </option>
-                              <option value="heces"> Muestra de heces </option>
-                              <option value="orina"> Muestra de orina </option>
-                            </select>
-                          </div>
-                        </div><br><br>
-
-                        <div class="form-group">
-                          <div class="col-md-12">
-                            <label class="control-label">
-                              <p>Ex&aacute;menes a realizar:</p>
-                            </label>
-                            <div id="examenesE" style="border:2px solid #ccc; width:auto; height: 100px; overflow-y: scroll; margin-bottom: 5%;" required>
-                            </div>
-                          </div>
-                        </div>
-
-                        
-                        <div class="form-group">
-                          <input type="hidden" name="estado" value="Ingresado">
-                        </div>
-                        <input id="submitEdit" type="submit" class="btn btn-primary" value="Guardar">
-                        <input type="reset" class="btn btn-default" value="Cancelar" data-dismiss="modal">
-                      </form>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
--->
-
-            <!-- Segundo Modal -->
+            <!-- Delete Modal -->
             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -254,7 +178,7 @@
                   <form>
                    <input type="hidden" id="hiddenSuccess">
                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>  ¿Est&aacute;s seguro que quieres eliminar esta muestra?</div>
-                    <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign" onclick="confirmarEliminar();"></span> Si, estoy seguro </button>
+                    <button type="button" id="confirmDelete" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign" onclick="confirmarEliminar();"></span> Si, estoy seguro </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No borrar esta muestra </button>
                   </form>
                   </div>
@@ -294,54 +218,45 @@
   <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
 
 
   <script>
-  var mode = $("#submitNew").val();
-  if ( mode == 'Crear' ){
+      $("#examenesM").multipleSelect({
+            placeholder: "Seleccione uno o más exámenes",
+            filter: true
+        });
+
       $("#addMuestra").submit(function(e){
           e.preventDefault();
           var url = "/muestras";
+          var selmul = $("#examenesM").val(); 
           var data = $("#addMuestra").serialize();
-          var adicionalData = $.param({pacman:"insertar"});
+
+          var mode = $("#submitNew").val();
           console.log(data);
-          /*
-          $.ajax({
-              type: 'POST',
-              url: url,
-              data: data, //+'&'+$.param({tipoaccion:"insertar"}),
-              success: function(respuesta){
-                  $("#new").modal("hide");
-                  $("#modal-success").modal("show");
-              }
-          });
-          */
-      });
-  }
 
-  if ( mode == 'Guardar' ){
-    /*
-      $("#addMuestra").submit(function(e){
-          e.preventDefault();
-          var url = "/muestras";
-          var data = $("#addMuestra").serialize();
-          $.ajax({
-              type: 'PUT',
-              url: url,
-              data: data, //+'&'+$.param({tipoaccion:"insertar"}),
-              success: function(respuesta){
-                  $("#new").modal("hide");
-                  $("#modal-success").modal("show");
-              }
-          });
-      });
-      */
-  }
+          if ( mode=='Guardar' ) {
+              console.log("Aqui va el PUT papuh :v");          
+          }
 
+          if ( mode=='Crear' ) {
+              
+              $.ajax({
+                  type: 'POST',
+                  url: url,
+                  data: data +'&'+$.param({examenes: selmul}),
+                  success: function(respuesta){
+                      $("#new").modal("hide");
+                      $("#modal-success").modal("show");
+                  }
+              });
+              
+          }
+
+      });
 // ===============================================		
         $("#delete").submit(function(e){
             e.preventDefault();
