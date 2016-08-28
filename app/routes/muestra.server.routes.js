@@ -8,7 +8,8 @@ module.exports = function(app){
 
   app.route('/muestras/:id')
     .delete(muestra.eliminar)
-    .get(muestra.muestraByID);
+    .get(muestra.muestraByID)
+    .put(muestra.actualizarMuestra);
 
   app.route('/muestrasByLab')
     .get(muestra.muestrasPorLaboratorio);

@@ -7,7 +7,6 @@ $( document ).ready(function(){
     cargarComboCentros();
     cargarComboPacientes();
     cargarComboLabs();
-    cargarExamenes();
 
     $(function(){
         $('#confirmDelete').click(function() {
@@ -21,29 +20,6 @@ $( document ).ready(function(){
 function cancelarRegistroPaciente() {
 	window.location = "/operario";
 };
-
-function llenarInputs() {
-    var elem = $("#combo-seleccionar").val();
-    $("#inputNombres, #inputApellidos, #inputCorreo, #inputCedula").removeAttr("disabled");
-    // ============================
-    $.ajax({
-        type: 'GET',
-        url: '/muestras/'+elem,
-        data: {},
-        success: function(respuesta){
-        	$("#combo-pacientes").val(); // cedula/id del paciente 
-        	$("#combo-centros").val();  // centro medico
-    		$("#combo-lab").val(respuesta.nombreLaboratorio);
-    		$("#combo-muestras").val(respuesta.tipo);
-
-            $("#select-examenes").val(); // Nombre del examen
-
-        	$("#btnGuardar").removeAttr("disabled");
-        }
-    });
-    // ============================
-}
-
 
 function cargarComboCentros(){
     $.ajax({
@@ -85,32 +61,6 @@ function cargarComboLabs(){
             });
         }
     });
-}
-
-
-function cargarExamenes(){
-    $('#combo-muestras').click( function() {
-        var op = '';
-        var opSelected = $('#combo-muestras option:selected').each(function () {
-                op += $( this ).val();
-        });
-
-        var url = '/examenesdisponibles/'+ op;  // op = tipo de muestra **
-
-        $.ajax({
-            type: 'GET',
-            url: url,
-            data: {},
-            success: function(respuesta){
-                var list = $("#examenes");
-                $("#examenes").empty();  // Quitar seleccion anterior
-                $.each(respuesta, function(i){
-                    list.append('<input type="checkbox" id="'+respuesta[i].nombreExamen+'" value="'+respuesta[i].nombreExamen+'">   '+respuesta[i].nombreExamen+'<br/>');
-                });
-            }
-        });  // Cierre ajax
-    });  // Cierre de change
-
 }
 
 function resetModal(id) {
@@ -157,27 +107,21 @@ function llenarDataTable (){
 
 function sacarIdPaciente(i) {
     var i = $("#Edit"+i).parent().parent().children("input").val();
-
     var url = '/muestras/'+i;
+    $("#addHidden").val(i);
 
     $.ajax({
         type: 'GET',
         url: url,
         data: {},
         success: function(respuesta){
-            $("#editHidden").val(i);
-            $("#combo-pacientes").val(respuesta.id_paciente);
-            $("#combo-centros").val(respuesta.id_centro);
-            $("#combo-lab").val(respuesta.id_laboratorio);
-            $("#combo-muestras").val(respuesta.tipo);  // Se setea el valor
-            $("#combo-muestras").trigger("click"); // Se simula el click para mostrar los examenes
+            $("#combo-pacientes").val(respuesta.id_paciente);   $("#combo-pacientes").trigger("click");
+            $("#combo-centros").val(respuesta.id_centro);   $("#combo-centros").trigger("click");
+            $("#combo-lab").val(respuesta.id_laboratorio);  $("#combo-lab").trigger("click");
+            $("#combo-muestras").val(respuesta.tipo);   $("#combo-muestras").trigger("click"); // Se simula el click para mostrar los examenes
             $("#submitNew").val("Guardar");
 
             var values=respuesta.examenes;
-            console.log(values);
-            var x = $('#Hemograma');
-            //var x = document.getElementById('#Hemograma');
-            console.log(x);
 //            $('#examenes input[type="checkbox"][value="Hemograma"]').attr('checked','checked'); //.prop('checked', true);
             for (var i=0; i<values.length; i++){
                 $("#"+values[i]).prop('checked', true);
@@ -219,7 +163,7 @@ function secretInputs(){
        un item de los combobox 
     */
 
-    $("#combo-pacientes").change( function () {
+    $("#combo-pacientes").click( function () {
         var id = '';
         var opSelected = $('#combo-pacientes option:selected').each(function () {
                 id += $( this ).val();
@@ -236,7 +180,7 @@ function secretInputs(){
         });
     });
     // ===========================================
-    $("#combo-centros").change( function () {
+    $("#combo-centros").click( function () {
         var id = '';
         var opSelected = $('#combo-centros option:selected').each(function () {
                 id += $( this ).val();
@@ -252,7 +196,7 @@ function secretInputs(){
         });
     });
     // ===========================================
-    $("#combo-lab").change( function () {
+    $("#combo-lab").click( function () {
         var id = '';
         var opSelected = $('#combo-lab option:selected').each(function () {
                 id += $( this ).val();

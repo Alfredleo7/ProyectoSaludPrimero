@@ -64,6 +64,17 @@ exports.muestraByID = function(req, res, next){
   });
 };
 
+exports.actualizarMuestra = function(req, res, next){
+  var id_Muestra = req.params["id"];
+  Muestra.findOneAndUpdate({_id: id_Muestra}, {$set: {nombresPaciente: req.body.nombresPaciente, apellidosPaciente: req.body.apellidosPaciente, id_centro: req.body.id_centro, nombreCentro: req.body.nombreCentro , id_laboratorio: req.body.id_laboratorio , nombreLaboratorio: req.body.nombreLaboratorio, tipo: req.body.tipo, estado: req.body.estado, examenes: req.body.examenes}}, {new: true}, function(err,muestra){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestra);
+    }
+  });
+};
+
 exports.muestrasRecibidas = function(req, res, next){
   Muestra.find({estado: "recibido"}, function(err, muestras){
     if(err){

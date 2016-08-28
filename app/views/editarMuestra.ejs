@@ -68,7 +68,7 @@
                     </thead>
             </table>
 
-			
+<!-- ===================== New Modal ========================== -->
             <div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="new" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -77,7 +77,7 @@
                     </div>
                     <div class="modal-body">
                     <form id="addMuestra">
-                       <input type="hidden" id="addHidden">
+                       <input type="hidden" id="addHidden" val="">
 
                        <div class="form-group">
                           <div class="col-md-5">
@@ -138,15 +138,8 @@
                             <label class="control-label">
                               <p>Seleccione uno o m&aacute;s ex&aacute;menes a realizar:</p>
                             </label>
-                            <select id="examenesM" multiple="multiple" style="width: 100%; overflow-y: scroll; margin-bottom: 10%;">
-                              <option value="examen1"> Examen 1 </option>
-                              <option value="examen2"> Examen 2 </option>
-                              <option value="examen3"> Examen 3 </option>
+                            <select id="examenesM" multiple="multiple" style="width:100%; height:120px; ;overflow-y:scroll; margin-bottom:10%;" required>
                             </select>
-                            <!--
-                            <div id="examenes" style="border:2px solid #ccc; width:auto; height: 100px; overflow-y: scroll; margin-bottom: 3%;" required>
-                            </div>
-                            -->
                           </div>
                         </div>
 
@@ -164,9 +157,7 @@
                   </div>
                 </div>
               </div>
-			
-
-            <!-- Delete Modal -->
+<!-- ===================== Delete Modal ========================== -->
             <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="delete" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -176,7 +167,9 @@
                   </div>
                   <div class="modal-body">
                   <form>
+                   
                    <input type="hidden" id="hiddenSuccess">
+
                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span>  ¿Est&aacute;s seguro que quieres eliminar esta muestra?</div>
                     <button type="button" id="confirmDelete" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign" onclick="confirmarEliminar();"></span> Si, estoy seguro </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No borrar esta muestra </button>
@@ -185,9 +178,7 @@
                 </div>
               </div>
             </div>
-        
-        
-         <!--Success Modal Templates-->
+<!-- ===================== Success Modal Templates ========================== -->
             <div id="modal-success" class="modal modal-message modal-success fade" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -200,10 +191,10 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal" onClick="window.location.reload();">OK</button>
                         </div>
-                    </div> <!-- / .modal-content -->
-                </div> <!-- / .modal-dialog -->
+                    </div>
+                </div>
             </div>
-
+<!-- ===================== End Success Modal Templates ========================== -->
 
         </div> <!-- Fin DataTables -->
 
@@ -226,24 +217,57 @@
   <script>
       $("#examenesM").multipleSelect({
             placeholder: "Seleccione uno o más exámenes",
-            filter: true
+            filter: true,
+            selectAll: false
+      });
+// ==============CARGAR EXAMENES==============================
+      $('#combo-muestras').click( function() {
+        var op = '';
+        var opSelected = $('#combo-muestras option:selected').each(function () {
+            op += $( this ).val();
         });
-
+        var url = '/examenesdisponibles/'+ op;  // op = tipo de muestra **
+        $.ajax({
+          type: 'GET',
+          url: url,
+          data: {},
+          success: function(respuesta){
+            $("#examenesM").empty();  // Quitar seleccion anterior          
+            $.each(respuesta, function(i){
+              var $select = $("#examenesM"),
+                value = respuesta[i].nombreExamen,
+                $opt = $("<option />", {
+                  value: value,
+                  text: value
+                });
+              
+              $select.append($opt).multipleSelect("refresh");
+            });
+          }
+        });  // Cierre ajax
+      });
+// =================SUBMIT==============================
       $("#addMuestra").submit(function(e){
           e.preventDefault();
           var url = "/muestras";
           var selmul = $("#examenesM").val(); 
           var data = $("#addMuestra").serialize();
-
           var mode = $("#submitNew").val();
-          console.log(data);
+          var id = $("#addHidden").val();
 
-          if ( mode=='Guardar' ) {
-              console.log("Aqui va el PUT papuh :v");          
+          if (mode=='Guardar'){
+              console.log(id);
+              $.ajax({
+                  type: 'PUT',
+                  url: url+'/'+id,
+                  data: data +'&'+$.param({examenes: selmul}),
+                  success: function(respuesta){
+                      $("#new").modal("hide");
+                      $("#modal-success").modal("show");
+                  }
+              });
           }
-
-          if ( mode=='Crear' ) {
-              
+          if (mode=='Crear'){
               $.ajax({
                   type: 'POST',
                   url: url,
@@ -253,11 +277,10 @@
                       $("#modal-success").modal("show");
                   }
               });
-              
           }
 
       });
-// ===============================================		
+// ===============================================
         $("#delete").submit(function(e){
             e.preventDefault();
         });
