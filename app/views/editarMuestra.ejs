@@ -273,6 +273,21 @@
                   url: url,
                   data: data +'&'+$.param({examenes: selmul}),
                   success: function(respuesta){
+                      var idMuestra= respuesta._id;
+
+                      // Aqui se agregan los examenes con el id_muestra
+                      for ( var j=0 ; j<selmul.length ; j++){
+                          var exa = selmul[j];
+                          $.ajax({
+                            type: 'POST',
+                            url: '/examenes',
+                            data: {}+'&'+$.param({tipo: exa})+'&'+$.param({id_muestra: idMuestra}),
+                            success: function (resp) {
+                              // Do nothing.
+                            }
+                          });
+                      }
+
                       $("#new").modal("hide");
                       $("#modal-success").modal("show");
                   }
