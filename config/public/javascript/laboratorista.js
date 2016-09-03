@@ -205,13 +205,19 @@ function mostrarTablaExamenes(i){
 	$.ajax({
 		url : '/examenesByMuestra/'+ idMuestra,
 		type : 'get',
+		beforeSend : function(){
+			window.location.href = "#section3";
+			$("#logoEsperar").css("display", "inline");
+			$(".tablaResultados").empty();
+		},
 		success : function(examenes){
-				$(".tablaResultados").empty();
+			  $("#logoEsperar").css("display", "none");
 				$.each(examenes, function(o){
 					crearTablaParametro(examenes[o],o, i);
 				})
 				$('.tablaResultados').append('<hr/>');
 				$('.tablaResultados').append('<button type="button" class="btn btn-success" onclick="enviarResultados('+i+')">Enviar Resultados</button>');
+				window.location.href = "#section3";
 		}
 	});
 };
