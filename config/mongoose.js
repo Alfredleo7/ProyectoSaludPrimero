@@ -20,5 +20,6 @@ module.exports = function(){
   require('../app/models/parametro.server.model');
   require('../app/models/coordenadas.server.model');
   require('../app/models/muestra.server.model');
+  require('../app/models/examenesdisponibles.server.model');
   return db;
 };

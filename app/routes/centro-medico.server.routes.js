@@ -7,5 +7,6 @@ module.exports = function(app){
     .get(centroMedico.enlistar);
 
   app.route('/centros-medicos/:id')
-    .delete(centroMedico.eliminar);
+    .delete(centroMedico.eliminar)
+    .get(centroMedico.getById);
 };

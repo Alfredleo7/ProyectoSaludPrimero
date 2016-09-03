@@ -2,11 +2,12 @@ var Muestra = require('mongoose').model('Muestra');
 
 exports.crear = function(req, res, next){
   var muestra = Muestra(req.body);
-  muestra.save(function(err){
+  muestra.save(function(err, muest){
     if(err){
       return next(err);
     } else {
-      return res.send('la muestra se guardó correctamente');
+      //return res.send('la muestra se guardó correctamente');
+      return res.send(muest);
     }
   });
 };
@@ -56,6 +57,17 @@ exports.muestrasByLabAndMonth = function(req, res, next){
 exports.muestraByID = function(req, res, next){
   var id_Muestra = req.params["id"];
   Muestra.findById(id_Muestra, function(err,muestra){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestra);
+    }
+  });
+};
+
+exports.actualizarMuestra = function(req, res, next){
+  var id_Muestra = req.params["id"];
+  Muestra.findOneAndUpdate({_id: id_Muestra}, {$set: {nombresPaciente: req.body.nombresPaciente, apellidosPaciente: req.body.apellidosPaciente, id_centro: req.body.id_centro, nombreCentro: req.body.nombreCentro , id_laboratorio: req.body.id_laboratorio , nombreLaboratorio: req.body.nombreLaboratorio, tipo: req.body.tipo, estado: req.body.estado, examenes: req.body.examenes}}, {new: true}, function(err,muestra){
     if(err){
       return next(err);
     } else {
