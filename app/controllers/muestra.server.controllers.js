@@ -7,7 +7,7 @@ exports.crear = function(req, res, next){
       return next(err);
     } else {
       //return res.send('la muestra se guardó correctamente');
-      return res.send(muest);
+      return res.json(muest);
     }
   });
 };

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Salud Primero S.A. - Paciente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -44,9 +44,9 @@
                 <li style="font-size: 1.15em;"><a href="/operario/eliminarMuestra"><i class="glyphicon glyphicon-trash"></i>  Eliminar muestra </a></li>
               </ul>
             </li>
-            
+
             <li><a href="/operario/estadisticas"><i class="glyphicon glyphicon-picture"></i> Estad&iacute;sticas</a></li>
-            
+
             <li><a href="/operario/logout"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
           </ul>
 
@@ -160,19 +160,30 @@
             console.log(foo);
             var data = $("#addMuestra").serialize();
 
-            var foo = []; 
-            $('#select-examenes :selected').each(function(i, selected){ 
-                foo[i] = $(selected).text(); 
+            var foo = [];
+            $('#select-examenes :selected').each(function(i, selected){
+                foo[i] = $(selected).text();
             });
             console.log(foo);
 
             $.ajax({
-                type: 'GET', 
-                url: url2, 
+                type: 'GET',
+                url: url2,
                 data: {},
                 success: function(respuesta){
                     //alert("Ingresado con exito**");
                     alert(respuesta);
+                    $.each(respuesta.examenes, function(i){
+                      var examen = respuesta.examenes[i];
+                      $.ajax({
+                        url : "/examenes",
+                        post : "post",
+                        data : {
+                          id_muestra : respuesta._id,
+                          tipo : examen
+                        }
+                      });
+                    });
                     window.open("data:application/pdf," + escape(respuesta));
                     window.location ="/operario";
                 }
