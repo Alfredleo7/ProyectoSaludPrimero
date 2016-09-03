@@ -157,7 +157,7 @@ function crearTablaParametro(examen, i, o){
 
 					'<h4 class="modal-title" id="myModalLabel">'+examen.tipo+'</h4>'+
 				'</div>'+
-				'<div class="modal-body container">'+
+				'<div class="modal-body">'+
 
 
 					'<!-- CONTENIDO DEL MODAL-->'+
