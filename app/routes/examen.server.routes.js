@@ -14,4 +14,7 @@ module.exports = function(app){
 
   app.route('/examenesByMuestra/:id')
     .get(examen.examenesByMuestra);
+
+  app.route('/examenesByMuestra')
+    .delete(examen.eliminarExamenesByMuestra);
 }

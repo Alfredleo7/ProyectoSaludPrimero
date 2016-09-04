@@ -52,3 +52,13 @@ exports.examenesByMuestra = function(req, res, next){
     }
   });
 };
+
+exports.eliminarExamenesByMuestra = function(req, res, next){
+  Examen.remove({id_muestra: req.body.id_muestra}, function(err){
+    if(err){
+      return next(err);
+    } else {
+      return res.send("se eliminaron los examenes");
+    }
+  });
+};
