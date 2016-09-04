@@ -91,9 +91,20 @@ function anim() {
     });
 }
 
+function showalert(message) {
+    $('body').append('<div id="alertdiv" class="alert alert-warning alert-dismissible fade in" role= "alert"><strong>'+message+'</strong></div>')
+    setTimeout(function() { // this will automatically close the alert and remove this if the users doesnt close it in 5 secs
+      $("#alertdiv").remove();
+    }, 5000);
+  };
+
 function ingresarMuestra(){
 	var codigo = $('.inputMuestra').val();
-	mostrarMuestraModal(codigo);
+	if (codigo.match(/^[0-9a-fA-F]{24}$/)) {
+		mostrarMuestraModal(codigo);
+	} else {
+		showalert("El código que ingresó es Inválido");
+	}
 };
 
 function mostrarMuestraModal(idMuestra){
@@ -102,7 +113,7 @@ function mostrarMuestraModal(idMuestra){
 		type : 'get',
 		success : function(muestra){
 			if(!muestra){
-				$("#alerta").show();
+				showalert("El código que ingresó no existe");
 			} else {
 				$("#myModal").modal("show");
 				$('#btnRecibirMuestra').removeAttr('disabled');
@@ -115,9 +126,6 @@ function mostrarMuestraModal(idMuestra){
 					$('#btnRecibirMuestra').attr('disabled', 'true');
 				}
 			}
-		},
-		error : function(){
-			$("#alerta").show();
 		}
 	});
 };

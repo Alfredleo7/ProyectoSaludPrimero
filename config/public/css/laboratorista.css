@@ -20,6 +20,14 @@ body {
 	text-align: center;
 }
 
+#alertdiv {
+	position: fixed;
+	left: 0px;
+	width: 100%;
+	top: 50px;
+	z-index: 1;
+}
+
 /*#section1 {
 	width: 90%;
 	color: #000;
