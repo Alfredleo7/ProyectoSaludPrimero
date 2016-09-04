@@ -194,7 +194,7 @@
                     </div>
                 </div>
             </div>
-<!-- ===================== End Success Modal Templates ========================== -->
+<!-- ===================== End BarCode Modal Templates ========================== -->
             <div id="modal-barcode" class="modal modal-message modal-success fade" style="display: none;" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -203,14 +203,15 @@
                             <p> ¡Codigo de barras generado! </p>
                         </div>
                         <div class="modal-title" style="padding: 0 20px; text-align: center!important;">  </div>
-                        <div class="modal-body text-center"> 
+                        <div class="modal-body text-center">
+                          <input id="barcodeHidden" type="hidden" value="">
                           <p>De click en el siguiente link para visualizar el c&oacute;digo de barras para la muestra ingresada</p>
                           <br>
-                          <a onclick="verCodigoBarras();" href="#">Visualizar el codigo</a>
+                          <a id="linkbarcode" onclick="verCodigoBarras();" href="#">Visualizar el codigo</a>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="ok-barcode" class="btn btn-success" data-dismiss="modal">OK</button>
+                            <button type="button" id="ok-barcode" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
                 </div>
@@ -311,6 +312,7 @@
                       }
 
                       $("#new").modal("hide");
+                      $("#barcodeHidden").val(idMuestra);
                       $("#modal-barcode").modal("show");
                   }
               });

@@ -15,16 +15,20 @@ $( document ).ready(function(){
     });
     
     $(function(){
-        $("#modal-barcode").attr("data-backdrop","static");
-        $("#modal-barcode").attr("data-keyboard","false");
-        $("#modal-barcode").modal("show");
+        $("#linkbarcode").click(function(){
+            $("#ok-barcode").attr("disabled","false");
+        });
     });
-
 
 });
 
 function verCodigoBarras(){
-    var s = "1234";
+    // Se saca el id_muestra
+    var s = $("#barcodeHidden").val();
+    // Para que no se pueda cerrar sin clickar el boton
+    $("#modal-barcode").attr("data-backdrop","static");
+    $("#modal-barcode").attr("data-keyboard","false");
+    
     $.ajax({
         type: 'GET',
         url: '/operario/registroMuestra/codigo?for=' + s ,
@@ -161,7 +165,6 @@ function sacarIdPaciente2(i) {
 function confirmarEliminar(){
     var id = $("#hiddenSuccess").val();
     var url = "/muestras/"+id
-    console.log(url);
     $.ajax({
         type: 'DELETE',
         url: url,
