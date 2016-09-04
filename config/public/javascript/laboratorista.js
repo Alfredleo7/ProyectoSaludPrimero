@@ -111,7 +111,7 @@ function mostrarMuestraModal(idMuestra){
 				$('#nombreLaboratorio').val(muestra.nombreLaboratorio);
 				$('#tipoMuestra').val(muestra.tipo);
 				$('#estado').val(muestra.estado);
-				if(muestra.estado != 'ingresado'){
+				if(muestra.estado != 'Ingresado'){
 					$('#btnRecibirMuestra').attr('disabled', 'true');
 				}
 			}
