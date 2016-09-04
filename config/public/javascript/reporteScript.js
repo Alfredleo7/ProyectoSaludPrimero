@@ -66,8 +66,8 @@ function requerimientosByLab(){
 function insertarGraficoMensual (names, s1, s2, s3, s4) {
 	$("#areaGrap").empty();
 	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
-	$("#areaGrap").append("<div class='col-lg-9' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
-	$("#areaGrap").append("<div class='col-lg-3 text-center'><img src='../imagenes/graph/legend.jpg'><br><br><label>Mostrar desde: </label><select id='desde'><option value='0' selected>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11'>Diciembre</option></select><br><label>Mostrar hasta: </label><select id='hasta'><option value='0'>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11' selected>Diciembre</option></select><br><br><button class='btn btn-primary btn-lg' onclick='funcionBotonGenerar();'> Generar gr&aacute;fico </button></div>");
+	$("#areaGrap").append("<div class='col-lg-7' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
+	$("#areaGrap").append("<div class='col-lg-5 text-center'><img src='../imagenes/graph/legend.jpg'><br><br><label>Mostrar desde: </label><select id='desde'><option value='0' selected>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11'>Diciembre</option></select><br>"+"<div style='height: 100px;'><div class='form-group'><div class='input-group date' id='datetimepicker6'><input type='text' class='form-control' /><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div></div></div>"+"<label>Mostrar hasta: </label><select id='hasta'><option value='0'>Enero</option><option value='1'>Febrero</option><option value='2'>Marzo</option><option value='3'>Abril</option><option value='4'>Mayo</option><option value='5'>Junio</option><option value='6'>Julio</option><option value='7'>Agosto</option><option value='8'>Septiembre</option><option value='9'>Octubre</option><option value='10'>Noviembre</option><option value='11' selected>Diciembre</option></select><br><br>"+"<div style='height: 100px;'><div class='form-group'><div class='input-group date' id='datetimepicker7'><input type='text' class='form-control' /><span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span></span></div></div></div>"+"<button class='btn btn-primary btn-lg' onclick='funcionBotonGenerar();'> Generar gr&aacute;fico </button></div>");
 	generarGraficoMensual(names, s1, s2, s3, s4);
 }
 
@@ -122,6 +122,7 @@ function generarGraficoMensual (names, s1, s2, s3, s4) {
 
 		  // Options override for media > 1000px
 		  ['screen and (min-width: 1000px)', {
+		  	stackBars: true,
 		    reverseData: false,
 		    horizontalBars: false,
 		    seriesBarDistance: 10,

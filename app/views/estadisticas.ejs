@@ -7,6 +7,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Datepicker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/css/bootstrap-datetimepicker.min.css" />
+    
     <script type="text/javascript" src="../javascript/reporteScript.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/reporteStyles.css">
 
@@ -53,13 +59,93 @@
     </div>
 
     <div id="areaGrap" class="col-lg-10">
+    </div> <!--areaGrap-->
 
-    </div> <!-- areaGrap-->
-  </div>
+<!--
+  <form id="subDate">
+    <div class="col-md-10" style="height: 100px;">
+      <div class="form-group">
+          <div class='input-group date' id='datetimepicker6'>
+              <input type='text' class="form-control" />
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-10" style="height: 100px;">
+      <div class="form-group">
+          <div class='input-group date' id='datetimepicker7'>
+              <input type='text' class="form-control" />
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-10" style="height: 30px;">
+      <input type="submit" value="Ver Fechas">
+    </div>
+  </form>
+-->
+
+  </div> <!-- Section 1-->
 
   <footer class="pie">
       &copy; Todos los derechos reservados. Salud Primero S.A. 2016
   </footer>
+
+  <script type="text/javascript">
+      $(function () {
+        var min = moment().subtract(3, 'years'); // Hace 3 años
+        var max = moment().add(3, 'years');  // Hasta 3 años
+        var today = moment();
+
+          $('#datetimepicker6').datetimepicker({
+            viewMode: 'years',
+            format: 'DD/MM/YYYY',
+            minDate: min,
+            maxDate: today
+          });
+          
+          $('#datetimepicker7').datetimepicker({
+            viewMode: 'years',
+            format: 'DD/MM/YYYY',
+            maxDate: max,
+            useCurrent: false //Important! See issue #1075
+          });
+          $("#datetimepicker6").on("dp.change", function (e) {
+              $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+          });
+          $("#datetimepicker7").on("dp.change", function (e) {
+              $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+          });
+      });
+  </script>
+  <script>
+        $("#subDate").submit(function(e){
+            e.preventDefault();
+            var from = $("#datetimepicker6").data("date");
+            var to = $("#datetimepicker7").data("date");
+            console.log(from);
+            console.log(to);
+            /*
+            var url = "/pacientes";
+            var data = $("#addPaciente").serialize();
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+                success: function(respuesta){
+                    $("#new").modal("hide");
+                    $("#modal-success").modal("show");
+                }
+            });
+            */
+        });
+  </script>
 
   <script type="text/javascript" src="../javascript/chartist.js"></script>
   <link rel="stylesheet" type="text/css" href="../css/chartist.min.css">
