@@ -14,8 +14,26 @@ $( document ).ready(function(){
         });
     });
     
+    $(function(){
+        $("#modal-barcode").attr("data-backdrop","static");
+        $("#modal-barcode").attr("data-keyboard","false");
+        $("#modal-barcode").modal("show");
+    });
+
+
 });
 
+function verCodigoBarras(){
+    var s = "1234";
+    $.ajax({
+        type: 'GET',
+        url: '/operario/registroMuestra/codigo?for=' + s ,
+        data: {},
+        success: function (respuestapdf) {
+            window.open("data:application/pdf," + escape(respuestapdf));
+        }
+    });
+}
 
 function cancelarRegistroPaciente() {
 	window.location = "/operario";

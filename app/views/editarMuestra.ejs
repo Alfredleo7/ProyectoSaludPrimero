@@ -195,6 +195,27 @@
                 </div>
             </div>
 <!-- ===================== End Success Modal Templates ========================== -->
+            <div id="modal-barcode" class="modal modal-message modal-success fade" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header text-center" style="color: #53a93f; border-bottom: 3px solid #a0d468;">
+                            <i class="glyphicon glyphicon-check"></i>
+                            <p> ¡Codigo de barras generado! </p>
+                        </div>
+                        <div class="modal-title" style="padding: 0 20px; text-align: center!important;">  </div>
+                        <div class="modal-body text-center"> 
+                          <p>De click en el siguiente link para visualizar el c&oacute;digo de barras para la muestra ingresada</p>
+                          <br>
+                          <a onclick="verCodigoBarras();" href="#">Visualizar el codigo</a>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="ok-barcode" class="btn btn-success" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- ===================== End Success Modal Templates ========================== -->
 
         </div> <!-- Fin DataTables -->
 
@@ -267,6 +288,7 @@
                   }
               });
           }
+      // ----------------------------------------------
           if (mode=='Crear'){
               $.ajax({
                   type: 'POST',
@@ -289,7 +311,7 @@
                       }
 
                       $("#new").modal("hide");
-                      $("#modal-success").modal("show");
+                      $("#modal-barcode").modal("show");
                   }
               });
           }
