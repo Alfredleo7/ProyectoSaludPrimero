@@ -110,12 +110,12 @@ exports.recibirMuestra = function(req, res, next){
 };
 
 exports.enviarResultadosMuestra = function(req, res, next){
-  var idMuestra = req.body.id;
-  var estado = req.body.estado;
-  Muestra.findOneAndUpdate({_id: idMuestra}, {estado: estado}, function(err, muestra){
+  var idMuestra = req.params["id"];
+  Muestra.findOneAndUpdate({_id: idMuestra}, {$set : {estado: "terminado"}}, function(err, muestra){
     if(err){
       return next(err);
     } else {
+      console.log(muestra._id);
       return res.send("la muestra fue enviada al paciente");
     }
   });

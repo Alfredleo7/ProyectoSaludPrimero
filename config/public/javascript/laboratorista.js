@@ -273,15 +273,11 @@ function enviarResultados(i){
 		var idMuestra = $("#id"+i).text();
 		console.log(idMuestra);
 		$.ajax({
-			url : '/enviarResultados',
-			type : 'post',
-			data : {
-				estado : 'terminado',
-				id : idMuestra
-			},
+			url : '/enviarResultados/'+idMuestra,
+			type : 'put',
 			success : function(){
-				recibirMuestra();
 				$(".tablaResultados").empty();
+				llenarTablaMuestras();
 			}
 		});
 };
