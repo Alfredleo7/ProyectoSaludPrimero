@@ -76,9 +76,9 @@ function cargarExamenes(){
             var examenesTable = $('<table class="table table-hover"></table>');
             var examenesTableHead = $('<thead></thead>');
             var examenesTableRowHead = $('<tr></tr>');
-            var examenesTipo = $('<th>Tipo</th>');
-            var examenesFecha = $('<th>Fecha</th>');
-            var examenesProgreso = $('<th>Progreso</th>');
+            var examenesTipo = $('<th class="col-xs-1">Tipo</th>');
+            var examenesFecha = $('<th class="col-xs-1">Fecha</th>');
+            var examenesProgreso = $('<th class="col-xs-8">Progreso</th>');
             var examenesResultado = $('<th>Resultado</th>');
             var examenesTableBody = $('<tbody></tbody>');
             examenes.append(examenesColumn);
@@ -103,14 +103,14 @@ function cargarExamenes(){
                 var examenDetalle;
                 console.log(muestras[i]);
                 if(estado == "Ingresado"){
-                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Ingresado al sistema" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%"></div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
+                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Ingresado al sistema" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">Ingresado</div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
                 }
                 else if(estado == "en proceso"){
-                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Muestra recibida" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
+                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Muestra recibida" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">En proceso</div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
                 }
                 else if(estado == "terminado"){
                     asignarDatos(muestras);
-                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Resultados disponibles" class="progress-bar progress-bar-progress progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">100%</div></div></td><td><button id="examen'+i+'" onclick="descargarPDF('+i+')" class="btn btn-primary">Descargar</button></td></tr>');
+                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Resultados disponibles" class="progress-bar progress-bar-progress progress-bar-striped" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">Listo</div></div></td><td><button id="examen'+i+'" onclick="descargarPDF('+i+')" class="btn btn-primary">Descargar</button></td></tr>');
                 }
                 else{
                     examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td></tr>');
