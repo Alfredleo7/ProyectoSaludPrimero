@@ -38,7 +38,11 @@ exports.crear = function(req, res, next){
 }
 
 exports.pagInicial = function(req, res, next){
-    res.render('index');
+    if(!req.session.rol){
+      res.render('index');
+    } else {
+      res.render(req.session.rol);
+    }
 }
 
 

@@ -112,7 +112,7 @@ exports.OperEliminarMuestra = function(req, res, next){
         res.render('eliminarMuestra');
     }
     else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+        res.render('index');
     }
 }
 
@@ -127,7 +127,7 @@ exports.OperRegistroPaciente = function(req, res, next){
         res.render('registroPaciente');
     }
     else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+        res.render('index');
     }
 
 }
@@ -141,7 +141,7 @@ exports.OperEditarPaciente = function(req, res, next){
         res.render('editarPaciente');
     }
     else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+        res.render('index');
     }
 
 }
@@ -155,7 +155,7 @@ exports.OperEliminarPaciente = function(req, res, next){
         res.render('eliminarPaciente');
     }
     else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+        res.render('index');
     }
 
 }
@@ -171,7 +171,7 @@ exports.OperEstadisticas = function(req, res, next){
         res.render('estadisticas');
     }
     else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+        res.render('index');
     }
 }
 
@@ -183,7 +183,7 @@ exports.generarCodigo = function(req, res, next){
       code.pipe(res);
     }
     else{
-      res.send("Error. No hay informacion para generar el codigo");
+      res.render('index');
     }
 }
 

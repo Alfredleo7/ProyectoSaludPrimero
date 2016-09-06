@@ -2,34 +2,50 @@ var muestra = require('../controllers/muestra.server.controllers');
 
 module.exports = function(app){
 
+  var verificarSesion = function(req, res, next){
+    if(!req.session.rol){
+      res.render('index');
+    } else {
+      next();
+    }
+  };
+
+  var noAuthPaciente = function(req, res, next){
+    if(req.session.rol == 'paciente'){
+      res.render('index');
+    } else {
+      next();
+    }
+  }
+
   app.route('/muestras')
-    .get(muestra.enlistar)
-    .post(muestra.crear);
+    .get(verificarSesion, noAuthPaciente, muestra.enlistar)
+    .post(verificarSesion, noAuthPaciente, muestra.crear);
 
   app.route('/muestras/:id')
-    .delete(muestra.eliminar)
-    .get(muestra.muestraByID)
-    .put(muestra.actualizarMuestra);
+    .delete(verificarSesion, noAuthPaciente, muestra.eliminar)
+    .get(verificarSesion, muestra.muestraByID)
+    .put(verificarSesion, noAuthPaciente, muestra.actualizarMuestra);
 
   app.route('/muestrasByLab')
-    .get(muestra.muestrasPorLaboratorio);
+    .get(verificarSesion, muestra.muestrasPorLaboratorio);
 
   app.route('/muestrasByLabAndMonth')
-    .get(muestra.muestrasByLabAndMonth);
+    .get(verificarSesion, muestra.muestrasByLabAndMonth);
 
   app.route('/muestrasRecibidas')
-    .get(muestra.muestrasRecibidas);
+    .get(verificarSesion, noAuthPaciente, muestra.muestrasRecibidas);
 
   app.route('/muestraIngresadaByID/:id')
-    .get(muestra.muestraIngresadaByID);
+    .get(verificarSesion, noAuthPaciente, muestra.muestraIngresadaByID);
 
   app.route('/recibirMuestra')
-    .post(muestra.recibirMuestra);
+    .post(verificarSesion, noAuthPaciente, muestra.recibirMuestra);
 
   app.route('/enviarResultados/:id')
-    .put(muestra.enviarResultadosMuestra);
+    .put(verificarSesion, noAuthPaciente, muestra.enviarResultadosMuestra);
 
   app.route('/muestrasByPaciente/:id')
-    .get(muestra.muestrasByIdPaciente);
+    .get(verificarSesion, muestra.muestrasByIdPaciente);
 
 }

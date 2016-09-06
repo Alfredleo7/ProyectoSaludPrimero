@@ -1,13 +1,30 @@
 var laboratorista = require('../controllers/laboratorista.server.controllers');
 
 module.exports = function(app){
+
+  var verificarSesion = function(req, res, next){
+    if(!req.session.rol){
+      res.render('index');
+    } else {
+      next();
+    }
+  };
+
+  var noAuthPaciente = function(req, res, next){
+    if(req.session.rol == 'paciente'){
+      res.render('index');
+    } else {
+      next();
+    }
+  }
+
   app.route('/laboratoristas')
-    .get(laboratorista.enlistar);
+    .get(verificarSesion, laboratorista.enlistar);
   app.route('/laboratoristaByCookie')
-    .post(laboratorista.laboratoristaByCookie);
+    .post(verificarSesion, laboratorista.laboratoristaByCookie);
   app.route('/laboratorista')
-  	.get(laboratorista.pagLaboratorista);
+  	.get(verificarSesion, laboratorista.pagLaboratorista);
   app.route('/laboratorista/logout')
-    .get(laboratorista.salir);
+    .get(verificarSesion, laboratorista.salir);
 
 }

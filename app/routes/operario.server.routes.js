@@ -1,35 +1,53 @@
 var operario = require('../controllers/operario.server.controllers');
 
-module.exports = function(app){  
+module.exports = function(app){
+
+  var verificarSesion = function(req, res, next){
+    if(!req.session.rol){
+      res.render('index');
+    } else {
+      next();
+    }
+  };
+
+  var noAuthPaciente = function(req, res, next){
+    if(req.session.rol == 'paciente'){
+      res.render('index');
+    } else {
+      next();
+    }
+  }
+
+
   app.route('/operario')
-    .get(operario.pagOperario);
+    .get(verificarSesion, noAuthPaciente, operario.pagOperario);
 
   app.route('/operario/registroMuestra')
-    .get(operario.OperRegistroMuestra);
+    .get(verificarSesion, noAuthPaciente, operario.OperRegistroMuestra);
 
   app.route('/operario/editarMuestra')
-    .get(operario.OperEditarMuestra);
+    .get(verificarSesion, noAuthPaciente, operario.OperEditarMuestra);
 
   app.route('/operario/eliminarMuestra')
-    .get(operario.OperEliminarMuestra);
+    .get(verificarSesion, noAuthPaciente, operario.OperEliminarMuestra);
 
   app.route('/operario/registroMuestra/codigo')
-    .get(operario.generarCodigo);
+    .get(verificarSesion, noAuthPaciente, operario.generarCodigo);
 
   app.route('/operario/registroPaciente')
-    .get(operario.OperRegistroPaciente);
+    .get(verificarSesion, noAuthPaciente, operario.OperRegistroPaciente);
 
   app.route('/operario/editarPaciente')
-    .get(operario.OperEditarPaciente);
+    .get(verificarSesion, noAuthPaciente, operario.OperEditarPaciente);
 
   app.route('/operario/eliminarPaciente')
-    .get(operario.OperEliminarPaciente);
+    .get(verificarSesion, noAuthPaciente, operario.OperEliminarPaciente);
 
 //  enviar email con password
 
   app.route('/operario/estadisticas')
-    .get(operario.OperEstadisticas);
+    .get(verificarSesion, noAuthPaciente, operario.OperEstadisticas);
 
   app.route('/operario/logout')
-    .get(operario.salir);
+    .get(verificarSesion, noAuthPaciente, operario.salir);
 }

@@ -29,7 +29,7 @@ exports.crear = function(req, res, next){
   });
   var mailOptions = {
         from: "Salud Primero S.A. ✔ <salud.primero.sa@gmail.com>",
-        to: req.body.email, 
+        to: req.body.email,
         subject: "Salud Primero S.A. - Registro de Paciente",
         text: "Estimado "+req.body.nombres+" "+req.body.apellidos+",\n\nBienvenido a Salud Primero S.A.\n\nLe informamos que su cuenta ha sido creada con éxito. Puede ingresar a nuestro sistema utilizando:\nCédula: "+req.body.cedula+"\nContraseña: "+req.body.password+"\n\nAtentamente,\nSalud Primero S.A.\n\nPara más información envíenos un correo electrónico a salud.primero.sa@gmail.com, o acérquese a nuestras oficinas más cercanas."
     }
@@ -145,7 +145,7 @@ exports.cambiarPassword = function(req, res, next){
         Paciente.findOneAndUpdate({_id: idPaciente}, {$set: {password: pass1}}, {new: true} ,function(err, paciente){
           if(err){
             return next(err);
-          } 
+          }
           else {
             var smtpTransport = nodemailer.createTransport("SMTP",{
                 service: "Gmail",
@@ -156,7 +156,7 @@ exports.cambiarPassword = function(req, res, next){
             });
             var mailOptions = {
                   from: "Salud Primero S.A. ✔ <salud.primero.sa@gmail.com>",
-                  to: paciente.email, 
+                  to: paciente.email,
                   subject: "Salud Primero S.A. - Cambio de contraseña",
                   text: "Estimado "+paciente.nombres+" "+paciente.apellidos+",\n\nSalud Primero S.A. le informa que usted ha efectuado un cambio de contraseña. Podrá ingresar a nuestro sistema utilizando sus nuevas credenciales:\nCédula: "+paciente.cedula+"\nContraseña: "+paciente.password+"\n\nAtentamente,\nSalud Primero S.A.\n\nPara más información envíenos un correo electrónico a salud.primero.sa@gmail.com, o acérquese a nuestras oficinas más cercanas."
               }
@@ -169,7 +169,7 @@ exports.cambiarPassword = function(req, res, next){
           }
         });
       }
-      
+
     }
   });
 };
@@ -181,7 +181,7 @@ exports.pagPaciente = function(req, res, next){
     res.render('paciente');
   }
   else {
-    res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    res.render('index');
   }
 }
 
@@ -192,7 +192,7 @@ exports.pagPerfil = function(req, res, next){
     res.render('perfilUsuario');
   }
   else {
-    res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    res.render('index');
   }
 }
 
@@ -203,7 +203,7 @@ exports.pagExamenes = function(req, res, next){
     res.render('examenes');
   }
   else {
-    res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    res.render('index');
   }
 }
 

@@ -2,19 +2,35 @@ var examen = require('../controllers/examen.server.controllers');
 
 module.exports = function(app){
 
+  var verificarSesion = function(req, res, next){
+    if(!req.session.rol){
+      res.render('index');
+    } else {
+      next();
+    }
+  };
+
+  var noAuthPaciente = function(req, res, next){
+    if(req.session.rol == 'paciente'){
+      res.render('index');
+    } else {
+      next();
+    }
+  }
+
   app.route('/examenes')
-    .post(examen.crear)
-    .get(examen.enlistar);
+    .post(verificarSesion, noAuthPaciente, examen.crear)
+    .get(verificarSesion, examen.enlistar);
 
   app.route('/examenes/:id')
-    .delete(examen.eliminar);
+    .delete(verificarSesion, noAuthPaciente, examen.eliminar);
 
   app.route('/examenes/:tipo')
-  	.get(examen.porTipo);
+  	.get(verificarSesion, examen.porTipo);
 
   app.route('/examenesByMuestra/:id')
-    .get(examen.examenesByMuestra);
+    .get(verificarSesion, examen.examenesByMuestra);
 
   app.route('/examenesByMuestra')
-    .delete(examen.eliminarExamenesByMuestra);
+    .delete(verificarSesion, noAuthPaciente, examen.eliminarExamenesByMuestra);
 }

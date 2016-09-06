@@ -76,7 +76,7 @@ exports.pagLaboratorista = function(req, res, next){
     res.render('laboratorista');
   }
   else {
-    res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+    res.render('index');
   }
 }
 
