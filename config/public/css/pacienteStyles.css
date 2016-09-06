@@ -2,7 +2,7 @@
 
 body {
 	position: relative;
-	background-color: black;
+	background: url("../imagenes/fondos/fondo2.jpg") no-repeat center center;
 	background-size: cover;
 	background-attachment: fixed;
 	font-family: 'Philosopher', 'Verdana', sans-serif;
@@ -13,17 +13,17 @@ body {
 	width: 100%;
 }
 
-#section1 {padding-top:70px;color: #fff; background-color:rgba(0,0,0,0.5);}
-#section2 {padding-top:50px;padding-bottom:50px;color: #fff; background-color:rgb(94, 146, 161);}
-#section3 {padding-top:50px;color: #fff; background-color: rgb(142, 185, 133);}
-
 #section1 {
+	padding-top:70px;
+	color: #000; 
+	background-color:rgba(255,255,255,0.6);
 	font-size: 1.4em;
     overflow: hidden;
     position: relative;
     width: 100%;
     padding-bottom: 100px;
     text-align: center;
+    height: 100vh;
 }
 
 #section1 h1 {
@@ -36,15 +36,30 @@ body {
     margin-right: auto;
 }
 
+#section2 {
+	padding-top:50px;
+	padding-bottom:50px;
+	color: #fff; 
+	background-color:rgba(0,0,0,0.6);
+	height: auto;
+}
+
+#section3 {
+	padding-top:50px;
+	color: #000; 
+	background-color:rgba(255,255,255,0.6);
+}
+
 #section2 .centrosText {
 	text-align: center;
 	font-size: 1.5em;
 }
 
-#section1, #section2 .centrosText, #section2 h2, #section3 {
-	text-shadow: 2px 2px #000000;
+#section2 .centrosText, #section2 h2, #section3 {
+	text-shadow: 1px 1px #000000;
 }
 
+/*
 #section1-bg {
   text-align: left;
   position: absolute;
@@ -55,6 +70,7 @@ body {
   overflow: hidden;
   z-index: -1;
 }
+*/
 
 @media (max-width: 767px) {
   #section1-bg {
@@ -81,8 +97,8 @@ body {
 }
 
 #btn-centros, #btn-galeria {
-  	border: 3px solid #ffffff;
- 	color: #ffffff;
+  	border: 3px solid #000;
+ 	color: #000;
 	padding: 10px;
 	margin: 10px;
 	font-size: 1.1em;
@@ -91,7 +107,13 @@ body {
 .btn-outline {
     background-color: transparent;
     color: inherit;
-    transition: all .5s;
+    transition: all .7s;
+}
+
+#btn-centros:hover, #btn-galeria:hover{
+	border: 3px solid #fff;
+	background-color: #000;
+	color: #fff;
 }
 
 .panelCentroBody {

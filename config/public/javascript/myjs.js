@@ -1,14 +1,5 @@
 $(document).ready(function() {
     $('.carousel').carousel({interval: 7000});
-    
-    /*
-    $("#password").focus(function(){
-        this.type = "text";
-    }).blur(function(){
-        this.type = "password";
-    }); 
-    */
-
 });
 
 function showPass(){
