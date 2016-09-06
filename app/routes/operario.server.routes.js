@@ -25,8 +25,8 @@ module.exports = function(app){
   app.route('/operario/registroMuestra')
     .get(verificarSesion, noAuthPaciente, operario.OperRegistroMuestra);
 
-  app.route('/operario/editarMuestra')
-    .get(verificarSesion, noAuthPaciente, operario.OperEditarMuestra);
+  app.route('/operario/admMuestra')
+    .get(verificarSesion, noAuthPaciente, operario.OperAdmMuestra);
 
   app.route('/operario/eliminarMuestra')
     .get(verificarSesion, noAuthPaciente, operario.OperEliminarMuestra);

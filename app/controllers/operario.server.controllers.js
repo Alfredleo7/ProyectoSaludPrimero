@@ -90,13 +90,13 @@ exports.OperRegistroMuestra = function(req, res, next){
     }
 }
 
-exports.OperEditarMuestra = function(req, res, next){
+exports.OperAdmMuestra = function(req, res, next){
     var role = req.session["rol"];
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
 
     if ( role =='operario') {
-        res.render('editarMuestra');
+        res.render('admMuestra');
     }
     else {
         res.status(401).send("No autorizado. Por favor inicie sesión para continuar");

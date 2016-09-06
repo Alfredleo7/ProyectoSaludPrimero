@@ -32,7 +32,7 @@
             </li> 
 
             <li class="dropdown">
-              <a href="/operario/editarMuestra"><i class="glyphicon glyphicon-duplicate"></i> Administrar muestras </a>
+              <a href="/operario/admMuestra"><i class="glyphicon glyphicon-duplicate"></i> Administrar muestras </a>
             </li> 
 
             <li><a href="/operario/estadisticas"><i class="glyphicon glyphicon-picture"></i> Estad&iacute;sticas</a></li>
@@ -205,18 +205,17 @@
                         <div class="modal-title" style="padding: 0 20px; text-align: center!important;">  </div>
                         <div class="modal-body text-center">
                           <input id="barcodeHidden" type="hidden" value="">
-                          <p>De click en el siguiente link para visualizar el c&oacute;digo de barras para la muestra ingresada</p>
+                          <p>De click en el siguiente link para visualizar el c&oacute;digo QR para la muestra ingresada</p>
                           <br>
-                          <a id="linkbarcode" onclick="verCodigoBarras();" href="#">Visualizar el codigo</a>
-
+                          <a id="linkbarcode" onclick="verCodigoBarras();" href="#">Visualizar el codigo QR</a>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="ok-barcode" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" id="ok-barcode" class="btn btn-primary" data-dismiss="modal" onClick="window.location.reload();" disabled="disabled">Cerrar</button>
                         </div>
                     </div>
                 </div>
             </div>
-<!-- ===================== End Success Modal Templates ========================== -->
+<!-- ===================== End barcode Modal Templates ========================== -->
 
         </div> <!-- Fin DataTables -->
 
@@ -313,7 +312,8 @@
 
                       $("#new").modal("hide");
                       $("#barcodeHidden").val(idMuestra);
-                      $("#modal-barcode").modal("show");
+                      $("#modal-barcode").modal({backdrop: 'static', keyboard: false});
+                      //$("#modal-barcode").modal("show");
                   }
               });
           }

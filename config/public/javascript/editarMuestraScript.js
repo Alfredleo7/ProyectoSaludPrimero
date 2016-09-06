@@ -16,7 +16,7 @@ $( document ).ready(function(){
     
     $(function(){
         $("#linkbarcode").click(function(){
-            $("#ok-barcode").attr("disabled","false");
+            $("#ok-barcode").removeAttr("disabled");
         });
     });
 
@@ -140,20 +140,55 @@ function sacarIdPaciente(i) {
             $("#combo-pacientes").val(respuesta.id_paciente);   $("#combo-pacientes").trigger("click");
             $("#combo-centros").val(respuesta.id_centro);   $("#combo-centros").trigger("click");
             $("#combo-lab").val(respuesta.id_laboratorio);  $("#combo-lab").trigger("click");
-            $("#combo-muestras").val(respuesta.tipo);   $("#combo-muestras").trigger("click"); // Se simula el click para mostrar los examenes
+            $("#combo-muestras").val(respuesta.tipo); //  $("#combo-muestras").trigger("click"); // Se simula el click para mostrar los examenes
             $("#submitNew").val("Guardar");
+            var examenesMuestra = respuesta.examenes;
 
-            var values=respuesta.examenes;
-//            $('#examenes input[type="checkbox"][value="Hemograma"]').attr('checked','checked'); //.prop('checked', true);
-            for (var i=0; i<values.length; i++){
-                $("#"+values[i]).prop('checked', true);
-//                $('#examenes input[type=checkbox][value=Hemograma]').prop('checked', true);
-                //console.log(a);
-                
-//                $("#examenes input[value='" + values[i] + "']").prop("checked", true);
-            }
-        }
-    });
+            $.ajax({
+                type: 'GET',
+                url: '/examenesdisponibles/'+respuesta.tipo,
+                data: {},
+                success: function (respuesta) {
+                    $("#examenesM").empty(); // Quita seleccion anterior
+                    var dispo = [];
+                    $.each(respuesta, function(i){
+                        dispo.push(respuesta[i].nombreExamen);
+                    });  // each
+
+                    for( var j=0 ; j<dispo.length ; j++ ){
+                        var found = $.inArray(dispo[j], examenesMuestra);
+                        //console.log('Encontrado['+j+'] -> '+found);
+                        if(found>-1){
+                              var a = dispo[j];
+                              var $select = $("#examenesM"),
+                                            value = a,
+                                            $opt = $("<option />", {
+                                              value: value,
+                                              text: value
+                                            });
+                              $opt.prop("selected", true);  // Se marca con check
+                              $select.append($opt).multipleSelect("refresh");
+                        }
+                        else{
+                              var a = dispo[j];
+                              var $select = $("#examenesM"),
+                                            value = a,
+                                            $opt = $("<option />", {
+                                              value: value,
+                                              text: value
+                                            });
+                              $select.append($opt).multipleSelect("refresh");
+                        }
+
+                    }
+
+                } // success 2 disponibles
+
+            }); // ajax
+            
+        } // success 1
+
+    });  // ajax 1
 }
 
 function sacarIdPaciente2(i) {
