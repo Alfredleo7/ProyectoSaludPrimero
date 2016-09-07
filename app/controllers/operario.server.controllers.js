@@ -196,7 +196,7 @@ exports.generarCodigo = function(req, res, next){
       code.pipe(res);
     }
     else{
-      res.render('index');
+      res.send('No hay informacion generar el codigo de barras');
     }
 }
 
