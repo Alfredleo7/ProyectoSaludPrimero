@@ -95,7 +95,7 @@ function resetModal(id) {
 function llenarDataTable (){
         $.ajax({
             type: 'GET',
-            url: "/muestras",
+            url: "/muestras/ingresadas",
             data: {},
             success: function(respuesta){
                 

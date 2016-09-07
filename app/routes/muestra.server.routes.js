@@ -22,6 +22,9 @@ module.exports = function(app){
     .get(verificarSesion, noAuthPaciente, muestra.enlistar)
     .post(verificarSesion, noAuthPaciente, muestra.crear);
 
+  app.route('/muestras/ingresadas')
+    .get(verificarSesion, noAuthPaciente, muestra.enlistarIngresadas);
+
   app.route('/muestras/:id')
     .delete(verificarSesion, noAuthPaciente, muestra.eliminar)
     .get(verificarSesion, muestra.muestraByID)

@@ -33,6 +33,17 @@ exports.eliminar = function(req, res, next){
 };
 
 // Julian =====
+exports.enlistarIngresadas = function(req, res, next){
+  Muestra.find({estado: 'Ingresado'}, function(err, muestras){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestras);
+    }
+  });
+};
+
+// Julian =====
 exports.muestrasPorLaboratorio = function(req, res, next){
   Muestra.aggregate( {"$group" : {_id:"$nombreLaboratorio", count:{$sum:1}}} , function(err, muestras){
     if(err){
