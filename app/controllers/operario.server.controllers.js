@@ -48,6 +48,8 @@ exports.operarioByCedulaContraseña = function(req, res, next){
     }
     else {
         if (operario) {
+		  req.session["rol"] = 'operario';
+		  req.session["idOper"] = operario._id;
           req.session["NombresApellidos"] = operario.nombres + ' ' + operario.apellidos;
           res.type("json");
           return res.send({operario : operario, error: "false", url: "/operario"});
@@ -60,6 +62,7 @@ exports.operarioByCedulaContraseña = function(req, res, next){
   });
 };
 
+
 // IMPORTANTE !!!!
 exports.pagOperario = function(req, res, next){
   var role = req.session["rol"];
@@ -71,12 +74,12 @@ exports.pagOperario = function(req, res, next){
       res.render('operario', {nombres: name});
   }
   else {
-      res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+      res.status(401).send("¡Oops! Parece que quieres acceder a un sitio no autorizado.  Por favor, inicia sesion como Operario para continuar");
   }
 }
 
 // ==============================================================
-
+/*
 exports.OperRegistroMuestra = function(req, res, next){
     var role = req.session["rol"];
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -86,9 +89,11 @@ exports.OperRegistroMuestra = function(req, res, next){
         res.render('registroMuestra');
     }
     else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+        //res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+		res.status(401).redirect("/");
     }
 }
+*/
 
 exports.OperAdmMuestra = function(req, res, next){
     var role = req.session["rol"];
@@ -99,10 +104,11 @@ exports.OperAdmMuestra = function(req, res, next){
         res.render('admMuestra');
     }
     else {
-        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+        res.status(401).send("¡Oops! Parece que quieres acceder a un sitio no autorizado.  Por favor, inicia sesion como Operario para continuar");
     }
 }
 
+/*
 exports.OperEliminarMuestra = function(req, res, next){
     var role = req.session["rol"];
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -112,9 +118,11 @@ exports.OperEliminarMuestra = function(req, res, next){
         res.render('eliminarMuestra');
     }
     else {
-        res.render('index');
+        //res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+		res.status(401).redirect("/");
     }
 }
+*/
 
 // ==============================================================
 
@@ -127,11 +135,12 @@ exports.OperAdmPaciente = function(req, res, next){
         res.render('registroPaciente');
     }
     else {
-        res.render('index');
+        res.status(401).send("¡Oops! Parece que quieres acceder a un sitio no autorizado.  Por favor, inicia sesion como Operario para continuar");
     }
 
 }
 
+/*
 exports.OperEditarPaciente = function(req, res, next){
     var role = req.session["rol"];
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -141,7 +150,8 @@ exports.OperEditarPaciente = function(req, res, next){
         res.render('editarPaciente');
     }
     else {
-        res.render('index');
+        //res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
+		res.status(401).redirect("/");
     }
 
 }
@@ -155,11 +165,11 @@ exports.OperEliminarPaciente = function(req, res, next){
         res.render('eliminarPaciente');
     }
     else {
-        res.render('index');
+        res.status(401).send("No autorizado. Por favor inicie sesión para continuar");
     }
 
 }
-
+*/
 // ==============================================================
 
 exports.OperEstadisticas1 = function(req, res, next){
@@ -171,7 +181,7 @@ exports.OperEstadisticas1 = function(req, res, next){
         res.render('estadisticasLabs');
     }
     else {
-        res.render('index');
+        res.status(401).send("¡Oops! Parece que quieres acceder a un sitio no autorizado.  Por favor, inicia sesion como Operario para continuar");
     }
 }
 
@@ -184,7 +194,7 @@ exports.OperEstadisticas2 = function(req, res, next){
         res.render('estadisticasMensual');
     }
     else {
-        res.render('index');
+        res.status(401).send("¡Oops! Parece que quieres acceder a un sitio no autorizado.  Por favor, inicia sesion como Operario para continuar");
     }
 }
 
