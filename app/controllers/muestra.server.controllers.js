@@ -44,8 +44,23 @@ exports.muestrasPorLaboratorio = function(req, res, next){
 };
 
 // Julian =====
-exports.muestrasByLabAndMonth = function(req, res, next){
-    Muestra.aggregate({"$group": {_id: { "mes":{$substr:['$fecha', 5, 2]} , 'nombre':'$nombreLaboratorio' } , "count": {"$sum":1} }} , function(err, muestras){
+exports.muestrasByLabInMonth = function(req, res, next){
+  var year = req.query["anio"];
+  var month = req.query["mes"];
+  Muestra.aggregate( [{"$match": {"fecha":{"$gte": new Date(year+"-"+month+"-01") , "$lte": new Date(year+"-"+month+"-31") }}},{"$group" : {_id:"$nombreLaboratorio", count:{$sum:1}}}] , function(err, muestras){
+    if(err){
+      return next(err);
+    } else {
+      return res.json(muestras);
+    }
+  });
+};
+
+// Julian =====
+exports.muestrasByYearAndMonth = function(req, res, next){
+  var from = req.query["from"];
+  var to = req.query["to"];
+  Muestra.aggregate( [{"$match": {"fecha":{"$gte": new Date(from+"-01") , "$lte": new Date(to+"-31") }}},{"$group": {_id: { "anio":{ $substr:['$fecha',0,4] }, "mes":{ $substr:['$fecha',5,2] }},"count": {"$sum":1}}},{$sort:{"_id.anio": 1, "_id.mes": 1}}] , function(err, muestras){
     if(err){
       return next(err);
     } else {

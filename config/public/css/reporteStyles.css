@@ -30,7 +30,18 @@ body {
 	height: auto; /* 550px; */
 }
 
-/* width >= 800px */
+@media (max-width: 975px) {
+	.dropdown:hover .dropdown-menu {
+	    display: block;
+	    margin-top: 0;
+	}
+
+	#section1 {
+		width: 100%;
+		height: auto;
+	}
+}
+
 @media (min-width: 800px) {
 	.dropdown:hover .dropdown-menu {
 	    display: block;

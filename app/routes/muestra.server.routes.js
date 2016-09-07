@@ -30,8 +30,11 @@ module.exports = function(app){
   app.route('/muestrasByLab')
     .get(verificarSesion, muestra.muestrasPorLaboratorio);
 
-  app.route('/muestrasByLabAndMonth')
-    .get(verificarSesion, muestra.muestrasByLabAndMonth);
+  app.route('/countMuestrasByYearAndMonth')
+    .get(muestra.muestrasByYearAndMonth);
+
+  app.route('/muestrasByLabInMonth')
+    .get(muestra.muestrasByLabInMonth);
 
   app.route('/muestrasRecibidas')
     .get(verificarSesion, noAuthPaciente, muestra.muestrasRecibidas);
