@@ -1,5 +1,4 @@
 function cargarCentrosMedicos(){
-    //$.getJSON("../datos/centros_medicos.json", function(data){
     $.getJSON("/centros-medicos", function(data){
         $.each(data,function(i) {
             var nombre = data[i].nombre;
@@ -206,14 +205,9 @@ function cargarCentrosMedicos(){
             horariosTableBody.append(horariosDomingo);
 
             row2.append(horariosColumn);
-          
         });
-
         ocultarPaneles();
-        //mostrar3paneles();
-
     });
-
 }
 
 // Esta funcion ya deja los 3 primeros paneles visibles
@@ -264,7 +258,7 @@ $( document ).ready(function(){
         $.ajax({
             type: 'POST',
             url: url,
-            data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+            data: data,
             success: function(respuesta){
                 $('#textoModal').text(respuesta);
                 $("#modalContrasena").modal("hide");
@@ -272,12 +266,7 @@ $( document ).ready(function(){
             }
         });
     });
-    // CARGAR INFORMACION DE CENTROS MEDICOS (PANELES Y MODALS)
 
-    // CARGAR INFORMACION DEL PACIENTE
-    
-
-    // GALERIA DE IMAGENES
     $('#carousel').flexslider({
         animation: "slide",
         controlNav: false,
@@ -296,19 +285,18 @@ $( document ).ready(function(){
         sync: "#carousel"
     });
 
-    // ANIMACION PARA TABS
     var hashTagActive = "";
     $(".scroll").click(function (event) {
         if(hashTagActive != this.hash) {
             event.preventDefault();
-            // calcular lugar destino
+
             var dest = 0;
             if ($(this.hash).offset().top > $(document).height() - $(window).height()) {
                 dest = $(document).height() - $(window).height();
             } else {
                 dest = $(this.hash).offset().top;
             }
-            // ir al destino
+
             $('html,body').animate({
                 scrollTop: dest
             }, 750, 'swing');

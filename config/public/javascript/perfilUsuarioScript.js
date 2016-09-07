@@ -33,7 +33,7 @@ $( document ).ready(function(){
         $.ajax({
             type: 'POST',
             url: url,
-            data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+            data: data,
             success: function(respuesta){
                 $('#textoModal').text(respuesta);
                 $("#modalContrasena").modal("hide");
@@ -49,7 +49,7 @@ $( document ).ready(function(){
             $.ajax({
                 type: 'PUT',
                 url: url,
-                data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+                data: data,
                 success: function(respuesta){
                     $('#textoPerfil').text("Perfil modificado con éxito");
                     $("#modal-perfil").modal("show");

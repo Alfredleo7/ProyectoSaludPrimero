@@ -17,12 +17,8 @@
     <link rel="stylesheet" type="text/css" href="../css/pacienteStyles.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYCisQqbURvsS1I1gh9ymhJ1AP-09BFos&callback=cargarCentrosMedicos"
     async defer></script>
-
-
 </head>
-
 <body data-spy="scroll" data-target=".navbar" >
-  
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
@@ -46,11 +42,9 @@
             </li>
             <li><a href="/paciente/logout"><i class="glyphicon glyphicon-off" data-toggle="collapse" data-target=".navbar-collapse.in" ></i> Salir</a></li>
           </ul>
-
       </div>
     </div>
   </nav>
-
   <div class="container">
     <div id="modal-success" class="modal modal-message fade" style="display: none;" aria-hidden="true">
         <div class="modal-dialog">
@@ -104,14 +98,7 @@
         </div>
       </div>
     </div>
-    <!--START section bienvenido-->
-    <div id="section1" class="container-fluid" >
-      <!-- <div id="section1-bg">
-        <video autoplay muted loop class="fillWidth">
-          <source src="../imagenes/videos/labtour.mp4" type="video/mp4"/>
-        </video>
-      </div> --><!-- end video-container -->
-      
+    <div id="section1" class="container-fluid" >  
       <h1>Bienvenido, <span id="pacienteNombre"></span></h1>
       <hr/>
       <img src="../imagenes/logo.png" alt="salud primero" width="70" height="70">
@@ -122,31 +109,23 @@
       <a id="btn-galeria" href="#section3" class="scroll btn btn-primary btn-outline" role="button">Galer&iacute;a</a>
       
     </div>
-    <!--END section bienvenido-->
-
-    <!--START section centros medicos-->
     <div id="section2" class="container-fluid">
       <h2 style="text-align:center;">Centros M&eacute;dicos</h2>
       <hr/>
       <p class="centrosText">En Salud Primero S.A. su salud es nuestra prioridad. Encuentre informaci&oacute;n sobre nuestros centros m&eacute;dicos m&aacute;s cercanos para ofrecerle un servicio de calidad.</p>
       <div id="centrosMedicos" class="row-md-12" >
 
-      </div> <!--END row-md-12 -->
+      </div>
       <button id="btn-showmore" type="button" class="infoBtn btn btn-primary" onclick="mostrar3paneles();">Mostrar m&aacute;s centros</button>
     </div> 
-    <!--END section centros medicos-->
-
     <div id="section3" class="container-fluid">
       <h2 style="text-align:center">Galer&iacute;a</h2>
       <hr/>
-      <!-- Contenedor del Slide y carousel -->
       <div class="content-slide">
         <div id="slider" class="flexslider">
-        <!-- Imagenes Grandes -->
           <ul class="slides">
             <li>
               <img src="../imagenes/slide/1.jpg" alt="Salud Primero S.A." />
-              <!-- <p class="flex-caption">Salud Primero S.A.</p> -->
             </li>
             <li>
               <img src="../imagenes/slide/2.jpg" />
@@ -166,12 +145,10 @@
           <li>
               <img src="../imagenes/slide/7.jpg" />
             </li>
-            <!-- items mirrored twice, total of 12 -->
           </ul>
         </div>
 
         <div id="carousel" class="flexslider">
-        <!-- Imagenes Miniaturas -->
           <ul class="slides">
             <li>
               <img src="../imagenes/slide/thumb/t1.jpg" />
@@ -196,13 +173,11 @@
             </li>
           </ul>
         </div>
-      </div> <!-- contiene al flexslide -->
+      </div>
     </div>
-
       <footer class="pie">
         &copy; Todos los derechos reservados. 2016
       </footer>
-  </div> <!-- END contenido -->
-
+  </div>
 </body>
 </html>

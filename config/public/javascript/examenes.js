@@ -235,7 +235,7 @@ $( document ).ready(function(){
         $.ajax({
             type: 'POST',
             url: url,
-            data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+            data: data,
             success: function(respuesta){
                 $('#textoModal').text(respuesta);
                 $("#modalContrasena").modal("hide");
