@@ -118,7 +118,7 @@ exports.OperEliminarMuestra = function(req, res, next){
 
 // ==============================================================
 
-exports.OperRegistroPaciente = function(req, res, next){
+exports.OperAdmPaciente = function(req, res, next){
     var role = req.session["rol"];
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
@@ -162,13 +162,26 @@ exports.OperEliminarPaciente = function(req, res, next){
 
 // ==============================================================
 
-exports.OperEstadisticas = function(req, res, next){
+exports.OperEstadisticas1 = function(req, res, next){
     var role = req.session["rol"];
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
 
     if ( role =='operario') {
-        res.render('estadisticas');
+        res.render('estadisticasLabs');
+    }
+    else {
+        res.render('index');
+    }
+}
+
+exports.OperEstadisticas2 = function(req, res, next){
+    var role = req.session["rol"];
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.header('Expires', 'Fri, 31 Dec 1998 12:00:00 GMT');
+
+    if ( role =='operario') {
+        res.render('estadisticasMensual');
     }
     else {
         res.render('index');
@@ -197,3 +210,4 @@ exports.salir = function(req, res, next){
   }
   res.redirect('/');
 }
+

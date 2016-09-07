@@ -3,10 +3,8 @@ $( document ).ready(function(){
 });
 
 function insertarGraficoLab(labels, series){
-	$("#areaGrap").empty();
-	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
+	$("#avisoDefault").remove();
 	$("#areaGrap").append("<div class='col-lg-2'></div><div class='col-lg-10' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
-//	$("#areaGrap").append("<div class='col-lg-1'></div>");
 	generarGraficoLab( labels, series );
 }
 
@@ -20,8 +18,8 @@ function generarGraficoLab(labelsIn, seriesIn) {
 	  labelInterpolationFnc: function(value) {
 	    return value[0]
 	  },
-	  width: '85%',
-	  height: '85%'
+	  width: '90%',
+	  height: '75%'
 	};
 
 	var responsiveOptions = [
@@ -63,7 +61,7 @@ function requerimientosByLab(){
     });
 }
 
-function insertarGraficoMensual (names, s1, s2, s3, s4) {
+/*function insertarGraficoMensual (names, s1, s2, s3, s4) {
 	$("#areaGrap").empty();
 	$("#areaGrap").append("<h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2><hr></hr><br>");
 	$("#areaGrap").append("<div class='col-lg-7' id='ct'><div class='ct-chart ct-perfect-fourth' id='myChart'></div></div>");
@@ -204,4 +202,4 @@ function funcionBotonGenerar(){
 
         } // fin success
     });
-}
+}*/

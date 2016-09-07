@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Salud Primero S.A. - Paciente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Datepicker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment-with-locales.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/js/bootstrap-datetimepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.42/css/bootstrap-datetimepicker.min.css" />
+    
+    <script type="text/javascript" src="../javascript/reporteScript2.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/reporteStyles.css">
+
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pacienteBar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href="/operario" style="font-size: 1.5em;text-decoration: none;"><img src="../imagenes/logo.png" alt="Salud Primero" width="50" height="50">Salud Primero S.A.</a>
+      </div>
+      <div class="collapse navbar-collapse" id="pacienteBar">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="/operario/registroPaciente"><i class="glyphicon glyphicon-user"></i> Administrar pacientes </a>
+            </li> 
+
+            <li class="dropdown">
+              <a href="/operario/editarMuestra"><i class="glyphicon glyphicon-duplicate"></i> Administrar muestras </a>
+            </li> 
+
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="/operario/estadisticas"><i class="glyphicon glyphicon-picture"></i> Gr&aacute;ficos estad&iacute;sticos <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#"> Por laboratorio </a></li>
+                <li><a href="/operario/estadisticas"><i class="glyphicon glyphicon-calendar"></i> Por meses </a></li>
+              </ul>
+            </li>
+
+            <li><a href="/operario/logout"><i class="glyphicon glyphicon-off"></i> Salir</a></li>
+          </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  <div id="section1">
+
+    <h2 style='text-align: center;'> Muestras mensuales por laboratorio </h2>
+    <hr></hr>
+
+    <!--areaGrap-->
+    <div class="container col-md-12 text-center">
+      <div id="areaGrap" class="col-md-8" style="height: auto;">
+        <div class='ct-chart ct-perfect-fourth' id='myChart'></div>
+      </div>
+
+      <div class="col-md-4 text-center">
+        <form id="subDate"> 
+          <div class="col-md-11" style="height: 100px;">
+            <label>Desde el mes:</label>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker6'>
+                    <input type='text' id="desde" class="form-control" required />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-11" style="height: 100px;">
+            <label>Hasta el mes:</label>
+              <div class="form-group">
+                <div class='input-group date' id='datetimepicker7'>
+                    <input type='text' id="hasta" class="form-control" required />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+          </div><br>
+
+          <input type="submit" class="btn-lg btn-default" value="Ver muestras" onclick="prueba();">
+        </form>
+
+        <div class="col-md-12" style="margin: auto;">
+          <ul id="legend">
+              <li>
+                <div class="input-color">
+                  <p>Series:</p>
+                </div>
+              </li>
+              <li>
+                  <div class="input-color">
+                      <div class="color-box" style="background-color: #d70206;"></div>
+                      <p>Lab. de Infectologia</p>
+                  </div>
+              </li>
+
+              <li>
+                  <div class="input-color">
+                      <div class="color-box" style="background-color: #f05b4f;"></div>
+                      <p>Lab. San Jos&eacute;</p>
+                  </div>
+              </li>
+
+              <li>
+                  <div class="input-color">
+                      <div class="color-box" style="background-color: #f4c63d;"></div>
+                      <p>Lab. clinico # 7</p>
+                  </div>
+              </li>
+
+              <li>
+                  <div class="input-color">
+                      <div class="color-box" style="background-color: #d17905;"></div>
+                      <p>Lab. Clinico Su Salud S.A.</p>
+                  </div>
+              </li>
+          </ul>
+          <style>
+            #legend{
+                margin: 20px;
+                padding: 10px;
+                list-style: none;
+                border: 1px solid #000;
+                border-radius: 5px;
+            }
+            
+            .input-color {
+                position: relative;
+            }
+            .input-color .color-box {
+                width: 15px;
+                height: 15px;
+                display: inline-block;
+                background-color: #ccc;
+                position: absolute;
+                left: 2px;
+                top: 5px;
+            }
+          </style>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div> <!-- Section 1-->
+
+  <footer class="pie">
+      &copy; Todos los derechos reservados. Salud Primero S.A. 2016
+  </footer>
+
+  <script type="text/javascript">
+      $(function () {
+        //var min = moment('2013-01-01');//.subtract(3, 'years'); // Hace 3 años
+        //var max = moment('2020-12-31');//.add(2, 'days');  // Hasta 3 años
+
+          $('#datetimepicker6').datetimepicker({
+            locale: moment().locale('es'),
+            viewMode: 'years',
+            format: 'YYYY-MM',
+            minDate: '2013-01'
+          });
+          
+          $('#datetimepicker7').datetimepicker({
+            locale: moment().locale('es'),
+            viewMode: 'years',
+            format: 'YYYY-MM',
+            useCurrent: false //Important! See issue #1075
+          });
+          $("#datetimepicker6").on("dp.change", function (e) {
+              $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+          });
+          $("#datetimepicker7").on("dp.change", function (e) {
+              $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+          });
+      });
+  </script>
+
+  <script>
+        $("#subDate").submit(function(e){
+            e.preventDefault();
+        });
+  </script>
+
+  <script type="text/javascript" src="../javascript/chartist.js"></script>
+  <link rel="stylesheet" type="text/css" href="../css/chartist.min.css">
+</body>
+</html>
