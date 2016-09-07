@@ -48,17 +48,6 @@ function cargarInfoPerfil(){
 function cargarExamenes(){
     var id = $("#idpaciente").val();
     var pacienteInfo = $('#infopaciente').val();
-    console.log(id);
-    var datos = [];
-    paciente = {
-        'paciente': {
-            'nombres' : pacienteInfo.nombres,
-            'apellidos' : pacienteInfo.apellidos
-        }
-    };
-
-    datos.push(paciente);
-    //console.log(datos);
 
     // muestras del paciente
     $.ajax({
@@ -66,7 +55,6 @@ function cargarExamenes(){
         type : 'get',
         async: false,
         success : function(muestras){
-            //asignarDatos(muestras);
             var examenes = $('#examenes');
             var examenesColumn = $('<div class="col-md-12" style="padding-top:20px; color:#000; text-shadow:none;; font-size:0.8em"></div>');
             var examenesPanel = $('<div class="panel panel-default"></div>');
@@ -101,7 +89,6 @@ function cargarExamenes(){
                 var fecha = muestras[i].fecha;
                 var estado = muestras[i].estado;
                 var examenDetalle;
-                console.log(muestras[i]);
                 if(estado == "Ingresado"){
                     examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Ingresado al sistema" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">Ingresado</div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
                 }
@@ -116,12 +103,9 @@ function cargarExamenes(){
                     examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td></tr>');
                 }
                 examenesTableBody.append(examenDetalle);
-                // examenes de la muestra
             }
-            
         }
     });
-    console.log(datos);
 }
 
 function asignarDatos(muestra){
@@ -173,7 +157,6 @@ function descargarPDF(id){
         success : function(examenes){
             examenes_ = examenes;
             for(var j = 0; j < examenes.length; j++){
-                //console.log(examenes[j]);
                 // parametros del examen
                 $.ajax({
                     url : '/parametrosByExamen/'+examenes[j]._id,
@@ -182,7 +165,6 @@ function descargarPDF(id){
                     success : function(parametros){
                         for(var k = 0; k < parametros.length; k++){
                             parametros_.push({'Tipo': examenes[j].tipo, 'Parámetro': parametros[k].parametro, 'Resultado': parametros[k].resultado, 'Unidades': parametros[k].unidades, 'Valores de referencia': parametros[k].valoresRef});
-                            //console.log("Parametro: "+parametros[k].parametro+", Resultado: "+parametros[k].resultado+", Unidades: "+parametros[k].unidades+",  Valores referencia: "+parametros[k].valoresRef);
                         }
                     }
                 }); 
@@ -192,10 +174,6 @@ function descargarPDF(id){
     });
     datosMuestra.push({'Tipo de muestra': muestra.tipo,'Centro Médico': centromedico.nombre, 'Laboratorio': laboratorio.nombre, 'Fecha toma de muestra': muestra.fecha});
     datosPaciente.push({'Nombres': paciente.nombres, 'Apellidos': paciente.apellidos, 'Cédula': paciente.cedula, 'E-mail': paciente.email});
-    console.log(paciente);
-    console.log(laboratorio);
-    console.log(centromedico);
-    console.log(muestra);
     
     var dd = {
         pageMargins: [40, 80, 40, 40],

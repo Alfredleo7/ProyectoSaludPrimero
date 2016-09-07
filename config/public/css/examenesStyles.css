@@ -2,7 +2,7 @@
 
 body {
 	position: relative;
-	background-color: black;
+	background: url("../imagenes/fondos/fondo2.jpg") no-repeat center center;
 	background-size: cover;
 	background-attachment: fixed;
 	font-family: 'Philosopher', 'Verdana', sans-serif;
@@ -11,12 +11,15 @@ body {
 #section1 {padding-top:70px;color: #fff; background-color:rgb(94, 146, 161);}
 
 #section1 {
-	text-shadow: 2px 2px #000000;
+	padding-top:70px;
+	color: #000; 
+	background-color:rgba(255,255,255,0.6);
 	font-size: 1.4em;
     overflow: hidden;
     position: relative;
     width: 100%;
     padding-bottom: 100px;
+    text-align: center;
 }
 
 #buscarExamen {
