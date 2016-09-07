@@ -29,7 +29,7 @@ module.exports = function(app){
   app.route('/pacientes/:id')
     .delete(verificarSesion, noAuthPaciente, paciente.eliminar)
     .get(verificarSesion, paciente.getById)
-    .put(verificarSesion, noAuthPaciente, paciente.actualizarPaciente);
+    .put(verificarSesion, paciente.actualizarPaciente);
   app.route('/paciente/logout')
     .get(verificarSesion, paciente.salir);
   app.route('/paciente/password')

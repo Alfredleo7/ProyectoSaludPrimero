@@ -35,7 +35,9 @@ $( document ).ready(function(){
             url: url,
             data: data, //+'&'+$.param({tipoaccion:"insertar"}),
             success: function(respuesta){
-                alert(respuesta);
+                $('#textoModal').text(respuesta);
+                $("#modalContrasena").modal("hide");
+                $("#modal-success").modal("show");
             }
         });
     });
@@ -49,8 +51,8 @@ $( document ).ready(function(){
                 url: url,
                 data: data, //+'&'+$.param({tipoaccion:"insertar"}),
                 success: function(respuesta){
-                    alert("Modificado con exito");
-                    window.location = "/paciente";
+                    $('#textoModal').text("Perfil modificado con éxito");
+                    $("#modal-success").modal("show");
                 }
             });
         }
