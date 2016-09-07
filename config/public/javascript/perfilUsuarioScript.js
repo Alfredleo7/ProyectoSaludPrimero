@@ -51,8 +51,8 @@ $( document ).ready(function(){
                 url: url,
                 data: data, //+'&'+$.param({tipoaccion:"insertar"}),
                 success: function(respuesta){
-                    $('#textoModal').text("Perfil modificado con éxito");
-                    $("#modal-success").modal("show");
+                    $('#textoPerfil').text("Perfil modificado con éxito");
+                    $("#modal-perfil").modal("show");
                 }
             });
         }
