@@ -5,29 +5,14 @@ var Laboratorista = require('./laboratorista.server.controllers');
 exports.identificar = function(req, res, next){
     if(req.body.rol == "operario"){
         Operario.operarioByCedulaContraseña(req, res, next);
-        if (res.url!='/') {
-            req.session["rol"] = "operario";
-        } else {
-            res.sendStatus(401);
-        }
     }
   //================================================================
     if(req.body.rol == "paciente"){
         Paciente.pacienteByCedulaContraseña(req, res, next);
-        if (res.url!='/') {
-            req.session["rol"] = "paciente";
-        } else {
-            res.sendStatus(401);
-        }
     }
   //================================================================
     if(req.body.rol ==  "laboratorista"){
         Laboratorista.laboratoristaByCedulaContraseña(req, res, next);
-        if (res.url!='/') {
-            req.session["rol"] = "laboratorista";
-        } else {
-            res.sendStatus(401);
-        }
     }
 }
 
