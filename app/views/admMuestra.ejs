@@ -284,6 +284,7 @@
 
           if (mode=='Guardar'){
               console.log(id);
+
               $.ajax({
                   type: 'PUT',
                   url: url+'/'+id,
@@ -293,6 +294,32 @@
                       $("#modal-success").modal("show");
                   }
               });
+
+            // Borrar los examenes
+            $.ajax({
+                type: 'DELETE',
+                url: '/examenesByMuestra/'+id,
+                data: {},
+                success: function (){
+                    // Do nothing.
+                }
+            });
+
+
+           // Se los ingresa nuevamente con el id_muestra
+            for ( var j=0 ; j<selmul.length ; j++){
+                var exa = selmul[j];
+                $.ajax({
+                    type: 'POST',
+                    url: '/examenes',
+                    data: {}+'&'+$.param({tipo: exa})+'&'+$.param({id_muestra: id}),
+                    success: function (resp) {
+                        // Do nothing.
+                    }
+                });
+            }
+
+
           }
       // ----------------------------------------------
           if (mode=='Crear'){

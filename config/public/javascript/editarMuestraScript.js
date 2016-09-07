@@ -200,6 +200,18 @@ function sacarIdPaciente2(i) {
 function confirmarEliminar(){
     var id = $("#hiddenSuccess").val();
     var url = "/muestras/"+id
+
+    // Borrar sus examenes primero (antes de eliminar el id_muestra)
+    $.ajax({
+        type: 'DELETE',
+        url: '/examenesByMuestra/'+id,
+        data: {},
+        success: function (){
+            // Do nothing.
+        }
+    });
+
+    // Borrar la muestra
     $.ajax({
         type: 'DELETE',
         url: url,
@@ -209,6 +221,7 @@ function confirmarEliminar(){
             $("#modal-success").modal("show");
         }
     });
+
 }
 
 

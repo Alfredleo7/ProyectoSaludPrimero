@@ -29,8 +29,6 @@ module.exports = function(app){
   	.get(verificarSesion, examen.porTipo);
 
   app.route('/examenesByMuestra/:id')
-    .get(verificarSesion, examen.examenesByMuestra);
-
-  app.route('/examenesByMuestra')
+    .get(verificarSesion, examen.examenesByMuestra)
     .delete(verificarSesion, noAuthPaciente, examen.eliminarExamenesByMuestra);
 }
