@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var parametroSchema = new Schema({
   id_examen : String,
   parametro : String,
-  unidades : Number,
+  unidades : String,
   resultado : Number,
   valoresRef : String
 });

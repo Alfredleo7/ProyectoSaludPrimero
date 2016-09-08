@@ -180,7 +180,14 @@ function crearTablaParametro(examen, i, o){
 						'<div class="form-group row">'+
 							'<label for="unidades'+i+'" class="col-sm-2 col-form-label">Unidades:</label>'+
 							'<div class="col-sm-10">'+
-								'<input type="text" class="form-control" id="unidades'+i+'">'+
+								'<select class="form-control" id="unidades'+i+'">'+
+									'<option>K/uL</option>'+
+									'<option>g/dL</option>'+
+									'<option>%</option>'+
+									'<option>fL</option>'+
+									'<option>pg</option>'+
+									'<option>GSD</option>'+
+								'</select>'+
 							'</div>'+
 						'</div>'+
 						'<div class="form-group row">'+
@@ -231,6 +238,7 @@ function mostrarTablaExamenes(i){
 };
 
 function guardarParametro(i, o){
+
 	var idExamen = $('#idExamen'+i).text();
 	var parametro = $('#parametro'+i).val();
 	var unidades = $('#unidades'+i).val();
@@ -279,7 +287,6 @@ function llenarTablaParametros(i, idExamen) {
 
 function enviarResultados(i){
 		var idMuestra = $("#id"+i).text();
-		console.log(idMuestra);
 		$.ajax({
 			url : '/enviarResultados/'+idMuestra,
 			type : 'put',
