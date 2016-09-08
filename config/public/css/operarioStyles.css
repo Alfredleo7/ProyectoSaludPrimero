@@ -39,6 +39,10 @@ body {
 
 /* width >= 800px */
 @media (min-width: 800px) {
+	.dropdown-menu li{
+		font-size: 1.27em;
+		padding: 5px;
+	}
 	.dropdown:hover .dropdown-menu {
 	    display: block;
 	    margin-top: 0;
@@ -123,3 +127,4 @@ td:hover{
 	text-shadow: 1px 1px #000;
 	color: #FFF
 }
+

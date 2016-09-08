@@ -28,6 +28,10 @@ body {
 
 /* width >= 800px */
 @media (min-width: 800px) {
+	.dropdown-menu li{
+		font-size: 1.27em;
+		padding: 5px;
+	}
 	.dropdown:hover .dropdown-menu {
 	    display: block;
 	    margin-top: 0;

@@ -22,9 +22,9 @@ module.exports = function(app){
     if(req.session.rol !== 'operario'){
         res.status(401).send("¡Oops! Parece que quieres acceder a un sitio no autorizado.  Por favor, inicia sesion como Operario para continuar");
     }
-	else{
-		next();
-	}
+  	else{
+  		next();
+  	}
   }
 
 
