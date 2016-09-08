@@ -90,10 +90,10 @@ function cargarExamenes(){
                 var estado = muestras[i].estado;
                 var examenDetalle;
                 if(estado == "Ingresado"){
-                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Ingresado al sistema" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width:25%">Ingresado</div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
+                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Ingresado al sistema" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:33%">Ingresado</div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
                 }
                 else if(estado == "recibido"){
-                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Muestra recibida" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">Recibido</div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
+                    examenDetalle = $('<tr><td>'+tipo+'</td><td>'+fecha+'</td><td><div class="progress"><div data-toggle="tooltip" title="Muestra recibida" class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" style="width:66%">Recibido</div></div></td><td><button class="btn btn-default disabled">No disponible</button></td></tr>');
                 }
                 else if(estado == "terminado"){
                     asignarDatos(muestras);

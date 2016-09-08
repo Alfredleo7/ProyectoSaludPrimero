@@ -238,7 +238,7 @@ function mostrarTablaExamenes(i){
 };
 
 function guardarParametro(i, o){
-
+	$('.modal').modal('hide');
 	var idExamen = $('#idExamen'+i).text();
 	var parametro = $('#parametro'+i).val();
 	var unidades = $('#unidades'+i).val();
