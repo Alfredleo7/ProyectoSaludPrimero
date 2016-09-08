@@ -1,0 +1,101 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Salud Primero S.A. - Pagina de inicio
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    // Attention here
+    script(type='text/javascript', src='../javascript/myjs.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js')
+    // Latest compiled and minified CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7', crossorigin='anonymous')
+    // Latest compiled and minified JavaScript
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js', integrity='sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS', crossorigin='anonymous')
+    style.
+      @media (max-width: 990px) {
+      .container {
+      padding-top: 4%;
+      max-width: 100%;
+      }
+      }
+    // Attention here
+    link(rel='stylesheet', type='text/css', href='../css/mystyle.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/hideshowpassword/2.0.10/hideShowPassword.min.js')
+  body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          a(style='font-size: 1.5em;text-decoration: none;', href='/')
+            img(src='../imagenes/logo.png', alt='salud primero', width='50', height='50')
+            | Salud Primero S.A.
+    #content-wrapper
+      .container
+        #welcomeSection.container-fluid
+          .contenido-inicio.col-md-12
+            .panel1.col-md-8
+              .login1
+                h3 Bienvenido a Salud Primero S.A.
+                br
+                p
+                  | Salud Primero S.A. ofrece un servicio de laboratorio especializado de alta calidad. Cuenta con los instrumentos y equipos computarizados más modernos, así como un staff de profesionales médicos y tecnólogos que le garantizan resultados confiables y a tiempo en todas las especialidades.
+                br
+              // login 1
+            // panel 1
+            .panel2.col-md-4
+              // 
+              .login2
+                form#formLogin.form-signin
+                  h2.form-signin-heading.text-center Ingreso al sistema
+                  .form-group
+                    .selectContainer
+                      select.form-control(name='rol', required='true')
+                        option(value='', disabled='', selected='') -- Escoja un rol --
+                        option(value='paciente') Paciente
+                        option(value='operario') Operario
+                        option(value='laboratorista') Laboratorista
+                  .form-group
+                    label.sr-only(for='username')
+                    input#cedula.form-control(type='text', name='cedula', placeholder='Cedula', required='true', autofocus='')
+                  .input-group
+                    input#password.form-control(name='password', type='password', placeholder='Contraseña', required='true')
+                    span#showPassword.input-group-btn
+                      button.btn.btn-default.reveal(type='button', onclick='showPass();')
+                        i#eyeIcon.glyphicon.glyphicon-eye-open
+                  br
+                  .form-group
+                    button#btnLogin.btn.btn-lg.btn-primary.btn-block(type='submit') Ingresar
+                    // <a href="/register" class="btn btn-link text-center">Crear usuario*</a>
+              // login 2
+            // panel 2
+          // contenido/inicio
+      br
+      br
+      footer.pie
+        | © Todos los derechos reservados. 2016
+    //
+      <script>
+      $('#password').hideShowPassword({
+      innerToggle: true
+      });
+      </script>
+    script.
+      $("#formLogin").submit(function(e){
+      e.preventDefault();
+      var url = "/login";
+      var data = $("#formLogin").serialize(); // + '&' + $.param({parametro:""});
+      $.ajax({
+      type: 'POST',
+      url: url,
+      data: data,
+      success: function(respuesta){
+      // *****
+      console.log(respuesta);
+      if (respuesta.error=='true'){
+      alert(respuesta.mensaje);
+      }
+      window.location = respuesta.url;
+      }
+      });
+      });

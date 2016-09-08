@@ -22,7 +22,7 @@ module.exports = function(){
     saveUninitialized : false
   }));
   app.set('views', './app/views');
-  app.set('view engine', 'ejs');
+  app.set('view engine', 'jade');
 
   app.use(express.static(path.join(__dirname, 'public')));
   app.use(favicon(__dirname + '/public/favicon.ico'));

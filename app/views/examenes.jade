@@ -1,0 +1,93 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Salud Primero S.A. - Mi Perfil
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js')
+    script(src='../javascript/pdfmake.min.js')
+    script(src='../javascript/vfs_fonts.js')
+    link(rel='stylesheet', type='text/css', href='../css/examenesStyles.css')
+    script(type='text/javascript', src='../javascript/examenes.js')
+  body
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#pacienteBar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.scroll(href='/paciente', data-toggle='collapse', data-target='.navbar-collapse.in', style='font-size: 1.5em;text-decoration: none;')
+            img(src='../imagenes/logo.png', alt='salud primero', width='50', height='50')
+            | Salud Primero S.A.
+        #pacienteBar.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/paciente/examenes')
+                i.glyphicon.glyphicon-duplicate
+                |  Mis exámenes
+            li.dropdown
+              a.dropdown-toggle(data-toggle='dropdown', href='#')
+                i.glyphicon.glyphicon-user
+                span#nombrePaciente
+                span.caret
+              ul.dropdown-menu
+                li(style='font-size: 1.15em;')
+                  a(href='/paciente/perfil')
+                    i.glyphicon.glyphicon-pencil
+                    |   Perfil
+                li(style='font-size: 1.15em;')
+                  a(href='#', data-toggle='modal', data-target='#modalContrasena')
+                    i.glyphicon.glyphicon-cog
+                    |   Cambiar contraseña
+            li
+              a(href='/paciente/logout')
+                i.glyphicon.glyphicon-off(data-toggle='collapse', data-target='.navbar-collapse.in')
+                |  Salir
+    .container
+      #modal-success.modal.modal-message.fade(style='display: none;', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            .modal-header.text-center
+              h3  Cambio de contraseña 
+            .modal-title(style='padding: 0 20px; text-align: center!important;')   
+            #textoModal.modal-body  La operacion se ha llevado a cabo correctamente 
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal', onclick='window.location.reload();') OK
+      #modalContrasena.modal.fade(role='dialog')
+        .modal-dialog
+          form#cambiarPassword.form-horizontal(role='form')
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal') ×
+                h4.modal-title Cambiar contraseña
+              .modal-body
+                .form-group
+                  label.col-lg-4.control-label Ingrese su contraseña: 
+                  .col-lg-7
+                    input#passwordold.form-control(name='passwordold', type='password', placeholder='Contraseña', required='true', autocomplete='off')
+                .form-group
+                  label.col-lg-4.control-label Nueva contraseña: 
+                  .col-lg-7
+                    input#password1.form-control(name='password1', type='password', placeholder='Contraseña', required='true', autocomplete='off')
+                .form-group
+                  label.col-lg-4.control-label Repita nueva contraseña: 
+                  .col-lg-7
+                    input#password2.form-control(name='password2', type='password', placeholder='Contraseña', required='true', autocomplete='off')
+                br
+              .modal-footer
+                button#btnCambiarPassword.btn.btn-primary(type='submit') Guardar
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+    span#idpaciente.hidden
+    span#infopaciente.hidden
+    #section1.container-fluid
+      h1(style='text-align: left;') Exámenes
+      hr
+      .row
+      #examenes.row-md-12
+    footer.pie
+      | © Todos los derechos reservados. 2016

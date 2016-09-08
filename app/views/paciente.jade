@@ -1,0 +1,144 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Salud Primero S.A. - Paciente
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    // CDN para los slides
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.1/flexslider.css')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.1/jquery.flexslider.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js')
+    script(type='text/javascript', src='../javascript/pacienteScript.js')
+    link(rel='stylesheet', type='text/css', href='../css/pacienteStyles.css')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDYCisQqbURvsS1I1gh9ymhJ1AP-09BFos&callback=cargarCentrosMedicos', async='', defer='')
+  body(data-spy='scroll', data-target='.navbar')
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#pacienteBar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.scroll(href='/paciente', data-toggle='collapse', data-target='.navbar-collapse.in', style='font-size: 1.5em;text-decoration: none;')
+            img(src='../imagenes/logo.png', alt='salud primero', width='50', height='50')
+            | Salud Primero S.A.
+        #pacienteBar.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='/paciente/examenes')
+                i.glyphicon.glyphicon-duplicate
+                |  Mis exámenes
+            li.dropdown
+              a.dropdown-toggle(data-toggle='dropdown', href='#')
+                i.glyphicon.glyphicon-user
+                span#nombrePaciente
+                span.caret
+              ul.dropdown-menu
+                li(style='font-size: 1.15em;')
+                  a(href='/paciente/perfil')
+                    i.glyphicon.glyphicon-pencil
+                    |   Perfil
+                li(style='font-size: 1.15em;')
+                  a(href='#', data-toggle='modal', data-target='#modalContrasena')
+                    i.glyphicon.glyphicon-cog
+                    |   Cambiar contraseña
+            li
+              a(href='/paciente/logout')
+                i.glyphicon.glyphicon-off(data-toggle='collapse', data-target='.navbar-collapse.in')
+                |  Salir
+    .container
+      #modal-success.modal.modal-message.fade(style='display: none;', aria-hidden='true')
+        .modal-dialog
+          .modal-content
+            .modal-header.text-center
+              h3  Cambio de contraseña 
+            .modal-title(style='padding: 0 20px; text-align: center!important;')   
+            #textoModal.modal-body  La operacion se ha llevado a cabo correctamente 
+            .modal-footer
+              button.btn.btn-default(type='button', data-dismiss='modal', onclick='window.location.reload();') OK
+      #modalContrasena.modal.fade(role='dialog')
+        .modal-dialog
+          form#cambiarPassword.form-horizontal(role='form')
+            // Modal content
+            .modal-content
+              .modal-header
+                button.close(type='button', data-dismiss='modal') ×
+                h4.modal-title Cambiar contraseña
+              .modal-body
+                .form-group
+                  label.col-lg-4.control-label Ingrese su contraseña: 
+                  .col-lg-7
+                    input#passwordold.form-control(name='passwordold', type='password', placeholder='Contraseña', required='true', autocomplete='off')
+                .form-group
+                  label.col-lg-4.control-label Nueva contraseña: 
+                  .col-lg-7
+                    input#password1.form-control(name='password1', type='password', placeholder='Contraseña', required='true', autocomplete='off')
+                .form-group
+                  label.col-lg-4.control-label Repita nueva contraseña: 
+                  .col-lg-7
+                    input#password2.form-control(name='password2', type='password', placeholder='Contraseña', required='true', autocomplete='off')
+                br
+              .modal-footer
+                button#btnCambiarPassword.btn.btn-primary(type='submit') Guardar
+                button.btn.btn-default(type='button', data-dismiss='modal') Close
+    #section1.container-fluid
+      h1
+        | Bienvenido, 
+        span#pacienteNombre
+      hr
+      img(src='../imagenes/logo.png', alt='salud primero', width='70', height='70')
+      p Salud Primero S.A. 
+      p
+        | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+      p
+        | It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      a#btn-centros.scroll.btn.btn-primary.btn-outline(href='#section2', role='button') Centros Médicos
+      a#btn-galeria.scroll.btn.btn-primary.btn-outline(href='#section3', role='button') Galería
+    #section2.container-fluid
+      h2(style='text-align:center;') Centros Médicos
+      hr
+      p.centrosText
+        | En Salud Primero S.A. su salud es nuestra prioridad. Encuentre información sobre nuestros centros médicos más cercanos para ofrecerle un servicio de calidad.
+      #centrosMedicos.row-md-12
+      button#btn-showmore.infoBtn.btn.btn-primary(type='button', onclick='mostrar3paneles();') Mostrar más centros
+    #section3.container-fluid
+      h2(style='text-align:center') Galería
+      hr
+      .content-slide
+        #slider.flexslider
+          ul.slides
+            li
+              img(src='../imagenes/slide/1.jpg', alt='Salud Primero S.A.')
+            li
+              img(src='../imagenes/slide/2.jpg')
+            li
+              img(src='../imagenes/slide/3.jpg')
+            li
+              img(src='../imagenes/slide/4.jpg')
+            li
+              img(src='../imagenes/slide/5.jpg')
+            li
+              img(src='../imagenes/slide/6.jpg')
+            li
+              img(src='../imagenes/slide/7.jpg')
+        #carousel.flexslider
+          ul.slides
+            li
+              img(src='../imagenes/slide/thumb/t1.jpg')
+            li
+              img(src='../imagenes/slide/thumb/t2.jpg')
+            li
+              img(src='../imagenes/slide/thumb/t3.jpg')
+            li
+              img(src='../imagenes/slide/thumb/t4.jpg')
+            li
+              img(src='../imagenes/slide/thumb/t5.jpg')
+            li
+              img(src='../imagenes/slide/thumb/t6.jpg')
+            li
+              img(src='../imagenes/slide/thumb/t7.jpg')
+    footer.pie
+      | © Todos los derechos reservados. 2016

@@ -1,0 +1,132 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Salud Primero S.A. - Laboratorista
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js')
+    link(rel='stylesheet', type='text/css', href='../css/laboratorista.css')
+  body.md-(data-spy='scroll', data-target='.navbar')
+    // Barra nav superior
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#pacienteBar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.scroll(href='#section1', data-toggle='collapse', data-target='.navbar-collapse.in', style='font-size: 1.5em;text-decoration: none;')
+            img(src='../imagenes/logo.png', alt='salud primero', width='50', height='50')
+            | Salud Primero S.A.
+        #pacienteBar.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li
+              a.scroll(href='#section2', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.glyphicon.glyphicon-duplicate
+                |  Llegada de muestras
+            li
+              a.scroll(href='#section3', data-toggle='collapse', data-target='.navbar-collapse.in')
+                i.glyphicon.glyphicon-picture
+                |  Ingreso de resultados
+            li
+              a(href='/laboratorista/logout')
+                i.glyphicon.glyphicon-off(data-toggle='collapse', data-target='.navbar-collapse.in')
+                |  Salir
+    .container
+      // START section Bienvenido, Lab
+      #section1.container-fluid
+        #section1-bg
+        h1
+          | Bienvenido, 
+          span#laboratNombre
+        hr
+        img(src='../imagenes/logo.png', alt='salud primero', width='70', height='70')
+        p Salud Primero S.A. 
+        p
+          | Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+        p
+          | It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      // END section Bienvenido, Lab
+      // START section 2
+      #section2.container-fluid
+        h2(style='text-align:center;') Llegada de muestras
+        hr
+        p.muestrasText
+          | En esta sección encuentre información sobre las muestras que han llegado al laboratorio o en su defecto, comunique cualquier anomalía
+        form.form-horizontal
+          .form-group
+            label.col-sm-6.control-label(for='id') Ingrese el Código de la Muestra
+            .col-sm-4
+              input.form-control.inputMuestra(type='text', placeholder='Código')
+            .col-sm-2
+              input.btn.btn-default(onclick='ingresarMuestra();', type='button', name='name', value='Ingresar')
+              // Modal Detalles de la muestra
+              // Modal
+              #myModal.modal.fade(style='color: rgb(39, 39, 40);', tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+                .modal-dialog(role='document')
+                  .modal-content
+                    .modal-header
+                      button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') ×
+                      h4#myModalLabel.modal-title Detalles de la Muestra
+                    .modal-body
+                      // CONTENIDO DEL MODAL
+                      form
+                        .form-group.row
+                          label.col-sm-2.col-form-label(for='nombrePaciente') Nombre:
+                          .col-md-10
+                            input#nombrePaciente.form-control(type='text', readonly='')
+                        .form-group.row
+                          label.col-sm-2.col-form-label(for='nombreCentro') Centro Médico:
+                          .col-md-10
+                            input#nombreCentro.form-control(type='text', readonly='')
+                        .form-group.row
+                          label.col-sm-2.col-form-label(for='nombreLaboratorio') Laboratorio:
+                          .col-md-10
+                            input#nombreLaboratorio.form-control(type='text', readonly='')
+                        .form-group.row
+                          label.col-sm-2.col-form-label(for='tipoMuestra') Tipo de la muestra:
+                          .col-md-10
+                            input#tipoMuestra.form-control(type='text', readonly='')
+                        .form-group.row
+                          label.col-sm-2.col-form-label(for='estado') Estado:
+                          .col-sm-10
+                            input#estado.form-control(type='text', readonly='')
+                        .form-group.row
+                          label.col-sm-2.control-label(for='inputObservaciones') Observaciones:
+                          .col-md-10
+                            textarea#inputObservaciones.form-control
+                      // END CONTENIDO DEL MODAL
+                    .modal-footer
+                      button.btn.btn-secondary(type='button', data-dismiss='modal') Cancelar
+                      button#btnRecibirMuestra.btn.btn-primary(type='button', data-dismiss='modal', onclick='recibirMuestra();') Recibir
+        .table-responsive
+          table.table.table-bordered.tablaMuestras
+            thead.thead-inverse
+              tr
+                th
+                  | #
+                th
+                  | Paciente
+                th
+                  | Centro Médico
+                th
+                  | Laboratorio
+                th
+                  | Tipo de Muestra
+                th
+                  | Exámenes
+            tbody
+      // END section 2
+      #section3.container-fluid
+        h2(style='text-align:center;') Ingreso de resultados
+        hr
+        img#logoEsperar(src='../imagenes/lab/loader.gif', alt='')
+        .tablaResultados
+      footer.pie
+        | © Todos los derechos reservados. 2016
+    // END CONTAINER
+    script(type='text/javascript', src='../javascript/laboratorista.js')

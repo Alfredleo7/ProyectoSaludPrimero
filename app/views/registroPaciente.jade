@@ -1,0 +1,216 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Salud Primero S.A. - Registrar paciente
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    script(type='text/javascript', src='https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.0/jquery.validate.js')
+    script(type='text/javascript', src='../javascript/registroPacienteScript.js')
+    link(rel='stylesheet', type='text/css', href='../css/registroMuestraStyle.css')
+  body
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#pacienteBar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.scroll(href='/operario', data-toggle='collapse', data-target='.navbar-collapse.in', style='font-size: 1.5em;text-decoration: none;')
+            img(src='../imagenes/logo.png', alt='salud primero', width='50', height='50')
+            | Salud Primero S.A.
+        #pacienteBar.collapse.navbar-collapse
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              a(href='/operario/admPaciente')
+                i.fa.fa-user.fa-lg(aria-hidden='true')
+                |  Administrar pacientes
+            li.dropdown
+              a(href='/operario/admMuestra')
+                i.fa.fa-flask.fa-lg(aria-hidden='true')
+                |  Administrar muestras
+            li.dropdown
+              a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                i.fa.fa-line-chart.fa-lg(aria-hidden='true')
+                |  Gráficos estadísticos 
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href='/operario/estadisticas/laboratorios')
+                    i.fa.fa-pie-chart.fa-lg(aria-hidden='true')
+                    |  Por laboratorio
+                li
+                  a(href='/operario/estadisticas/mensual')
+                    i.fa.fa-bar-chart.fa-lg(aria-hidden='true')
+                    |  Por meses
+            li
+              a(href='/operario/logout')
+                i.fa.fa-sign-out.fa-lg(aria-hidden='true')
+                |  Salir
+    .container
+      #section1.container-fluid
+        h1(style='text-align: left;')  Pacientes registrados 
+        button.btn.btn-primary(data-toggle='modal', data-target='#new', data-backdrop='static', data-keyboard='false') Agregar paciente
+        hr
+        input#codpaciente_hidden.hidden
+        .datatable.table-responsive
+          table#example.display(cellspacing='0', width='100%')
+            thead
+              tr
+                th(data-priority='1') Nombres
+                th(data-priority='2') Apellidos
+                th(data-priority='3') Cedula
+                th(data-priority='4') Email
+                th.text-center(data-priority='3') Editar
+                th.text-center(data-priority='4') Borrar
+          // =========================================
+          #new.modal.fade(tabindex='-1', role='dialog', aria-labelledby='new', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  h4#Heading.modal-title.custom_align Datos del paciente
+                .modal-body
+                  form#addPaciente(role='form')
+                    .form-group
+                      .col-md-4
+                        label.control-label Nombres: 
+                      .col-md-8
+                        input#inputNombres.form-control(name='nombres', type='text', placeholder='Ingrese su nombre', required='true')
+                    br
+                    .form-group
+                      .col-md-4
+                        label.control-label Apellidos: 
+                      .col-md-8
+                        input#inputApellidos.form-control(name='apellidos', type='text', placeholder='Ingrese su apellido', required='true')
+                    br
+                    .form-group
+                      .col-md-4
+                        label.control-label Cédula:
+                      .col-md-8
+                        input#inputCedula.form-control(name='cedula', onkeypress='return event.charCode >= 48 && event.charCode <= 57', type='text', placeholder='Ingrese su número de cédula', required='true')
+                    br
+                    .form-group
+                      .col-md-4
+                        label.control-label Correo electrónico:
+                      .col-md-8
+                        input#inputCorreo.form-control(name='email', type='email', placeholder='Ingrese su correo electrónico', required='true')
+                    br
+                    input#submitNew.btn.btn-primary.pull-right(type='submit', value='Crear')
+                    input#reset.btn.btn-default.pull-right(type='reset', value='Cancelar', data-dismiss='modal', onclick="resetModal('new');")
+                .modal-footer
+          // =========================================
+          #edit.modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  h4#Heading.modal-title.custom_align Datos del paciente
+                .modal-body
+                  form#editPaciente(role='form')
+                    input#editHidden(type='hidden')
+                    .form-group
+                      .col-md-4
+                        label.control-label Nombres: 
+                      .col-md-8
+                        input#editNombres.form-control(name='nombres', type='text', placeholder='Ingrese su nombre', required='true')
+                    br
+                    .form-group
+                      .col-md-4
+                        label.control-label Apellidos: 
+                      .col-md-8
+                        input#editApellidos.form-control(name='apellidos', type='text', placeholder='Ingrese su apellido', required='true')
+                    br
+                    .form-group
+                      .col-md-4
+                        label.control-label Cédula:
+                      .col-md-8
+                        input#editCedula.form-control(name='cedula', onkeypress='return event.charCode >= 48 && event.charCode <= 57', type='text', placeholder='Ingrese su número de cédula', required='true')
+                    br
+                    .form-group
+                      .col-md-4
+                        label.control-label Correo electrónico:
+                      .col-md-8
+                        input#editCorreo.form-control(name='email', type='email', placeholder='Ingrese su correo electrónico', required='true')
+                    br
+                    input#submitEdit.btn.btn-primary.pull-right(type='submit', value='Guardar')
+                    input.btn.btn-default.pull-right(type='reset', value='Cancelar', data-dismiss='modal')
+                .modal-footer
+          // Segundo Modal
+          #delete.modal.fade(tabindex='-1', role='dialog', aria-labelledby='edit', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header
+                  h4#Heading.modal-title.custom_align Eliminar muestra
+                .modal-body
+                  form
+                    input#hiddenSuccess(type='hidden')
+                    .alert.alert-danger
+                      span.glyphicon.glyphicon-warning-sign
+                      |   ¿Estás seguro que quieres eliminar este paciente?
+                    button#confirmDelete.btn.btn-success(type='button')
+                      span.glyphicon.glyphicon-ok-sign(onclick='confirmarEliminar();')
+                      |  Si, estoy seguro
+                    button.btn.btn-default(type='button', data-dismiss='modal')
+                      span.glyphicon.glyphicon-remove
+                      | No borrar este paciente
+                .modal-footer
+          // Success Modal Templates
+          #modal-success.modal.modal-message.modal-success.fade(style='display: none;', aria-hidden='true')
+            .modal-dialog
+              .modal-content
+                .modal-header.text-center(style='color: #53a93f; border-bottom: 3px solid #a0d468;')
+                  i.glyphicon.glyphicon-check
+                  p  ¡Realizado con exito! 
+                .modal-title(style='padding: 0 20px; text-align: center!important;')   
+                .modal-body  La operacion se ha llevado a cabo correctamente 
+                .modal-footer
+                  button.btn.btn-success(type='button', data-dismiss='modal', onclick='window.location.reload();') OK
+              // / .modal-content
+            // / .modal-dialog
+        // Fin DataTables
+    footer.pie
+      | © Todos los derechos reservados. 2016
+    script(src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js')
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/buttons/1.2.1/css/buttons.dataTables.min.css')
+    link(rel='stylesheet', type='text/css', href='https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css')
+    link(href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css', rel='stylesheet', integrity='sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1', crossorigin='anonymous')
+    script.
+      $("#addPaciente").submit(function(e){
+      e.preventDefault();
+      var url = "/pacientes";
+      var data = $("#addPaciente").serialize();
+      $.ajax({
+      type: 'POST',
+      url: url,
+      data: data, //+'&'+$.param({tipoaccion:"insertar"}),
+      success: function(respuesta){
+      $("#new").modal("hide");
+      $("#modal-success").modal("show");
+      }
+      });
+      });
+      // ==============================================
+      $("#editPaciente").submit(function(e){
+      e.preventDefault();
+      var url = '';
+      var i = $("#editHidden").val();
+      var url = '/pacientes/'+i;
+      var data = $("#editPaciente").serialize();
+      $.ajax({
+      type: 'PUT',
+      url: url,
+      data: data,
+      success: function(respuesta){
+      $("#modal-success").modal("show");
+      $("#edit").modal("hide");
+      }
+      });
+      });
+      // ==============================================
+      $("#delete").submit(function(e){
+      e.preventDefault();
+      });
